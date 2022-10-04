@@ -1,0 +1,34 @@
+Traceback (most recent call last):
+  File "/opt/miniconda3/envs/ssm-docs/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/miniconda3/envs/ssm-docs/lib/python3.9/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/miniconda3/envs/ssm-docs/lib/python3.9/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/miniconda3/envs/ssm-docs/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/miniconda3/envs/ssm-docs/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/opt/miniconda3/envs/ssm-docs/lib/python3.9/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/opt/miniconda3/envs/ssm-docs/lib/python3.9/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/miniconda3/envs/ssm-docs/lib/python3.9/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Set transition matrix of multinomial GLM-HMM
+gen_log_trans_mat = np.log(np.array([[[0.90, 0.04, 0.05, 0.01], [0.05, 0.92, 0.01, 0.02], [0.03, 0.02, 0.94, 0.01], [0.09, 0.01, 0.01, 0.89]]]))
+true_glmhmm.transitions.params = gen_log_trans_mat
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn [1], line 2[0m
+[1;32m      1[0m [38;5;66;03m# Set transition matrix of multinomial GLM-HMM[39;00m
+[0;32m----> 2[0m gen_log_trans_mat [38;5;241m=[39m np[38;5;241m.[39mlog(np[38;5;241m.[39marray([[[[38;5;241m0.90[39m, [38;5;241m0.04[39m, [38;5;241m0.05[39m, [38;5;241m0.01[39m], [[38;5;241m0.05[39m, [38;5;241m0.92[39m, [38;5;241m0.01[39m, [38;5;241m0.02[39m], [[38;5;241m0.03[39m, [38;5;241m0.02[39m, [38;5;241m0.94[39m, [38;5;241m0.01[39m], [[38;5;241m0.09[39m, [38;5;241m0.01[39m, [38;5;241m0.01[39m, [38;5;241m0.89[39m]]]))
+[1;32m      3[0m true_glmhmm[38;5;241m.[39mtransitions[38;5;241m.[39mparams [38;5;241m=[39m gen_log_trans_mat
+
+[0;31mNameError[0m: name 'np' is not defined
+NameError: name 'np' is not defined
+

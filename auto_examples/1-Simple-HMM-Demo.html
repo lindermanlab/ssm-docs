@@ -22,6 +22,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
@@ -38,7 +39,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Simple Linear Dynamical System Demo" href="1b-Simple-Linear-Dynamical-System.html" />
-    <link rel="prev" title="Welcome to ssm’s documentation!" href="../index.html" />
+    <link rel="prev" title="Multi-population recurrent switching linear dynamical systems overview" href="../notebooks/Multi-Population-rSLDS.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -85,7 +86,64 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks/1-Simple-HMM-Demo.html">
+   Hidden Markov Model Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks/1b-Simple-Linear-Dynamical-System.html">
+   Simple Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks/2-Input-Driven-HMM.html">
+   Input Driven HMM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks/2b-Input-Driven-Observations-%28GLM-HMM%29.html">
+   Input Driven Observations (“GLM-HMM”)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks/3-Switching-Linear-Dynamical-System.html">
+   Switching Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks/4-Recurrent-SLDS.html">
+   Recurrent SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks/5-Poisson-SLDS.html">
+   Poisson SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks/6-Poisson-fLDS.html">
+   Poisson fLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks/7-Variatonal-Laplace-EM-for-SLDS-Tutorial.html">
+   Variational Laplace-EM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks/HMM-State-Clustering.html">
+   HMM State Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks/Multi-Population-rSLDS.html">
+   Multi-population recurrent switching linear dynamical systems overview
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Simple HMM Demo
@@ -343,7 +401,7 @@ LP: -622.0:   0%|          | 0/50 [00:00&lt;?, ?it/s]
 LP: -622.0:   0%|          | 0/50 [00:00&lt;?, ?it/s]
 LP: -622.0:   0%|          | 0/50 [00:00&lt;?, ?it/s]
 LP: -622.0:   0%|          | 0/50 [00:00&lt;?, ?it/s]
-LP: -622.0: 100%|##########| 50/50 [00:00&lt;00:00, 1303.88it/s]
+LP: -622.0: 100%|##########| 50/50 [00:00&lt;00:00, 1076.33it/s]
 </pre></div>
 </div>
 <div class="line-block">
@@ -697,7 +755,7 @@ LP: -622.0: 100%|##########| 50/50 [00:00&lt;00:00, 1303.88it/s]
 <span class="c1"># You can try simulating this: modify the code in Section 2 so that we create and HMM with Student&#39;s T observations. Then re-run the cells in Section 4, which will fit an HMM with Gaussian observations to the observed data. What do you see?</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.778 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.416 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-1-simple-hmm-demo-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/06fbc9ee7dd1d49654639c70d58321c3/1-Simple-HMM-Demo.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">1-Simple-HMM-Demo.py</span></code></a></p>
@@ -717,11 +775,11 @@ LP: -622.0: 100%|##########| 50/50 [00:00&lt;00:00, 1303.88it/s]
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../notebooks/Multi-Population-rSLDS.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Welcome to ssm’s documentation!</p>
+            <p class="prev-next-title">Multi-population recurrent switching linear dynamical systems overview</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="1b-Simple-Linear-Dynamical-System.html" title="next page">

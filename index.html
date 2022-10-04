@@ -22,6 +22,7 @@
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css" />
@@ -37,7 +38,7 @@
     <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Simple HMM Demo" href="auto_examples/1-Simple-HMM-Demo.html" />
+    <link rel="next" title="Hidden Markov Model Demo" href="notebooks/1-Simple-HMM-Demo.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -85,6 +86,63 @@
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/1-Simple-HMM-Demo.html">
+   Hidden Markov Model Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/1b-Simple-Linear-Dynamical-System.html">
+   Simple Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/2-Input-Driven-HMM.html">
+   Input Driven HMM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/2b-Input-Driven-Observations-%28GLM-HMM%29.html">
+   Input Driven Observations (“GLM-HMM”)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/3-Switching-Linear-Dynamical-System.html">
+   Switching Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/4-Recurrent-SLDS.html">
+   Recurrent SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/5-Poisson-SLDS.html">
+   Poisson SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/6-Poisson-fLDS.html">
+   Poisson fLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/7-Variatonal-Laplace-EM-for-SLDS-Tutorial.html">
+   Variational Laplace-EM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/HMM-State-Clustering.html">
+   HMM State Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/Multi-Population-rSLDS.html">
+   Multi-population recurrent switching linear dynamical systems overview
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="auto_examples/1-Simple-HMM-Demo.html">
    Simple HMM Demo
@@ -363,6 +421,20 @@ Currently, it supports:</p>
 <p>HMM inference is done with either expectation maximization (EM) or stochastic gradient descent (SGD).
 For SLDS, we use stochastic variational inference (SVI).</p>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/1-Simple-HMM-Demo.html">Hidden Markov Model Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/1b-Simple-Linear-Dynamical-System.html">Simple Linear Dynamical System Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/2-Input-Driven-HMM.html">Input Driven HMM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/2b-Input-Driven-Observations-%28GLM-HMM%29.html">Input Driven Observations (“GLM-HMM”)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/3-Switching-Linear-Dynamical-System.html">Switching Linear Dynamical System Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/4-Recurrent-SLDS.html">Recurrent SLDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/5-Poisson-SLDS.html">Poisson SLDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/6-Poisson-fLDS.html">Poisson fLDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/7-Variatonal-Laplace-EM-for-SLDS-Tutorial.html">Variational Laplace-EM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/HMM-State-Clustering.html">HMM State Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/HMM-State-Clustering.html#cluster-states-from-the-original-hmm">Cluster states from the original HMM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Multi-Population-rSLDS.html">Multi-population recurrent switching linear dynamical systems overview</a></li>
+</ul>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">orphan</dt>
@@ -434,10 +506,10 @@ For SLDS, we use stochastic variational inference (SVI).</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="auto_examples/1-Simple-HMM-Demo.html" title="next page">
+    <a class='right-next' id="next-link" href="notebooks/1-Simple-HMM-Demo.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Simple HMM Demo</p>
+        <p class="prev-next-title">Hidden Markov Model Demo</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

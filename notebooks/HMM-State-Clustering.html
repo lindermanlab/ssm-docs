@@ -1,0 +1,957 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>HMM State Clustering &#8212; ssm  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Multi-population recurrent switching linear dynamical systems overview" href="Multi-Population-rSLDS.html" />
+    <link rel="prev" title="Variational Laplace-EM" href="7-Variatonal-Laplace-EM-for-SLDS-Tutorial.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">ssm  documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="1-Simple-HMM-Demo.html">
+   Hidden Markov Model Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="1b-Simple-Linear-Dynamical-System.html">
+   Simple Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2-Input-Driven-HMM.html">
+   Input Driven HMM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2b-Input-Driven-Observations-%28GLM-HMM%29.html">
+   Input Driven Observations (“GLM-HMM”)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="3-Switching-Linear-Dynamical-System.html">
+   Switching Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="4-Recurrent-SLDS.html">
+   Recurrent SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="5-Poisson-SLDS.html">
+   Poisson SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="6-Poisson-fLDS.html">
+   Poisson fLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="7-Variatonal-Laplace-EM-for-SLDS-Tutorial.html">
+   Variational Laplace-EM
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   HMM State Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Multi-Population-rSLDS.html">
+   Multi-population recurrent switching linear dynamical systems overview
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/1-Simple-HMM-Demo.html">
+   Simple HMM Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/1b-Simple-Linear-Dynamical-System.html">
+   Simple Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/2-Input-Driven-HMM.html">
+   Input Driven HMM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/2b-Input-Driven-Observations-%28GLM-HMM%29.html">
+   Input Driven Observations (GLM-HMM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/3-Switching-Linear-Dynamical-System.html">
+   Switching Linear Dynamical System
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/4-Recurrent-SLDS.html">
+   Recurrent SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/5-Poisson-SLDS.html">
+   Poisson SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/6-Poisson-fLDS.html">
+   Poisson fLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/7-Variatonal-Laplace-EM-for-SLDS-Tutorial.html">
+   Variational Laplace EM for SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/HMM-State-Clustering.html">
+   HMM State Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/Multi-Population-rSLDS.html">
+   Multi-Population rSLDS
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/lindermanlan/ssm-docs/main?urlpath=tree/notebooks/HMM-State-Clustering.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/lindermanlan/ssm-docs/blob/main/notebooks/HMM-State-Clustering.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/notebooks/HMM-State-Clustering.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../_sources/notebooks/HMM-State-Clustering.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   HMM State Clustering
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#for-demonstration-make-the-last-two-states-very-similar">
+     For demonstration, make the last two states very similar
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sample-some-synthetic-data">
+     Sample some synthetic data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cluster-states-from-the-original-hmm">
+   Cluster states from the original HMM
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#make-a-pairwise-similarity-matrix">
+     Make a pairwise similarity matrix
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hierarchical-clustering-by-iteratively-merging-states">
+     Hierarchical clustering by iteratively merging states
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#now-plot-the-dendrogram-using-likelihood-drop-as-similarity">
+     Now plot the dendrogram using likelihood drop as similarity
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>HMM State Clustering</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   HMM State Clustering
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#for-demonstration-make-the-last-two-states-very-similar">
+     For demonstration, make the last two states very similar
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sample-some-synthetic-data">
+     Sample some synthetic data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cluster-states-from-the-original-hmm">
+   Cluster states from the original HMM
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#make-a-pairwise-similarity-matrix">
+     Make a pairwise similarity matrix
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hierarchical-clustering-by-iteratively-merging-states">
+     Hierarchical clustering by iteratively merging states
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#now-plot-the-dendrogram-using-likelihood-drop-as-similarity">
+     Now plot the dendrogram using likelihood drop as similarity
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="hmm-state-clustering">
+<h1>HMM State Clustering<a class="headerlink" href="#hmm-state-clustering" title="Permalink to this headline">#</a></h1>
+<p>In this notebook we’ll explore a post-hoc method for clustering HMM states.
+The idea is, given an HMM which has been fit to data, we reduce the number of states hierarchically by merging pairs of states. Let’s say we start with an HMM with K states. The idea is that we’ll try merging every pair of states and see which merge makes the log-likelihood of the data go down the least. Once we find that pair, we have K-1 states, and we repeat this process until we have satisfactorily few states.</p>
+<p><strong>Note</strong>: This notebook is a little rough around the edges.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">autograd.numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">autograd.numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+<span class="n">npr</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">ssm</span>
+<span class="kn">from</span> <span class="nn">ssm.util</span> <span class="kn">import</span> <span class="n">find_permutation</span>
+<span class="kn">from</span> <span class="nn">ssm.plots</span> <span class="kn">import</span> <span class="n">gradient_cmap</span><span class="p">,</span> <span class="n">white_to_color_cmap</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;talk&quot;</span><span class="p">)</span>
+
+<span class="n">color_names</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;windows blue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;red&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;amber&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;faded green&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dusty purple&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;orange&quot;</span>
+    <span class="p">]</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">xkcd_palette</span><span class="p">(</span><span class="n">color_names</span><span class="p">)</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">gradient_cmap</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ssm-docs/lib/python3.9/site-packages/tqdm/auto.py:22: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the parameters of the HMM</span>
+<span class="n">time_bins</span> <span class="o">=</span> <span class="mi">1000</span>   <span class="c1"># number of time bins</span>
+<span class="n">num_states</span> <span class="o">=</span> <span class="mi">6</span>   <span class="c1"># number of discrete states</span>
+<span class="n">obs_dim</span> <span class="o">=</span> <span class="mi">2</span>       <span class="c1"># dimensionality of observation</span>
+
+<span class="c1"># Make an HMM</span>
+<span class="n">true_hmm</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">HMM</span><span class="p">(</span><span class="n">num_states</span><span class="p">,</span> <span class="n">obs_dim</span><span class="p">,</span> <span class="n">observations</span><span class="o">=</span><span class="s2">&quot;gaussian&quot;</span><span class="p">)</span>
+
+<span class="c1"># Manually tweak the means to make them farther apart</span>
+<span class="n">thetas</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">npr</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">num_states</span><span class="p">)</span>
+<span class="n">true_hmm</span><span class="o">.</span><span class="n">observations</span><span class="o">.</span><span class="n">mus</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">thetas</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">thetas</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="for-demonstration-make-the-last-two-states-very-similar">
+<h2>For demonstration, make the last two states very similar<a class="headerlink" href="#for-demonstration-make-the-last-two-states-very-similar" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_hmm</span><span class="o">.</span><span class="n">observations</span><span class="o">.</span><span class="n">mus</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">true_hmm</span><span class="o">.</span><span class="n">observations</span><span class="o">.</span><span class="n">mus</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1e-3</span> <span class="o">*</span> <span class="n">npr</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sample-some-synthetic-data">
+<h2>Sample some synthetic data<a class="headerlink" href="#sample-some-synthetic-data" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_states</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">true_hmm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">time_bins</span><span class="p">)</span>
+<span class="n">true_ll</span> <span class="o">=</span> <span class="n">true_hmm</span><span class="o">.</span><span class="n">log_probability</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the observation distributions</span>
+<span class="n">lim</span> <span class="o">=</span> <span class="mf">.85</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">XX</span><span class="p">,</span> <span class="n">YY</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">lim</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">lim</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">XX</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">YY</span><span class="o">.</span><span class="n">ravel</span><span class="p">()))</span>
+<span class="nb">input</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">tag</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">lls</span> <span class="o">=</span> <span class="n">true_hmm</span><span class="o">.</span><span class="n">observations</span><span class="o">.</span><span class="n">log_likelihoods</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Below, we plot the samples obtained from the HMM, color-coded according to the underlying state. The solid curves show regions of of equal probability density around each mean. The thin gray lines trace the latent variable as it transitions from one state to another.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_states</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">XX</span><span class="p">,</span> <span class="n">YY</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">lls</span><span class="p">[:,</span><span class="n">k</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">XX</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">white_to_color_cmap</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">true_states</span><span class="o">==</span><span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">true_states</span><span class="o">==</span><span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">mec</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x_1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$x_2$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Observation Distributions&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Observation Distributions&#39;)
+</pre></div>
+</div>
+<img alt="../_images/06b6613812b9f61e4d31a3d40f26f3ceee9083ea153f376cc75edd7773fae096.png" src="../_images/06b6613812b9f61e4d31a3d40f26f3ceee9083ea153f376cc75edd7773fae096.png" />
+</div>
+</div>
+<p>Below, we visualize each component of of the observation variable as a time series. The colors correspond to the latent state. The dotted lines represent the “true” values of the observation variable (the mean) while the solid lines are the actual observations sampled from the HMM.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="cluster-states-from-the-original-hmm">
+<h1>Cluster states from the original HMM<a class="headerlink" href="#cluster-states-from-the-original-hmm" title="Permalink to this headline">#</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">merge_two_states</span></code> function below takes in a trained HMM, and indices of two states, s1 and s2. It outputs a new HMM where all states except for s1 and s2 are the same, along with the log-likelihood of the data under the new model.</p>
+<p>Here’s how we merge two states: In the E-step of the EM algorithm, we obtain a T x K table, which has the probability of being in state K at time T for every time point. To merge state k1 and k2, we take the two columns of the table corresponding to these two states and sum them. From this, we get a new table which is K-1 x T. We then run an M-step as normal to get the best parameters for our new K-1 state model, and evaluate the log likelihood.</p>
+<p><strong>NOTE</strong>: as written, the below function does not support inputs or masks, and it is limited to HMMs with stationary transitions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">merge_two_states</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">datas</span><span class="p">,</span> <span class="n">observations</span><span class="o">=</span><span class="s2">&quot;gaussian&quot;</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">collapse_and_sum_2d</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">axis</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">axis</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">+=</span> <span class="n">out</span><span class="p">[</span><span class="n">j</span><span class="p">,:]</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">axis</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">out</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+    <span class="n">K</span> <span class="o">=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">K</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">D</span>
+    <span class="k">assert</span> <span class="n">K</span> <span class="o">&gt;=</span> <span class="mi">2</span>
+    <span class="k">assert</span> <span class="n">s1</span> <span class="o">&lt;</span> <span class="n">K</span>
+    <span class="k">assert</span> <span class="n">s2</span> <span class="o">&lt;</span> <span class="n">K</span>
+    <span class="k">assert</span> <span class="n">s1</span> <span class="o">!=</span> <span class="n">s2</span>
+    <span class="n">datas</span> <span class="o">=</span> <span class="n">datas</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">datas</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">datas</span><span class="p">]</span>
+    <span class="n">inputs</span><span class="p">,</span> <span class="n">masks</span><span class="p">,</span> <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+    <span class="n">expectations</span> <span class="o">=</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">expected_states</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span>
+                            <span class="k">for</span> <span class="n">data</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">tag</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">datas</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">masks</span><span class="p">,</span> <span class="n">tags</span><span class="p">)]</span>
+    
+    <span class="c1"># Merge expectations for 2 states</span>
+    <span class="n">expectations_new</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">Ez</span><span class="p">,</span> <span class="n">Ezz</span><span class="p">,</span> <span class="n">py</span><span class="p">)</span> <span class="ow">in</span> <span class="n">expectations</span><span class="p">:</span>
+        <span class="n">T_curr</span> <span class="o">=</span> <span class="n">Ez</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="c1"># Put merged expectations in first column</span>
+        <span class="n">Ez_new</span> <span class="o">=</span> <span class="n">collapse_and_sum_2d</span><span class="p">(</span><span class="n">Ez</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c1"># Now merge Ezz</span>
+        <span class="c1"># Ezz will have shape 1, K, K</span>
+        <span class="c1"># so we get rid of the first dimension then add it back.</span>
+        <span class="n">Ezz_new</span> <span class="o">=</span> <span class="n">collapse_and_sum_2d</span><span class="p">(</span><span class="n">Ezz</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">Ezz_new</span> <span class="o">=</span> <span class="n">collapse_and_sum_2d</span><span class="p">(</span><span class="n">Ezz_new</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">Ezz_new</span> <span class="o">=</span> <span class="n">Ezz_new</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+        
+        <span class="n">expectations_new</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">Ez_new</span><span class="p">,</span> <span class="n">Ezz_new</span><span class="p">,</span> <span class="n">py</span><span class="p">))</span>
+    
+    <span class="c1"># Perform M-Step to get params for new hmm</span>
+    <span class="n">new_hmm</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">HMM</span><span class="p">(</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">observations</span><span class="o">=</span><span class="n">observations</span><span class="p">)</span>
+    <span class="n">new_hmm</span><span class="o">.</span><span class="n">init_state_distn</span><span class="o">.</span><span class="n">m_step</span><span class="p">(</span><span class="n">expectations_new</span><span class="p">,</span> <span class="n">datas</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">masks</span><span class="p">,</span> <span class="n">tags</span><span class="p">)</span>
+    <span class="n">new_hmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">m_step</span><span class="p">(</span><span class="n">expectations_new</span><span class="p">,</span> <span class="n">datas</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">masks</span><span class="p">,</span> <span class="n">tags</span><span class="p">)</span>
+    <span class="n">new_hmm</span><span class="o">.</span><span class="n">observations</span><span class="o">.</span><span class="n">m_step</span><span class="p">(</span><span class="n">expectations_new</span><span class="p">,</span> <span class="n">datas</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">masks</span><span class="p">,</span> <span class="n">tags</span><span class="p">)</span>
+    
+    <span class="c1"># Evaluate log_likelihood</span>
+    <span class="n">expectations</span> <span class="o">=</span> <span class="p">[</span><span class="n">new_hmm</span><span class="o">.</span><span class="n">expected_states</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">data</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">tag</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">datas</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">masks</span><span class="p">,</span> <span class="n">tags</span><span class="p">)]</span>
+    <span class="n">new_ll</span> <span class="o">=</span> <span class="n">new_hmm</span><span class="o">.</span><span class="n">log_prior</span><span class="p">()</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">([</span><span class="n">ll</span> <span class="k">for</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">ll</span><span class="p">)</span> <span class="ow">in</span> <span class="n">expectations</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">new_ll</span><span class="p">,</span> <span class="n">new_hmm</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_hmm</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="c1"># Get the most likely state sequence</span>
+    <span class="n">states</span> <span class="o">=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">most_likely_states</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Plot the observation distributions in the new model</span>
+    <span class="n">lim</span> <span class="o">=</span> <span class="mf">.85</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="n">XX</span><span class="p">,</span> <span class="n">YY</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">lim</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">lim</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">XX</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">YY</span><span class="o">.</span><span class="n">ravel</span><span class="p">()))</span>
+    <span class="nb">input</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">lls</span> <span class="o">=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">observations</span><span class="o">.</span><span class="n">log_likelihoods</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">K</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">XX</span><span class="p">,</span> <span class="n">YY</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">lls</span><span class="p">[:,</span><span class="n">k</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">XX</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">white_to_color_cmap</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">states</span><span class="o">==</span><span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">states</span><span class="o">==</span><span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">mec</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x_1$&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$x_2$&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Observation Distributions in merged HMM&quot;</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_ll</span><span class="p">,</span> <span class="n">new_hmm</span> <span class="o">=</span> <span class="n">merge_two_states</span><span class="p">(</span><span class="n">true_hmm</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;likelihood drop: &quot;</span><span class="p">,</span> <span class="n">new_ll</span> <span class="o">-</span> <span class="n">true_ll</span><span class="p">)</span>
+
+<span class="n">plot_hmm</span><span class="p">(</span><span class="n">new_hmm</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>likelihood drop:  -301.7232609027833
+</pre></div>
+</div>
+<img alt="../_images/bda33156fdb0cf07225b494477257dcfe2d34046d224856dba6635d5ef7461f5.png" src="../_images/bda33156fdb0cf07225b494477257dcfe2d34046d224856dba6635d5ef7461f5.png" />
+</div>
+</div>
+<p>Blue (0) and green (3) in the original model were not really similar, so we expected to see a big drop in likelihood in the merged model.  Let’s do the same with the last two states, which we made similar by construction.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_ll</span><span class="p">,</span> <span class="n">new_hmm</span> <span class="o">=</span> <span class="n">merge_two_states</span><span class="p">(</span><span class="n">true_hmm</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;likelihood drop: &quot;</span><span class="p">,</span> <span class="n">new_ll</span> <span class="o">-</span> <span class="n">true_ll</span><span class="p">)</span>
+
+<span class="n">plot_hmm</span><span class="p">(</span><span class="n">new_hmm</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>likelihood drop:  -215.37585014591878
+</pre></div>
+</div>
+<img alt="../_images/774cf25eab5262d71c5407f29de7164ffd5a756189cad92adb3b2bf36fa1add3.png" src="../_images/774cf25eab5262d71c5407f29de7164ffd5a756189cad92adb3b2bf36fa1add3.png" />
+</div>
+</div>
+<p>Good! Looks like the drop in likelihood is actually a little lower for the “more similar” states.</p>
+<section id="make-a-pairwise-similarity-matrix">
+<h2>Make a pairwise similarity matrix<a class="headerlink" href="#make-a-pairwise-similarity-matrix" title="Permalink to this headline">#</a></h2>
+<p>We can use the log-likelihood drop when merging states as a proxy for state “similarity.” Two states which can be merged with minimal drop in likelihood might be considered similar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_similarity_matrix</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">num_states</span> <span class="o">=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">K</span>
+    <span class="n">init_ll</span> <span class="o">=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">log_probability</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">similarity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">num_states</span><span class="p">,</span> <span class="n">num_states</span><span class="p">))</span>
+    <span class="n">merged_hmms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">num_states</span><span class="p">,</span> <span class="n">num_states</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">s1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_states</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">s2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">s1</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_states</span><span class="p">):</span>
+            <span class="n">merged_ll</span><span class="p">,</span> <span class="n">merged_hmm</span> <span class="o">=</span> <span class="n">merge_two_states</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="n">similarity</span><span class="p">[</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">]</span> <span class="o">=</span> <span class="n">merged_ll</span> <span class="o">-</span> <span class="n">init_ll</span>
+            <span class="n">merged_hmms</span><span class="p">[</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">]</span> <span class="o">=</span> <span class="n">merged_hmm</span>
+            
+    <span class="k">return</span> <span class="n">similarity</span><span class="p">,</span> <span class="n">merged_hmms</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">similarity</span><span class="p">,</span> <span class="n">new_hmms</span> <span class="o">=</span> <span class="n">make_similarity_matrix</span><span class="p">(</span><span class="n">true_hmm</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">similarity</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;state 1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;state 2&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;similarity&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x154d4d640&gt;
+</pre></div>
+</div>
+<img alt="../_images/69f7f3216d6a04592e1344fa40f00da9c5b30d30a586aa12cbe066a89df13f0f.png" src="../_images/69f7f3216d6a04592e1344fa40f00da9c5b30d30a586aa12cbe066a89df13f0f.png" />
+</div>
+</div>
+<p>These merges are perhaps a little counterintuitive at first.  In terms of likelihood drop, the first two states to be merged woudl be red (1) and yellow (2).  Their means more fairly different than those of purple and orange, but they have relatively large variance.  Let’s see what happens when we do this recursively.</p>
+</section>
+<section id="hierarchical-clustering-by-iteratively-merging-states">
+<h2>Hierarchical clustering by iteratively merging states<a class="headerlink" href="#hierarchical-clustering-by-iteratively-merging-states" title="Permalink to this headline">#</a></h2>
+<p>We start with a K state HMM, then merge possible pair of states k1 and k2. We can see which are the best two states to merge by checking the new log-likelihood. We then rinse and repeat for our new K-1 state HMM, tracking the log-likelihood as we go, until there is only 1 state left. After each merge, we can show the observation distribution and new similarity matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hierarchical_cluster</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">num_states</span> <span class="o">=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">K</span>
+    <span class="n">linkage</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+    <span class="n">likelihood_drops</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">hmms</span> <span class="o">=</span> <span class="p">[</span><span class="n">hmm</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+        <span class="n">plot_hmm</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_states</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">similarity</span><span class="p">,</span> <span class="n">merged_hmms</span> <span class="o">=</span> <span class="n">make_similarity_matrix</span><span class="p">(</span><span class="n">hmms</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="p">)</span>
+        
+        <span class="c1"># Find the most similar states</span>
+        <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">similarity</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">similarity</span><span class="p">))</span>
+        <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">s2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">linkage</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">))</span>
+        <span class="n">likelihood_drops</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">similarity</span><span class="p">[</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">])</span>
+        <span class="n">hmms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">merged_hmms</span><span class="p">[</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;merging &quot;</span><span class="p">,</span> <span class="n">color_names</span><span class="p">[</span><span class="n">s1</span><span class="p">],</span> <span class="s2">&quot;and&quot;</span><span class="p">,</span> <span class="n">color_names</span><span class="p">[</span><span class="n">s2</span><span class="p">])</span>
+        
+        <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+            <span class="n">im</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">similarity</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;state 1&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;state 2&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;similarity&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+            
+            <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+            <span class="n">plot_hmm</span><span class="p">(</span><span class="n">hmms</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">linkage</span><span class="p">,</span> <span class="n">likelihood_drops</span><span class="p">,</span> <span class="n">hmms</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">linkage</span><span class="p">,</span> <span class="n">likelihood_drops</span><span class="p">,</span> <span class="n">hmms</span> <span class="o">=</span> <span class="n">hierarchical_cluster</span><span class="p">(</span><span class="n">true_hmm</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>merging  red and amber
+merging  windows blue and red
+merging  amber and faded green
+merging  windows blue and red
+merging  windows blue and red
+</pre></div>
+</div>
+<img alt="../_images/d1408c60dbfed084ad464289b2de8e65eddc90d75770b05ab029102e185b885a.png" src="../_images/d1408c60dbfed084ad464289b2de8e65eddc90d75770b05ab029102e185b885a.png" />
+<img alt="../_images/69f7f3216d6a04592e1344fa40f00da9c5b30d30a586aa12cbe066a89df13f0f.png" src="../_images/69f7f3216d6a04592e1344fa40f00da9c5b30d30a586aa12cbe066a89df13f0f.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="../_images/224c2f5801f431db1734ee9233863518661e1e378ab1edee52eb6f115c652409.png" src="../_images/224c2f5801f431db1734ee9233863518661e1e378ab1edee52eb6f115c652409.png" />
+<img alt="../_images/82538bbce08f7bee044684105fd7ef9d045e49cc46bfcdc459cd7ccbbc44e259.png" src="../_images/82538bbce08f7bee044684105fd7ef9d045e49cc46bfcdc459cd7ccbbc44e259.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="../_images/2a1bd8defbfc8bf93bfb70f0ca5c52fc9066175dbe2ebe7b3794ab24957d5d2b.png" src="../_images/2a1bd8defbfc8bf93bfb70f0ca5c52fc9066175dbe2ebe7b3794ab24957d5d2b.png" />
+<img alt="../_images/efa491c98fc41c932b65548b7321fd0beae17280dacdb46e22b32f4fd7672620.png" src="../_images/efa491c98fc41c932b65548b7321fd0beae17280dacdb46e22b32f4fd7672620.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="../_images/6918cd63ea8a76431a4b09f33f2a495701cbe8ce0927f46526e7f2cfa7318b91.png" src="../_images/6918cd63ea8a76431a4b09f33f2a495701cbe8ce0927f46526e7f2cfa7318b91.png" />
+<img alt="../_images/421cdcc94336ee654d3b61b2216503c8e607e603fae897083ef53806189b2124.png" src="../_images/421cdcc94336ee654d3b61b2216503c8e607e603fae897083ef53806189b2124.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="../_images/fb1c57749eb1820abdf02ae4b576af550ad5d3f50dfccbe6ffbb54000a286d95.png" src="../_images/fb1c57749eb1820abdf02ae4b576af550ad5d3f50dfccbe6ffbb54000a286d95.png" />
+<img alt="../_images/6c4268a8f3acdc38eda577b46172e7a2582cb4270bc6c8815cbdacf4ec6ecf9e.png" src="../_images/6c4268a8f3acdc38eda577b46172e7a2582cb4270bc6c8815cbdacf4ec6ecf9e.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="../_images/eb350508aecaa91d7cbf7bd89403d5843062e4b2ecf4137b9cc11d97cc080f14.png" src="../_images/eb350508aecaa91d7cbf7bd89403d5843062e4b2ecf4137b9cc11d97cc080f14.png" />
+</div>
+</div>
+</section>
+<section id="now-plot-the-dendrogram-using-likelihood-drop-as-similarity">
+<h2>Now plot the dendrogram using likelihood drop as similarity<a class="headerlink" href="#now-plot-the-dendrogram-using-likelihood-drop-as-similarity" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dendrogram</span><span class="p">(</span><span class="n">num_states</span><span class="p">,</span> <span class="n">linkage</span><span class="p">,</span> <span class="n">likelihood_drops</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">_plot_level</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">likelihood_drop</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
+        <span class="n">new_offset</span> <span class="o">=</span> <span class="n">offset</span> <span class="o">-</span> <span class="n">likelihood_drop</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span> <span class="p">[</span><span class="n">offset</span><span class="p">,</span> <span class="n">new_offset</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">xs</span><span class="p">[</span><span class="n">s1</span><span class="p">],</span> <span class="n">xs</span><span class="p">[</span><span class="n">s2</span><span class="p">]],</span> <span class="p">[</span><span class="n">new_offset</span><span class="p">,</span> <span class="n">new_offset</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="n">new_xs</span> <span class="o">=</span> <span class="n">xs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">new_xs</span><span class="p">[</span><span class="n">s1</span><span class="p">]</span> <span class="o">=</span> <span class="n">xs</span><span class="p">[</span><span class="n">s1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">s2</span><span class="p">]</span> <span class="o">-</span> <span class="n">xs</span><span class="p">[</span><span class="n">s1</span><span class="p">])</span> <span class="o">*</span> <span class="n">npr</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>
+        <span class="n">new_xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">new_xs</span><span class="p">[:</span><span class="n">s2</span><span class="p">],</span> <span class="n">new_xs</span><span class="p">[</span><span class="n">s2</span><span class="o">+</span><span class="mi">1</span><span class="p">:]])</span>
+        <span class="k">return</span> <span class="n">new_xs</span><span class="p">,</span> <span class="n">new_offset</span>
+    
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_states</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">),</span> <span class="n">drop</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">linkage</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">likelihood_drops</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+        <span class="n">xs</span><span class="p">,</span> <span class="n">offset</span> <span class="o">=</span> <span class="n">_plot_level</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">drop</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">offset</span><span class="p">)</span>
+        
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;state&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;likelihood drop&quot;</span><span class="p">)</span>
+        
+<span class="n">dendrogram</span><span class="p">(</span><span class="n">true_hmm</span><span class="o">.</span><span class="n">K</span><span class="p">,</span> <span class="n">linkage</span><span class="p">,</span> <span class="n">likelihood_drops</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/403229a3d8c3cde99d0145a3decf61fa7f0ed25331c52740ee8d2de0cda746a3.png" src="../_images/403229a3d8c3cde99d0145a3decf61fa7f0ed25331c52740ee8d2de0cda746a3.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="7-Variatonal-Laplace-EM-for-SLDS-Tutorial.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Variational Laplace-EM</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Multi-Population-rSLDS.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Multi-population recurrent switching linear dynamical systems overview</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Scott Linderman<br/>
+  
+      &copy; Copyright 2022, Scott Linderman.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

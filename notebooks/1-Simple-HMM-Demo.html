@@ -1,0 +1,1125 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Hidden Markov Model Demo &#8212; ssm  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Simple Linear Dynamical System Demo" href="1b-Simple-Linear-Dynamical-System.html" />
+    <link rel="prev" title="Welcome to ssm’s documentation!" href="../index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">ssm  documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Hidden Markov Model Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="1b-Simple-Linear-Dynamical-System.html">
+   Simple Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2-Input-Driven-HMM.html">
+   Input Driven HMM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2b-Input-Driven-Observations-%28GLM-HMM%29.html">
+   Input Driven Observations (“GLM-HMM”)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="3-Switching-Linear-Dynamical-System.html">
+   Switching Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="4-Recurrent-SLDS.html">
+   Recurrent SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="5-Poisson-SLDS.html">
+   Poisson SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="6-Poisson-fLDS.html">
+   Poisson fLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="7-Variatonal-Laplace-EM-for-SLDS-Tutorial.html">
+   Variational Laplace-EM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="HMM-State-Clustering.html">
+   HMM State Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Multi-Population-rSLDS.html">
+   Multi-population recurrent switching linear dynamical systems overview
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/1-Simple-HMM-Demo.html">
+   Simple HMM Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/1b-Simple-Linear-Dynamical-System.html">
+   Simple Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/2-Input-Driven-HMM.html">
+   Input Driven HMM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/2b-Input-Driven-Observations-%28GLM-HMM%29.html">
+   Input Driven Observations (GLM-HMM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/3-Switching-Linear-Dynamical-System.html">
+   Switching Linear Dynamical System
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/4-Recurrent-SLDS.html">
+   Recurrent SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/5-Poisson-SLDS.html">
+   Poisson SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/6-Poisson-fLDS.html">
+   Poisson fLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/7-Variatonal-Laplace-EM-for-SLDS-Tutorial.html">
+   Variational Laplace EM for SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/HMM-State-Clustering.html">
+   HMM State Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/Multi-Population-rSLDS.html">
+   Multi-Population rSLDS
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/lindermanlan/ssm-docs/main?urlpath=tree/notebooks/1-Simple-HMM-Demo.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/lindermanlan/ssm-docs/blob/main/notebooks/1-Simple-HMM-Demo.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/notebooks/1-Simple-HMM-Demo.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../_sources/notebooks/1-Simple-HMM-Demo.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   1. Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-an-hmm">
+   2. Create an HMM
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sample-from-the-hmm">
+   3. Sample from the HMM
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-3-1-change-the-observation-model">
+     Exercise 3.1: Change the observation model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fit-an-hmm-to-synthetic-data">
+   4. Fit an HMM to synthetic data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualize-the-transition-matrices">
+     4.1. Visualize the Transition Matrices
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#excercise-4-2-distribution-of-state-durations">
+     Excercise 4.2: Distribution of State Durations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualize-state-durations">
+     4.3: Visualize State Durations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#excercise-4-4-fit-an-hmm-using-more-data">
+     Excercise 4.4: Fit an HMM using more data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-4-5-mismatched-observations">
+     Exercise 4.5: Mismatched Observations
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Hidden Markov Model Demo</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   1. Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-an-hmm">
+   2. Create an HMM
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sample-from-the-hmm">
+   3. Sample from the HMM
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-3-1-change-the-observation-model">
+     Exercise 3.1: Change the observation model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fit-an-hmm-to-synthetic-data">
+   4. Fit an HMM to synthetic data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualize-the-transition-matrices">
+     4.1. Visualize the Transition Matrices
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#excercise-4-2-distribution-of-state-durations">
+     Excercise 4.2: Distribution of State Durations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualize-state-durations">
+     4.3: Visualize State Durations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#excercise-4-4-fit-an-hmm-using-more-data">
+     Excercise 4.4: Fit an HMM using more data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-4-5-mismatched-observations">
+     Exercise 4.5: Mismatched Observations
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="hidden-markov-model-demo">
+<h1>Hidden Markov Model Demo<a class="headerlink" href="#hidden-markov-model-demo" title="Permalink to this headline">#</a></h1>
+<p>A Hidden Markov Model (HMM) is one of the simpler graphical models available in <em>SSM</em>. This notebook demonstrates creating and sampling from and HMM using SSM, and fitting an HMM to synthetic data. A full treatment of HMMs is beyond the scope of this notebook, but there are many good resources. <a class="reference external" href="https://ermongroup.github.io/cs228-notes/">Stanford’s CS228 Lecture Notes</a> provide a good introduction to HMMs and other graphical models. <a class="reference external" href="http://users.isr.ist.utl.pt/~wurmd/Livros/school/Bishop%20-%20Pattern%20Recognition%20And%20Machine%20Learning%20-%20Springer%20%202006.pdf">Pattern Recognition and Machine Learning</a> by Christopher Bishop covers HMMs and how the EM algorithm is used to fit them from data.</p>
+<p>The goal of these notebooks is to introduce state-space models to practitioners who have some familiarity with them, but who may not have used these models in practice before. As such, we’ve included a few exercises to try as you make your way through the notebooks.</p>
+<section id="setup">
+<h2>1. Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h2>
+<p>The line <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">ssm</span></code> imports the package for use. Here, we have also imported a few other packages for plotting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">autograd.numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">autograd.numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+<span class="n">npr</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">ssm</span>
+<span class="kn">from</span> <span class="nn">ssm.util</span> <span class="kn">import</span> <span class="n">find_permutation</span>
+<span class="kn">from</span> <span class="nn">ssm.plots</span> <span class="kn">import</span> <span class="n">gradient_cmap</span><span class="p">,</span> <span class="n">white_to_color_cmap</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;talk&quot;</span><span class="p">)</span>
+
+<span class="n">color_names</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;windows blue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;red&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;amber&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;faded green&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dusty purple&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;orange&quot;</span>
+    <span class="p">]</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">xkcd_palette</span><span class="p">(</span><span class="n">color_names</span><span class="p">)</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">gradient_cmap</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span>
+
+
+<span class="c1"># Speficy whether or not to save figures</span>
+<span class="n">save_figures</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ssm-docs/lib/python3.9/site-packages/tqdm/auto.py:22: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-an-hmm">
+<h2>2. Create an HMM<a class="headerlink" href="#create-an-hmm" title="Permalink to this headline">#</a></h2>
+<p>An HMM consists of a set of hidden state variable, <span class="math notranslate nohighlight">\(z\)</span>, which can take on one of <span class="math notranslate nohighlight">\(K\)</span> values (for our purposes, HMMs will always have discrete states), along with a set of transition probabilities for how the hidden state evolves over time.
+In other words, we have <span class="math notranslate nohighlight">\(z_t \in \{1, \ldots, K\}\)</span>, where <span class="math notranslate nohighlight">\(z_t = k\)</span> denotes that the hidden variable is in state <span class="math notranslate nohighlight">\(k\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>The key assumption in an HMM is that only the most recent state affects the next state. In mathematical terms:</p>
+<div class="math notranslate nohighlight">
+\[
+p(z_t \mid z_{t-1}, z_{t-2}, \ldots, z_1) = p(z_t \mid z_{t-1})
+\]</div>
+<p>In an HMM, we don’t observe the state itself. Instead, we get a noisy observation of the state at each time step according to some observation model. We’ll use <span class="math notranslate nohighlight">\(x_t\)</span> to denote the observation at time step <span class="math notranslate nohighlight">\(t\)</span>. The observation can be a vector or scalar. We’ll use <span class="math notranslate nohighlight">\(D\)</span> to refer to the dimensionality of the observation. A few of the supported observation models are:</p>
+<ol class="arabic simple">
+<li><p><strong>Gaussian</strong>: Each discrete state <span class="math notranslate nohighlight">\(z_t = k\)</span> is associated with a <span class="math notranslate nohighlight">\(D\)</span>-dimensional mean <span class="math notranslate nohighlight">\(\mu_k\)</span> and covariance matrix <span class="math notranslate nohighlight">\(\Sigma_k\)</span>. Each observation <span class="math notranslate nohighlight">\(z_t\)</span> comes from a Gaussian distribution centered at the associated mean, with the corresponding covariance.</p></li>
+<li><p><strong>Student’s T</strong>: Same as Gaussian, but the observations come from a Student’s-T Distribution.</p></li>
+<li><p><strong>Bernoulli</strong>: Each element of the <span class="math notranslate nohighlight">\(D\)</span>-dimensional observation is a Bernoulli (binary) random variable. Each discrete state <span class="math notranslate nohighlight">\(Z_i\)</span> determines the probability that each element in the observation is nonzero.</p></li>
+</ol>
+<p><em>Note: SSM supports many other observation models for HMMs. We are in the process of creating full-standalone documentation to describe them. For now, the best way to learn about SSM’s other functionality is look at the source code. The observation models are described in observations.py.</em></p>
+<p>In the below example, we create an instance of the HMM with 5 discrete states and 2 dimensional observations. We store our HMM instance in a variable called true_hmm with this line:</p>
+<p><code class="docutils literal notranslate"><span class="pre">true_hmm</span> <span class="pre">=</span> <span class="pre">ssm.HMM(K,</span> <span class="pre">D,</span> <span class="pre">observations=&quot;gaussian&quot;)</span></code></p>
+<p>We then manually set the means for each latent state to make them farther away (this makes them easier to visualize).</p>
+<p><code class="docutils literal notranslate"><span class="pre">true_hmm.observations.mus</span> <span class="pre">=</span> <span class="pre">3</span> <span class="pre">*</span> <span class="pre">np.column_stack((np.cos(thetas),</span> <span class="pre">np.sin(thetas)))</span></code></p>
+<p>Here we are modifying the <code class="docutils literal notranslate"><span class="pre">observations</span></code> instance associated with the HMM we created above. We could also change the covariance, but for now we’re leaving it with the default (identity covariance).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the parameters of the HMM</span>
+<span class="n">time_bins</span> <span class="o">=</span> <span class="mi">200</span>   <span class="c1"># number of time bins</span>
+<span class="n">num_states</span> <span class="o">=</span> <span class="mi">5</span>    <span class="c1"># number of discrete states</span>
+<span class="n">obs_dim</span> <span class="o">=</span> <span class="mi">2</span>       <span class="c1"># dimensionality of observation</span>
+
+<span class="c1"># Make an HMM</span>
+<span class="n">true_hmm</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">HMM</span><span class="p">(</span><span class="n">num_states</span><span class="p">,</span> <span class="n">obs_dim</span><span class="p">,</span> <span class="n">observations</span><span class="o">=</span><span class="s2">&quot;gaussian&quot;</span><span class="p">)</span>
+
+<span class="c1"># Manually tweak the means to make them farther apart</span>
+<span class="n">thetas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">num_states</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">true_hmm</span><span class="o">.</span><span class="n">observations</span><span class="o">.</span><span class="n">mus</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">thetas</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">thetas</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sample-from-the-hmm">
+<h2>3. Sample from the HMM<a class="headerlink" href="#sample-from-the-hmm" title="Permalink to this headline">#</a></h2>
+<p>We draw samples from an HMM using the <code class="docutils literal notranslate"><span class="pre">sample</span></code> method:<br />
+<code class="docutils literal notranslate"><span class="pre">true_states,</span> <span class="pre">obs</span> <span class="pre">=</span> <span class="pre">true_hmm.sample(time_bins)</span></code>.</p>
+<p>This returns a tuple <span class="math notranslate nohighlight">\((z, x)\)</span> of the latent states and observations, respectively.
+In this case, <code class="docutils literal notranslate"><span class="pre">true_states</span></code> will be an array of size <span class="math notranslate nohighlight">\((200,)\)</span> because it contains the discrete state <span class="math notranslate nohighlight">\(z_t\)</span> across <span class="math notranslate nohighlight">\(200\)</span> time-bins. <code class="docutils literal notranslate"><span class="pre">obs</span></code> will be an array of size <span class="math notranslate nohighlight">\((200, 2)\)</span> because it contains the observations across <span class="math notranslate nohighlight">\(200\)</span> time bins, and each observation is two dimensional.
+We have specified the number of time-steps by passing <code class="docutils literal notranslate"><span class="pre">time_bins</span></code> as the argument to the <code class="docutils literal notranslate"><span class="pre">sample</span></code> method.</p>
+<p>In the next line, we retrieve the log-likelihood of the data we observed:<br />
+<code class="docutils literal notranslate"><span class="pre">true_ll</span> <span class="pre">=</span> <span class="pre">true_hmm.log_probability(obs)</span></code></p>
+<p>This tells us the relative probability of our observations. In the next section, when we fit an HMM to the data we generated, the true log-likelihood will be helpful for determining if our fitting algorithm succeeded.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sample some data from the HMM</span>
+<span class="n">true_states</span><span class="p">,</span> <span class="n">obs</span> <span class="o">=</span> <span class="n">true_hmm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">time_bins</span><span class="p">)</span>
+<span class="n">true_ll</span> <span class="o">=</span> <span class="n">true_hmm</span><span class="o">.</span><span class="n">log_probability</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the observation distributions</span>
+<span class="n">lim</span> <span class="o">=</span> <span class="mf">.85</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">XX</span><span class="p">,</span> <span class="n">YY</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">lim</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">lim</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">XX</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">YY</span><span class="o">.</span><span class="n">ravel</span><span class="p">()))</span>
+<span class="nb">input</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">tag</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">lls</span> <span class="o">=</span> <span class="n">true_hmm</span><span class="o">.</span><span class="n">observations</span><span class="o">.</span><span class="n">log_likelihoods</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Below, we plot the samples obtained from the HMM, color-coded according to the underlying state. The solid curves show regions of of equal probability density around each mean. The thin gray lines trace the latent variable as it transitions from one state to another.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_states</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">XX</span><span class="p">,</span> <span class="n">YY</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">lls</span><span class="p">[:,</span><span class="n">k</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">XX</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">white_to_color_cmap</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">obs</span><span class="p">[</span><span class="n">true_states</span><span class="o">==</span><span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">obs</span><span class="p">[</span><span class="n">true_states</span><span class="o">==</span><span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">mec</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">obs</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">obs</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.25</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x_1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$x_2$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Observation Distributions&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">save_figures</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;hmm_1.pdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6f74709eb2be737ca4f8a8f9c643f449166ebd22ef1c0d92abe02ac603802696.png" src="../_images/6f74709eb2be737ca4f8a8f9c643f449166ebd22ef1c0d92abe02ac603802696.png" />
+</div>
+</div>
+<p>Below, we visualize each component of of the observation variable as a time series. The colors correspond to the latent state. The dotted lines represent the “true” values of the observation variable (the mean) while the solid lines are the actual observations sampled from the HMM.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the data and the smoothed data</span>
+<span class="n">lim</span> <span class="o">=</span> <span class="mf">1.05</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">true_states</span><span class="p">[</span><span class="kc">None</span><span class="p">,:],</span>
+           <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+           <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+           <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+           <span class="n">vmax</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+           <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_bins</span><span class="p">,</span> <span class="o">-</span><span class="n">lim</span><span class="p">,</span> <span class="p">(</span><span class="n">obs_dim</span><span class="p">)</span><span class="o">*</span><span class="n">lim</span><span class="p">))</span>
+
+<span class="n">Ey</span> <span class="o">=</span> <span class="n">true_hmm</span><span class="o">.</span><span class="n">observations</span><span class="o">.</span><span class="n">mus</span><span class="p">[</span><span class="n">true_states</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">obs</span><span class="p">[:,</span><span class="n">d</span><span class="p">]</span> <span class="o">+</span> <span class="n">lim</span> <span class="o">*</span> <span class="n">d</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ey</span><span class="p">[:,</span><span class="n">d</span><span class="p">]</span> <span class="o">+</span> <span class="n">lim</span> <span class="o">*</span> <span class="n">d</span><span class="p">,</span> <span class="s1">&#39;:k&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">lim</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">),</span> <span class="p">[</span><span class="s2">&quot;$x_</span><span class="si">{}</span><span class="s2">$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">)])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simulated data from an HMM&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">save_figures</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;hmm_2.pdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a267e520a5d8d79c25e5a1b8b87a0c5826b42ec2e094229c27a58c737d42a4d9.png" src="../_images/a267e520a5d8d79c25e5a1b8b87a0c5826b42ec2e094229c27a58c737d42a4d9.png" />
+</div>
+</div>
+<section id="exercise-3-1-change-the-observation-model">
+<h3>Exercise 3.1: Change the observation model<a class="headerlink" href="#exercise-3-1-change-the-observation-model" title="Permalink to this headline">#</a></h3>
+<p>Try changing the observation model to Bernoulli and visualizing the sampled data. You’ll need to create a new HMM object with Bernoulli observations. Then, use the <code class="docutils literal notranslate"><span class="pre">sample</span></code> method to sample from it. Visualizing the mean vectors and contours makes sense for Gaussian observations, but might not be the best way to visualize Bernoulli observations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here: create an HMM with Bernoulli observations</span>
+<span class="c1"># ---------------------------------------------------------</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="fit-an-hmm-to-synthetic-data">
+<h2>4. Fit an HMM to synthetic data<a class="headerlink" href="#fit-an-hmm-to-synthetic-data" title="Permalink to this headline">#</a></h2>
+<p>This is all fine, but so far we haven’t done anything that useful. It’s far more interesting to learn an HMM from data. In the following cells, we’ll use the synthetic data we generated above to fit an HMM from scratch. This is done in the following lines:</p>
+<p><code class="docutils literal notranslate"><span class="pre">hmm</span> <span class="pre">=</span> <span class="pre">ssm.HMM(num_states,</span> <span class="pre">obs_dim,</span> <span class="pre">observations=&quot;gaussian&quot;)</span> <span class="pre">hmm_lls</span> <span class="pre">=</span> <span class="pre">hmm.fit(obs,</span> <span class="pre">method=&quot;em&quot;,</span> <span class="pre">num_em_iters=N_iters)</span></code></p>
+<p>In the first line, we create a new HMM instance called <code class="docutils literal notranslate"><span class="pre">hmm</span></code> with a gaussian observation model, as in the previous case. Because we haven’t specified anything, the transition probabilities and observation means will be randomly initialized. In the next line, we use the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method to learn the transition probabilities and observation means from data. We set the method to <code class="docutils literal notranslate"><span class="pre">em</span></code> (expectation maximization) and specify the maximum number of iterations which will be used to fit the data. The <code class="docutils literal notranslate"><span class="pre">fit</span></code> method returns a numpy array which shows the log-likelihood of the data over time. We then plot this and see that the EM algorithm quickly converges.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">obs</span> <span class="c1"># Treat observations generated above as synthetic data.</span>
+<span class="n">N_iters</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="c1">## testing the constrained transitions class</span>
+<span class="n">hmm</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">HMM</span><span class="p">(</span><span class="n">num_states</span><span class="p">,</span> <span class="n">obs_dim</span><span class="p">,</span> <span class="n">observations</span><span class="o">=</span><span class="s2">&quot;gaussian&quot;</span><span class="p">)</span>
+
+<span class="n">hmm_lls</span> <span class="o">=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;em&quot;</span><span class="p">,</span> <span class="n">num_iters</span><span class="o">=</span><span class="n">N_iters</span><span class="p">,</span> <span class="n">init_method</span><span class="o">=</span><span class="s2">&quot;kmeans&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hmm_lls</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;EM&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">N_iters</span><span class="p">],</span> <span class="n">true_ll</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;:k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;EM Iteration&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Log Probability&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                              | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -845.3:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -845.3:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -705.0:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -693.6:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -686.4:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -681.0:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -675.9:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -670.2:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -662.5:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -654.0:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -649.1:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -647.0:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -646.1:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -641.7:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -636.8:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -636.8:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -636.4:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -634.6:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -631.8:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -631.2:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -631.1:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -631.0:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -630.4:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -626.2:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -623.0:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -623.0:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -623.0:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -623.0:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -623.0:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -623.0:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -623.0:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.9:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.9:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.9:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.9:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.9:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.9:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.9:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.9:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.8:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.7:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.6:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.4:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.2:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.1:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.1:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.1:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.0:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.0:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.0:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.0:   0%|                                                                                                  | 0/50 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -622.0: 100%|████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:00&lt;00:00, 711.99it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<img alt="../_images/0f932d59fa66984d80090a1757a304ab011193ea1bb819818ef3eeff4e0160c6.png" src="../_images/0f932d59fa66984d80090a1757a304ab011193ea1bb819818ef3eeff4e0160c6.png" />
+</div>
+</div>
+<p>The below cell is a bit subtle. In the first section, we sampled from the HMM and stored the resulting latent state <span class="math notranslate nohighlight">\(z\)</span> in a variable called <code class="docutils literal notranslate"><span class="pre">state</span></code>.
+Now, we are treating our observations from the previous section as data, and seeing whether we can infer the true state given only the observations. However, there is no guarantee that the states we learn correspond to the original states from the true HMM. In order to account for this, we need to find a permutation of the states of our new HMM so that they align with the states of the true HMM from the prior section. This is done in the following two lines:</p>
+<p><code class="docutils literal notranslate"><span class="pre">most_likely_states</span> <span class="pre">=</span> <span class="pre">hmm.most_likely_states(obs)</span> <span class="pre">hmm.permute(find_permutation(true_states,</span> <span class="pre">most_likely_states))</span> </code></p>
+<p>In the first line, we use the <code class="docutils literal notranslate"><span class="pre">most_likely_states</span></code> method to infer the most likely latent states given the observations.  In the second line we call the <code class="docutils literal notranslate"><span class="pre">find_permutation</span></code> function the permutation that best matches the true state. We then use the <code class="docutils literal notranslate"><span class="pre">permute</span></code> method on our <code class="docutils literal notranslate"><span class="pre">hmm</span></code> instance to permute its states accordingly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find a permutation of the states that best matches the true and inferred states</span>
+<span class="n">most_likely_states</span> <span class="o">=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">most_likely_states</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+<span class="n">hmm</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="n">find_permutation</span><span class="p">(</span><span class="n">true_states</span><span class="p">,</span> <span class="n">most_likely_states</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Below, we plot the inferred states (<span class="math notranslate nohighlight">\(z_{\mathrm{inferred}}\)</span>) and the true states (<span class="math notranslate nohighlight">\(z_{\mathrm{true}}\)</span>) over time. We see that the two match very closely, but not exactly. The model sometimes has difficulty inferring the state if we only observe that state for a very short time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the true and inferred discrete states</span>
+<span class="n">hmm_z</span> <span class="o">=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">most_likely_states</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">true_states</span><span class="p">[</span><span class="kc">None</span><span class="p">,:],</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$z_{</span><span class="se">\\</span><span class="s2">mathrm</span><span class="si">{true}</span><span class="s2">}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">hmm_z</span><span class="p">[</span><span class="kc">None</span><span class="p">,:],</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$z_{</span><span class="se">\\</span><span class="s2">mathrm</span><span class="si">{inferred}</span><span class="s2">}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/320c02c7002012c36cfa4815e746be2f3d6584226f58fbedbe10cb64bb449429.png" src="../_images/320c02c7002012c36cfa4815e746be2f3d6584226f58fbedbe10cb64bb449429.png" />
+</div>
+</div>
+<p>An HMM can also be used to smooth data (once its parameters are learned) but computing the mean observation under the posterior distribution of latent states.
+Let’s say, for example, that during time steps 0 to 10 the model estimates a 0.3 probability of being in state 1, and a 0.7 probability of being in state 2, given the observations <span class="math notranslate nohighlight">\(x\)</span>.
+Mathematically, that’s saying we’ve computed the following probabilities:<br />
+$<span class="math notranslate nohighlight">\(
+p(z=1 \mid X) = 0.3\\
+p(z=3 \mid X) = 0.7
+\)</span>$</p>
+<p>The smoothed observations would then be <span class="math notranslate nohighlight">\(0.3 \mu_1 + 0.7 \mu_2\)</span>, where we <span class="math notranslate nohighlight">\(\mu_i\)</span> is the mean for the observations in state <span class="math notranslate nohighlight">\(i\)</span>.
+In the cell below, we use <code class="docutils literal notranslate"><span class="pre">hmm.smooth(obs)</span></code> to smooth the data this way. The orange and blue lines show the smoothed data, and the black lines show the original noisy observations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the HMM to &quot;smooth&quot; the data</span>
+<span class="n">hmm_x</span> <span class="o">=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">obs</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">),</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hmm_x</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
+<span class="c1"># plt.yticks([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;time&#39;)
+</pre></div>
+</div>
+<img alt="../_images/8a2e627cff78bb8330e007b8d7446821c737ddd5ea48b8bcf7d39fc96a6827c5.png" src="../_images/8a2e627cff78bb8330e007b8d7446821c737ddd5ea48b8bcf7d39fc96a6827c5.png" />
+</div>
+</div>
+<section id="visualize-the-transition-matrices">
+<h3>4.1. Visualize the Transition Matrices<a class="headerlink" href="#visualize-the-transition-matrices" title="Permalink to this headline">#</a></h3>
+<p>The dynamics of the hidden state in an HMM are specified by the transition probabilities <span class="math notranslate nohighlight">\(p(z_t \mid z_{t-1})\)</span>. It’s standard to pack these probabilities into a stochastic matrix <span class="math notranslate nohighlight">\(A\)</span> where <span class="math notranslate nohighlight">\(A_{ij} = p(z_t = j \mid z_{t-1} = i)\)</span>.</p>
+<p>In SSM, we can access the transition matrices using <code class="docutils literal notranslate"><span class="pre">hmm.transitions.transition</span></code> matrix. In the following two lines, we retrives the transition matrices for the true HMM, as well as the HMM we learned from the data, and compare them visually.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_transition_mat</span> <span class="o">=</span> <span class="n">true_hmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">transition_matrix</span>
+<span class="n">learned_transition_mat</span> <span class="o">=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">transition_matrix</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">true_transition_mat</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;True Transition Matrix&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">learned_transition_mat</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Learned Transition Matrix&quot;</span><span class="p">)</span>
+
+<span class="n">cbar_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">cbar_ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2cd49e34c047d6b546d93b6ef3fbae26172d26849ccd1b5ec93088d4e030778d.png" src="../_images/2cd49e34c047d6b546d93b6ef3fbae26172d26849ccd1b5ec93088d4e030778d.png" />
+</div>
+</div>
+</section>
+<section id="excercise-4-2-distribution-of-state-durations">
+<h3>Excercise 4.2: Distribution of State Durations<a class="headerlink" href="#excercise-4-2-distribution-of-state-durations" title="Permalink to this headline">#</a></h3>
+<p>Derive the theoretical distribution over state durations. Do the state durations we observe (<span class="math notranslate nohighlight">\(Z_{true}\)</span> in section 4) match the theory? If you’re stuck, imagine that the system starts in state <span class="math notranslate nohighlight">\(1\)</span>, i.e <span class="math notranslate nohighlight">\(z_1 = 1\)</span>. What’s the probability that <span class="math notranslate nohighlight">\(z_2 = 1\)</span>? From here, you might be able to work forwards in time.</p>
+<p>When done, check if your derivation matches what we find in the section below.</p>
+</section>
+<section id="visualize-state-durations">
+<h3>4.3: Visualize State Durations<a class="headerlink" href="#visualize-state-durations" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_state_list</span><span class="p">,</span> <span class="n">true_durations</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">rle</span><span class="p">(</span><span class="n">true_states</span><span class="p">)</span>
+<span class="n">inferred_state_list</span><span class="p">,</span> <span class="n">inferred_durations</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">rle</span><span class="p">(</span><span class="n">hmm_z</span><span class="p">)</span>
+
+<span class="c1"># Rearrange the lists of durations to be a nested list where</span>
+<span class="c1"># the nth inner list is a list of durations for state n</span>
+<span class="n">true_durs_stacked</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">inf_durs_stacked</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_states</span><span class="p">):</span>
+    <span class="n">true_durs_stacked</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">true_durations</span><span class="p">[</span><span class="n">true_state_list</span> <span class="o">==</span> <span class="n">s</span><span class="p">])</span>
+    <span class="n">inf_durs_stacked</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inferred_durations</span><span class="p">[</span><span class="n">inferred_state_list</span> <span class="o">==</span> <span class="n">s</span><span class="p">])</span>
+    
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">true_durs_stacked</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_states</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Duration&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram of True State Durations&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">inf_durs_stacked</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_states</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Duration&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram of Inferred State Durations&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8f3347bf28da1d2f3bacb851346704356b9663e730046c8c4ea19cbe37183e24.png" src="../_images/8f3347bf28da1d2f3bacb851346704356b9663e730046c8c4ea19cbe37183e24.png" />
+<img alt="../_images/3fa10c948a568b8dd90a70d6c3b509fc6a740498da3386971faad4e2f90aaaf3.png" src="../_images/3fa10c948a568b8dd90a70d6c3b509fc6a740498da3386971faad4e2f90aaaf3.png" />
+</div>
+</div>
+</section>
+<section id="excercise-4-4-fit-an-hmm-using-more-data">
+<h3>Excercise 4.4: Fit an HMM using more data<a class="headerlink" href="#excercise-4-4-fit-an-hmm-using-more-data" title="Permalink to this headline">#</a></h3>
+<p>We see that the above histograms do not match each other as closely as we might expect. They also don’t match the theoretical distriubtion of durations all that closely (see Exercise 4.2). Part of the reason for this is that we have sampled from a relatively small number of time steps.</p>
+<p>Try modifying the <code class="docutils literal notranslate"><span class="pre">time_bins</span></code> variable to sample for more time-steps (say 2000 or so).
+Then, re-run the analysis above. Because of the larger time frame, some of the plots above may become hard to read, but the histogram of durations should more closely match what we expect.</p>
+</section>
+<section id="exercise-4-5-mismatched-observations">
+<h3>Exercise 4.5: Mismatched Observations<a class="headerlink" href="#exercise-4-5-mismatched-observations" title="Permalink to this headline">#</a></h3>
+<p>Imagine a scenario where the true data comes from an HMM with Student’s T observations, but you fit an HMM with Gaussian observations. What might you expect to happen?</p>
+<p>You can try simulating this: modify the code in Section 2 so that we create and HMM with Student’s T observations. Then re-run the cells in Section 4, which will fit an HMM with Gaussian observations to the observed data. What do you see?</p>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Welcome to ssm’s documentation!</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="1b-Simple-Linear-Dynamical-System.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Simple Linear Dynamical System Demo</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Scott Linderman<br/>
+  
+      &copy; Copyright 2022, Scott Linderman.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,1381 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Simple Linear Dynamical System Demo &#8212; ssm  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Input Driven HMM" href="2-Input-Driven-HMM.html" />
+    <link rel="prev" title="Hidden Markov Model Demo" href="1-Simple-HMM-Demo.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">ssm  documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="1-Simple-HMM-Demo.html">
+   Hidden Markov Model Demo
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Simple Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2-Input-Driven-HMM.html">
+   Input Driven HMM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2b-Input-Driven-Observations-%28GLM-HMM%29.html">
+   Input Driven Observations (“GLM-HMM”)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="3-Switching-Linear-Dynamical-System.html">
+   Switching Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="4-Recurrent-SLDS.html">
+   Recurrent SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="5-Poisson-SLDS.html">
+   Poisson SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="6-Poisson-fLDS.html">
+   Poisson fLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="7-Variatonal-Laplace-EM-for-SLDS-Tutorial.html">
+   Variational Laplace-EM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="HMM-State-Clustering.html">
+   HMM State Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Multi-Population-rSLDS.html">
+   Multi-population recurrent switching linear dynamical systems overview
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/1-Simple-HMM-Demo.html">
+   Simple HMM Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/1b-Simple-Linear-Dynamical-System.html">
+   Simple Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/2-Input-Driven-HMM.html">
+   Input Driven HMM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/2b-Input-Driven-Observations-%28GLM-HMM%29.html">
+   Input Driven Observations (GLM-HMM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/3-Switching-Linear-Dynamical-System.html">
+   Switching Linear Dynamical System
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/4-Recurrent-SLDS.html">
+   Recurrent SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/5-Poisson-SLDS.html">
+   Poisson SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/6-Poisson-fLDS.html">
+   Poisson fLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/7-Variatonal-Laplace-EM-for-SLDS-Tutorial.html">
+   Variational Laplace EM for SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/HMM-State-Clustering.html">
+   HMM State Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/Multi-Population-rSLDS.html">
+   Multi-Population rSLDS
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/lindermanlan/ssm-docs/main?urlpath=tree/notebooks/1b-Simple-Linear-Dynamical-System.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/lindermanlan/ssm-docs/blob/main/notebooks/1b-Simple-Linear-Dynamical-System.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/notebooks/1b-Simple-Linear-Dynamical-System.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../_sources/notebooks/1b-Simple-Linear-Dynamical-System.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   1. Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-an-lds-object">
+   2. Create an LDS Object
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sample-from-the-lds-and-plot">
+   3. Sample from the LDS and plot
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-3-1-modify-trajectory">
+     Exercise 3.1: Modify trajectory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-3-2-advancing-t-timesteps">
+     Exercise 3.2: Advancing
+     <span class="math notranslate nohighlight">
+      \(t\)
+     </span>
+     timesteps.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualize-states-and-observations">
+   4. Visualize States and Observations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fit-an-lds-to-data">
+   5. Fit an LDS to Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualize-model-fit">
+   6. Visualize Model Fit
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-6-1-mis-specified-dynamics-model">
+     Exercise 6.1: Mis-specified Dynamics Model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simulate-poisson-data-from-a-poisson-lds-with-the-same-dynamics">
+   7. Simulate Poisson data from a Poisson LDS with the same dynamics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-7-1-mis-specified-observation-model">
+     Exercise 7.1: Mis-specified Observation Model
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Simple Linear Dynamical System Demo</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   1. Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-an-lds-object">
+   2. Create an LDS Object
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sample-from-the-lds-and-plot">
+   3. Sample from the LDS and plot
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-3-1-modify-trajectory">
+     Exercise 3.1: Modify trajectory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-3-2-advancing-t-timesteps">
+     Exercise 3.2: Advancing
+     <span class="math notranslate nohighlight">
+      \(t\)
+     </span>
+     timesteps.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualize-states-and-observations">
+   4. Visualize States and Observations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fit-an-lds-to-data">
+   5. Fit an LDS to Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualize-model-fit">
+   6. Visualize Model Fit
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-6-1-mis-specified-dynamics-model">
+     Exercise 6.1: Mis-specified Dynamics Model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simulate-poisson-data-from-a-poisson-lds-with-the-same-dynamics">
+   7. Simulate Poisson data from a Poisson LDS with the same dynamics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-7-1-mis-specified-observation-model">
+     Exercise 7.1: Mis-specified Observation Model
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="simple-linear-dynamical-system-demo">
+<h1>Simple Linear Dynamical System Demo<a class="headerlink" href="#simple-linear-dynamical-system-demo" title="Permalink to this headline">#</a></h1>
+<p>Linear Dynamical Systems (LDS) are used to model data that evolve in principled ways. They are widely used in control systems, signal processing, neuroscience, and other fields. Our focus in on learning and inference for LDS, and a good reference for this is Chapter 13.3 of <a class="reference external" href="http://users.isr.ist.utl.pt/~wurmd/Livros/school/Bishop%20-%20Pattern%20Recognition%20And%20Machine%20Learning%20-%20Springer%20%202006.pdf">Pattern Recognition and Machine Learning</a> by Christopher Bishop.</p>
+<p>For LDS with Poisson observations, especially as they are used in neuroscience, <a class="reference external" href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/FAB8634C2790F3461E3E86BB632EAE6F/9781139941433c6_p137-159_CBO.pdf/estimating_state_and_parameters_in_state_space_models_of_spike_trains.pdf">Estimating State and parameters in state space models of spike trains</a>, by J.H Macke <em>et al</em> is a good reference.</p>
+<section id="setup">
+<h2>1. Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h2>
+<p>The line <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">ssm</span></code> imports the package for use. Here, we have also imported a few other packages for plotting.</p>
+<p><strong>Note</strong>: We recently added Seaborn to the list of dependencies. If you have an older installation of SSM, you may need to manually install Seaborn using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">seaborn</span></code> or <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">seaborn</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">autograd.numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">autograd.numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+<span class="n">npr</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">from</span> <span class="nn">matplotlib.gridspec</span> <span class="kn">import</span> <span class="n">GridSpec</span>
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;talk&quot;</span><span class="p">)</span>
+
+<span class="n">color_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;windows blue&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;red&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;amber&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;faded green&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;dusty purple&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;orange&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;clay&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;pink&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;greyish&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;mint&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;light cyan&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;steel blue&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;forest green&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;pastel purple&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;salmon&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;dark brown&quot;</span><span class="p">]</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">xkcd_palette</span><span class="p">(</span><span class="n">color_names</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">ssm</span>
+<span class="kn">from</span> <span class="nn">ssm.util</span> <span class="kn">import</span> <span class="n">random_rotation</span>
+<span class="kn">from</span> <span class="nn">ssm.plots</span> <span class="kn">import</span> <span class="n">plot_dynamics_2d</span>
+
+<span class="c1"># Specify whether or not to save figures</span>
+<span class="n">save_figures</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ssm-docs/lib/python3.9/site-packages/tqdm/auto.py:22: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-an-lds-object">
+<h2>2. Create an LDS Object<a class="headerlink" href="#create-an-lds-object" title="Permalink to this headline">#</a></h2>
+<p>A Linear Dynamical System consists of a continuous state variable, <span class="math notranslate nohighlight">\(x \in \mathbb{R}^D\)</span>, which evolves according to linear dynamics.
+At time-step <span class="math notranslate nohighlight">\(t\)</span>, we observe an emission (sometimes called an observation) <span class="math notranslate nohighlight">\(y_t \in \mathbb{R}^N\)</span>. Similarly, we use <span class="math notranslate nohighlight">\(x_t\)</span> to denote the state at time <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>The state dynamics obey the following relation (Bishop 2006):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+x_t &amp;= A x_{t-1} + V u_{t} + b + w_t \\
+\end{align}
+\end{split}\]</div>
+<p>The vector <span class="math notranslate nohighlight">\(b\)</span> is an offset vector, which can drive the dynamics in a particular direction.
+The terms <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(v\)</span> are noise terms, which perturb the states and observations.
+Most commonly these are modeled as zero-mean multivariate Gaussians,
+but one nice feature of SSM is that it supports many distributions for these noise terms.</p>
+<p>We support the following dynamics models, which can be specified by passing an argument to the constructor the LDS class, e.g <code class="docutils literal notranslate"><span class="pre">dynamics=&quot;gaussian&quot;</span></code>:</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">none</span></code></strong>: Model has no dynamics. At each time-step, the state is drawn independently from a Gaussian. This is the equivalent of filling the dynamics matrix <span class="math notranslate nohighlight">\(A\)</span> with zeros.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">gaussian</span></code></strong>: Model has linear-gaussian dynamics. <span class="math notranslate nohighlight">\(w \sim \mathcal{N}(0, \Sigma_w )\)</span>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">diagonal_gaussian</span></code></strong>: This is a special case of the Gaussian dynamics model where the noise term has diagonal covariance.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">studentst</span></code></strong>: <span class="math notranslate nohighlight">\(w \sim t(0, \Sigma_w, \nu_w)\)</span>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">diagonal_studentst</span></code></strong>: Constrains covariance matrix to be diagonal.</p></li>
+</ol>
+<p>To specify an LDS, we also need to specify how the emissions <span class="math notranslate nohighlight">\(y_t\)</span> are generated (the emissions are what we observe).
+The most common emission model is the simple linear-Gaussian emission model:
+$<span class="math notranslate nohighlight">\(
+y_t = Cx_t + d + F u_t + v_t
+\)</span><span class="math notranslate nohighlight">\(
+In this case, \)</span>C<span class="math notranslate nohighlight">\( is called the measurement matrix, \)</span>d<span class="math notranslate nohighlight">\( is an offset or bias term, and \)</span>F<span class="math notranslate nohighlight">\( is called the feedthrough matrix or passthrough matrix (it passes the input directly to the emission).
+\)</span>v_t \sim \mathcal{N}(0, \Sigma_v)$ is a noise term, which in the simplest case is Gaussian, but can also be modeled to come from other distributions.
+We support the following emission models.</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">gaussian</span></code></strong>: The most common emission model. <span class="math notranslate nohighlight">\(y_t \sim \mathcal{N}(C x_t + d + F u_t, \Sigma_v)\)</span></p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">studentst</span></code></strong>: Same as above, but uses the Students-T distribution instead of the normal distribution.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">poisson</span></code></strong>: Useful for modeling count or event data. Under this model, the observations are nonnegative integers drawn from a poisson distribution (Macke 2011).
+The latent state controls the rate parameter, in a non-linear fashion as follows. Let <span class="math notranslate nohighlight">\(y_{i,t}\)</span> be the <span class="math notranslate nohighlight">\(i\)</span>-th dimension of our observation at time <span class="math notranslate nohighlight">\(t\)</span>.
+We’ll also make use of an excitation vector <span class="math notranslate nohighlight">\(g_t = C x_t + d + F u_t\)</span>, and additionally a mean function <span class="math notranslate nohighlight">\(\eta(\bullet)\)</span>.
+The observations are drawn from a poisson distribution at rates specified by the excitation vector:
+$<span class="math notranslate nohighlight">\(P( y_{i,t} \mid g_{i,t}) = \frac{1}{y_{i,t}!} \eta(g_{i,t})^{y_{i,t}}\exp{(-\eta(g_{i,t}))}.\)</span><span class="math notranslate nohighlight">\( By default, the mean function is set to \)</span>\exp(\bullet)$.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">bernoulli</span></code></strong>:
+As in the Poisson case, we have an excitation vector <span class="math notranslate nohighlight">\(g_t = C x_t + d + F u_t\)</span>, and a mean function <span class="math notranslate nohighlight">\(\eta(\bullet)\)</span>. In this case, though, the mean function is always the logistic function, becuase its outputs need to be between zero and one. The observations are drawn from a bernoulli distribution where <span class="math notranslate nohighlight">\(y_{i,t}\)</span> is 1 with probability <span class="math notranslate nohighlight">\(\eta(g_{i,t})\)</span>.</p></li>
+</ol>
+<p>For all of the above we support orthogonal variants, in which the measurement matrix <span class="math notranslate nohighlight">\(C\)</span> is constrained to be orthogonal.</p>
+<p><em>Note: SSM supports many other emission models. We are in the process of creating full-standalone documentation to describe them. For now, the best way to learn about SSM’s other functionality is look at the source code. The emission models are described in emissions.py.</em></p>
+<p>The below line creates an instance of the SSM’s <code class="docutils literal notranslate"><span class="pre">LDS</span></code> class:<br />
+<code class="docutils literal notranslate"><span class="pre">true_lds</span> <span class="pre">=</span> <span class="pre">ssm.LDS(obs_dim,</span> <span class="pre">state_dim,</span> <span class="pre">dynamics=&quot;gaussian&quot;,</span> <span class="pre">emissions=&quot;gaussian&quot;)</span></code></p>
+<p>Following that, we modify the dynamics matrix (the matrix <span class="math notranslate nohighlight">\(A\)</span> in the above equations) so that our system will have some interesting behavior.</p>
+<p>The lines most relevant for a user of SSM are these:<br />
+<code class="docutils literal notranslate"><span class="pre">true_lds.dynamics.A</span> <span class="pre">=</span> <span class="pre">A</span>&#160;&#160; <span class="pre">true_lds.dynamics.b</span> <span class="pre">=</span> <span class="pre">b</span></code></p>
+<p>The first line sets the dynamics matrix <span class="math notranslate nohighlight">\(A\)</span> to be the one which we create. The second line sets the offset vector <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the parameters of the LDS</span>
+<span class="n">time_bins</span> <span class="o">=</span> <span class="mi">200</span>   <span class="c1"># number of time bins</span>
+<span class="n">state_dim</span> <span class="o">=</span> <span class="mi">2</span>     <span class="c1"># number of latent dimensions</span>
+<span class="n">obs_dim</span> <span class="o">=</span> <span class="mi">10</span>      <span class="c1"># number of observed dimensions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make an LDS with somewhat interesting dynamics parameters</span>
+<span class="n">true_lds</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">LDS</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">,</span> <span class="n">state_dim</span><span class="p">,</span> <span class="n">emissions</span><span class="o">=</span><span class="s2">&quot;gaussian_orthog&quot;</span><span class="p">)</span>
+
+<span class="n">A0</span> <span class="o">=</span> <span class="mf">.99</span> <span class="o">*</span> <span class="n">random_rotation</span><span class="p">(</span><span class="n">state_dim</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">state_dim</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">npr</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">state_dim</span><span class="p">,</span> <span class="n">state_dim</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">S</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A0</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">R</span><span class="p">))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">state_dim</span><span class="p">)</span>
+
+<span class="c1"># Set the dynamics matrix (A) and the </span>
+<span class="n">true_lds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span>
+<span class="n">true_lds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sample-from-the-lds-and-plot">
+<h2>3. Sample from the LDS and plot<a class="headerlink" href="#sample-from-the-lds-and-plot" title="Permalink to this headline">#</a></h2>
+<p>Since our state variable <span class="math notranslate nohighlight">\(x\)</span> is two-dimensional, we can plot its path over time in the 2D plane. Below, we plot the trajectory of the state, along with a vector field showing the dynamics of the system. The small blue arrows show the direction that the dynamics of the system will “push” the state at each point.</p>
+<p>Though it’s a bit beyond the scope of this notebook, a lot can be said about how the matrix <span class="math notranslate nohighlight">\(A\)</span> determins the dynamics of the system. For example, if the spectral radius of <span class="math notranslate nohighlight">\(A\)</span> is larger than 1, the system will be unstable, and the state will blow up as time goes to infinity (the spectral radius is the largest singular value).
+We’ve been hand-wavy in defining stability and instability.
+In our case, we have explicitly constructed a stable system, and so we see that the dynamics tend towards a fixed point.</p>
+<p>We see that the trajectory (shown in black) follows the blue arrows quite closely, spiraling towards the center. Why doesn’t the trajectory follow the arrows exactly? This is because we have noise on the dynamics equation (the <span class="math notranslate nohighlight">\(w_t\)</span>s in the equations above).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sample from the LDS object.</span>
+<span class="n">states</span><span class="p">,</span> <span class="n">emissions</span> <span class="o">=</span> <span class="n">true_lds</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">time_bins</span><span class="p">)</span>
+
+<span class="c1"># Plot the dynamics vector field</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">plot_dynamics_2d</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> 
+                     <span class="n">bias_vector</span><span class="o">=</span><span class="n">b</span><span class="p">,</span>
+                     <span class="n">mins</span><span class="o">=</span><span class="n">states</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                     <span class="n">maxs</span><span class="o">=</span><span class="n">states</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                     <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">states</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">states</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x_1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$x_2$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simulated Latent States&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">save_figures</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;lds_1.pdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1c498c878d7520640f7cedfc97014a7a6ad8c0f238b157e7bdbbcaa6645a5b31.png" src="../_images/1c498c878d7520640f7cedfc97014a7a6ad8c0f238b157e7bdbbcaa6645a5b31.png" />
+</div>
+</div>
+<section id="exercise-3-1-modify-trajectory">
+<h3>Exercise 3.1: Modify trajectory<a class="headerlink" href="#exercise-3-1-modify-trajectory" title="Permalink to this headline">#</a></h3>
+<p>See if you can modify the LDS object created in Section 2 so that the system will be unstable. In other words, you want to set the matrix <span class="math notranslate nohighlight">\(A\)</span> so that the largest singular value is greater than 1.</p>
+<p>One way of doing this is by starting with the matrix <span class="math notranslate nohighlight">\(A\)</span> we used previously, and taking the SVD of that matrix. After taking the SVD, you can modify the largest singular value, and then re-form the dynamics matrix.
+After sampling from the system and plotting, do you notice anythign different?</p>
+</section>
+<section id="exercise-3-2-advancing-t-timesteps">
+<h3>Exercise 3.2: Advancing <span class="math notranslate nohighlight">\(t\)</span> timesteps.<a class="headerlink" href="#exercise-3-2-advancing-t-timesteps" title="Permalink to this headline">#</a></h3>
+<p>Say the LDS starts at state <span class="math notranslate nohighlight">\(x_0\)</span> at time zero. Can you derive an expression for the mode of <span class="math notranslate nohighlight">\(p(x_t \mid x_0)\)</span>, where <span class="math notranslate nohighlight">\(t\)</span> is some number of timesteps in the future?
+In other words, what is <span class="math notranslate nohighlight">\( \mathbb{E} \left[x_t \mid x_0 \right]\)</span> ?</p>
+</section>
+</section>
+<section id="visualize-states-and-observations">
+<h2>4. Visualize States and Observations<a class="headerlink" href="#visualize-states-and-observations" title="Permalink to this headline">#</a></h2>
+<p>In the above section, we were able to plot a trajectory for the latent state over time. Since our emissions are 10-dimensional, we can’t show a trajectory for them in a 10-d plane (matplotlib doesn’t support that yet). Instead, we’ll plot each emission coordinate <span class="math notranslate nohighlight">\(y_i\)</span> as a function over time. We do the same for the simulated latent states.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">height_ratios</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">obs_dim</span><span class="o">/</span><span class="n">state_dim</span><span class="p">))</span>
+
+<span class="c1"># Plot the continuous latent states</span>
+<span class="n">lim</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">states</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">state_dim</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">states</span><span class="p">[:,</span> <span class="n">d</span><span class="p">]</span> <span class="o">+</span> <span class="n">lim</span> <span class="o">*</span> <span class="n">d</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">state_dim</span><span class="p">)</span> <span class="o">*</span> <span class="n">lim</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;$x_</span><span class="si">{}</span><span class="s2">$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">state_dim</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simulated Latent States&quot;</span><span class="p">)</span>
+
+<span class="n">lim</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">emissions</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">emissions</span><span class="p">[:,</span> <span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">lim</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">)</span> <span class="o">*</span> <span class="n">lim</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;$y_{{ </span><span class="si">{}</span><span class="s2"> }}$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_bins</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simulated emissions&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">save_figures</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;lds_2.pdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8899325ffca12a732999a5ee653dfdde093256325e66da5e110e272c2abf7dba.png" src="../_images/8899325ffca12a732999a5ee653dfdde093256325e66da5e110e272c2abf7dba.png" />
+</div>
+</div>
+</section>
+<section id="fit-an-lds-to-data">
+<h2>5. Fit an LDS to Data<a class="headerlink" href="#fit-an-lds-to-data" title="Permalink to this headline">#</a></h2>
+<p>Simulating a Linear-Gaussian LDS is all fine, but you’re probably interested in fitting an LDS to your own datasets. This is useful, for instance, if you believe that your data are well described by linear dynamical system, and you’re interested in examining the dynamics of that system.</p>
+<p>In the below cells, we’ll treat the variable <code class="docutils literal notranslate"><span class="pre">emissions</span></code> which we generated above as data which comes from an unknown LDS.<br />
+The line <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">=</span> <span class="pre">emissions</span></code> is just to emphasize that our new LDS will be fit from data.</p>
+<ol class="arabic simple">
+<li><p>First, we make a new LDS object:<br />
+<code class="docutils literal notranslate"><span class="pre">lds</span> <span class="pre">=</span> <span class="pre">ssm.LDS(obs_dim,</span> <span class="pre">state_dim,</span> <span class="pre">emissions=&quot;gaussian&quot;)</span></code></p></li>
+<li><p>Then we fit the LDS:<br />
+<code class="docutils literal notranslate"><span class="pre">elbos,</span> <span class="pre">q</span> <span class="pre">=</span> <span class="pre">lds.fit(data,</span> <span class="pre">method=&quot;laplace_em&quot;,</span> <span class="pre">num_iters=10)</span>&#160; </code></p></li>
+<li><p>Next, we get the posterior of the latent states with:<br />
+<code class="docutils literal notranslate"><span class="pre">state_means</span> <span class="pre">=</span> <span class="pre">q.mean_continuous_states[0]</span>&#160;&#160;&#160; </code></p></li>
+<li><p>Finally smooth the observations using our dynamics model:<br />
+<code class="docutils literal notranslate"><span class="pre">smoothed_obs</span> <span class="pre">=</span> <span class="pre">lds.smooth(state_means,</span> <span class="pre">data)</span></code></p></li>
+</ol>
+<p><strong><code class="docutils literal notranslate"><span class="pre">LDS.fit</span></code></strong> returns a tuple of <code class="docutils literal notranslate"><span class="pre">posterior,</span> <span class="pre">elbos</span></code>. <code class="docutils literal notranslate"><span class="pre">posterior</span></code> is an object representing the posterior of the data given the observations, <span class="math notranslate nohighlight">\(p(x \mid y)\)</span>.
+By default, SSM parameterizes the posterior as a Gaussian with a block-tridiagional precision matrix.
+Of most use will probably be <code class="docutils literal notranslate"><span class="pre">posterior.mean_continuous_states[0]</span></code> which returns <span class="math notranslate nohighlight">\(\mathbb{E}q(x \mid y)\)</span>.
+This is our best estimate of the state trajectory given our observations.
+By default, calling <code class="docutils literal notranslate"><span class="pre">LDS.fit</span></code> will use the Laplace-EM algorithm, which is a variational inference method. In the case of Gaussian dynamics and Gaussian dynamics, Laplace-EM reduces to the normal EM update rules.
+Other fitting methods, like <code class="docutils literal notranslate"><span class="pre">&quot;svi&quot;</span></code> (stochastic variational inference) are also supported, but don’t tend to work as well in practice.
+We’d recommend sticking to the default fitting methods, at least for now.</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">elbos</span></code></strong> stands for “evidence lower bound” and it is a lower bound on the log-likelihood of the data. It is used to monitor convergence of the EM algorithm</p>
+<p><strong>Note 1</strong>: You’ll notice when you call <code class="docutils literal notranslate"><span class="pre">fit</span></code> that you actually see two progress bars, one labeled “LP” and one labeled “ELBO”. This is because internally, the fitting is done in two steps. In order to get a good initialization of the paramters, we first initialize using an autoregressive HMM.
+Then, we obtain the final parameters using the Laplace-EM algorithm. The first progress bar is showing progress for the initialization (fitting an ar-HMM).</p>
+<p><strong>Note 2</strong>: We realize some of the APIs are quite weird. For example, <code class="docutils literal notranslate"><span class="pre">mean_continuous_states[0]</span></code> is a bit strange. This is because the APIs are currently shared between vanilla LDS and switching LDS. We plan on fixing this soon, and will update the notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">emissions</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitting LDS with Laplace-EM using structured variational posterior&quot;</span><span class="p">)</span>
+<span class="n">lds</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">LDS</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">,</span> <span class="n">state_dim</span><span class="p">,</span> <span class="n">emissions</span><span class="o">=</span><span class="s2">&quot;gaussian&quot;</span><span class="p">)</span>
+<span class="n">elbos</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">lds</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;laplace_em&quot;</span><span class="p">,</span> <span class="n">num_iters</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Get the posterior mean of the continuous states</span>
+<span class="n">state_means</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">mean_continuous_states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Smooth the data under the variational posterior</span>
+<span class="n">smoothed_obs</span> <span class="o">=</span> <span class="n">lds</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">state_means</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitting LDS with Laplace-EM using structured variational posterior
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                               | 0/1 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ARHMM Initialization restarts:   0%|                                                                                | 0/1 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initializing with an ARHMM using 25 steps of EM.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                              | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2:   0%|                                                                                                 | 0/25 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LP: -1048.2: 100%|███████████████████████████████████████████████████████████████████████████████████████| 25/25 [00:00&lt;00:00, 650.24it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ARHMM Initialization restarts: 100%|████████████████████████████████████████████████████████████████████████| 1/1 [00:00&lt;00:00,  7.09it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ARHMM Initialization restarts: 100%|████████████████████████████████████████████████████████████████████████| 1/1 [00:00&lt;00:00,  7.08it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                              | 0/10 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ELBO: -3706.0:   0%|                                                                                               | 0/10 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ELBO: -2934.2:   0%|                                                                                               | 0/10 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ELBO: -2912.7:   0%|                                                                                               | 0/10 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ELBO: -2906.5:   0%|                                                                                               | 0/10 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ELBO: -2895.2:   0%|                                                                                               | 0/10 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ELBO: -2888.6:   0%|                                                                                               | 0/10 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ELBO: -2893.7:   0%|                                                                                               | 0/10 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ELBO: -2893.7:  60%|████████████████████████████████████████████████████▏                                  | 6/10 [00:00&lt;00:00, 53.02it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ELBO: -2879.2:  60%|████████████████████████████████████████████████████▏                                  | 6/10 [00:00&lt;00:00, 53.02it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ELBO: -2882.1:  60%|████████████████████████████████████████████████████▏                                  | 6/10 [00:00&lt;00:00, 53.02it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ELBO: -2901.0:  60%|████████████████████████████████████████████████████▏                                  | 6/10 [00:00&lt;00:00, 53.02it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ELBO: -2883.9:  60%|████████████████████████████████████████████████████▏                                  | 6/10 [00:00&lt;00:00, 53.02it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ELBO: -2883.9: 100%|██████████████████████████████████████████████████████████████████████████████████████| 10/10 [00:00&lt;00:00, 58.46it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Below, we plot the ELBOs which we got from the <code class="docutils literal notranslate"><span class="pre">fit</span></code> function to check that our fitting procedure converged.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the ELBOs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">elbos</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Laplace-EM&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Iteration&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;ELBO&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x154608310&gt;
+</pre></div>
+</div>
+<img alt="../_images/c2ee45f6b9a4b0e455677ea1ff152ec56b6012641cd0194fcd78eaa6bb701e24.png" src="../_images/c2ee45f6b9a4b0e455677ea1ff152ec56b6012641cd0194fcd78eaa6bb701e24.png" />
+</div>
+</div>
+</section>
+<section id="visualize-model-fit">
+<h2>6. Visualize Model Fit<a class="headerlink" href="#visualize-model-fit" title="Permalink to this headline">#</a></h2>
+<p>Below, we show the true and estimated states over time. Although there is an offset between the true state and our estimate, we see that the dynamics of the system seem to match pretty well: our estimate follows a similar trajectory as the true state.</p>
+<p>We also use our model to “smooth” the emissions by removing noise. Once we have learned the dynamics of the system, we see that we can remove some of the jitter from the emissions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">state_dim</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">states</span><span class="p">[:,</span><span class="n">d</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">d</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True States&quot;</span> <span class="k">if</span> <span class="n">d</span><span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">state_means</span><span class="p">[:,</span><span class="n">d</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">d</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Estimated States&quot;</span> <span class="k">if</span> <span class="n">d</span><span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;True and Estimated States&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fcf6ba2e1ebb5053d93ec76ff37c36af6603ea8d1a40b97f6214670cdc190205.png" src="../_images/fcf6ba2e1ebb5053d93ec76ff37c36af6603ea8d1a40b97f6214670cdc190205.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the smoothed emissions</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">emissions</span><span class="p">[:,</span> <span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Original&quot;</span> <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">smoothed_obs</span><span class="p">[:,</span> <span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Smoothed&quot;</span> <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Original and Smoothed Observations&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2e4ff013ab2a7529cbf30d1f1f5cb2a13a5721736ecf5e57551f5d0f6e76ca52.png" src="../_images/2e4ff013ab2a7529cbf30d1f1f5cb2a13a5721736ecf5e57551f5d0f6e76ca52.png" />
+</div>
+</div>
+<p>Below, we visualize the true dynamics, as well as the dynamics of the system we learned. We would hope that the overall features would be the same, though the overall dynamics might be rotated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract dynamics matrix from the true model</span>
+<span class="n">A_true</span> <span class="o">=</span> <span class="n">true_lds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">A</span>
+<span class="n">b_true</span> <span class="o">=</span> <span class="n">true_lds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">b</span>
+
+<span class="n">A_est</span> <span class="o">=</span> <span class="n">lds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">A</span>
+<span class="n">b_est</span> <span class="o">=</span> <span class="n">lds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">b</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plot_dynamics_2d</span><span class="p">(</span><span class="n">A_true</span><span class="p">,</span> <span class="n">b_true</span><span class="p">,</span> <span class="n">npts</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$x_1$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$x_2$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;True Dynamics&quot;</span><span class="p">)</span>
+
+<span class="n">plot_dynamics_2d</span><span class="p">(</span><span class="n">A_est</span><span class="p">,</span> <span class="n">b_est</span><span class="p">,</span> <span class="n">npts</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$x_1$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$x_2$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Inferred Dynamics&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2e9703318e447efcdadb7279c23941bedc401880de5a21095e607bd47e35c8e2.png" src="../_images/2e9703318e447efcdadb7279c23941bedc401880de5a21095e607bd47e35c8e2.png" />
+</div>
+</div>
+<section id="exercise-6-1-mis-specified-dynamics-model">
+<h3>Exercise 6.1: Mis-specified Dynamics Model<a class="headerlink" href="#exercise-6-1-mis-specified-dynamics-model" title="Permalink to this headline">#</a></h3>
+<p>What you expect to happen if you fit an HMM to your data when the true dataset was generated by an LDS? Assume that in both cases, the observation model is Gaussian, so that only the dynamics model is misspecified.</p>
+<p>How would the performance of your model change as you increase the number of discrete states in the HMM?</p>
+</section>
+</section>
+<section id="simulate-poisson-data-from-a-poisson-lds-with-the-same-dynamics">
+<h2>7. Simulate Poisson data from a Poisson LDS with the same dynamics<a class="headerlink" href="#simulate-poisson-data-from-a-poisson-lds-with-the-same-dynamics" title="Permalink to this headline">#</a></h2>
+<p>In the below cells, we create an LDS with poisson observations that shares the dynamics of the LDS above.
+The line:</p>
+<p><code class="docutils literal notranslate"><span class="pre">plds</span> <span class="pre">=</span> <span class="pre">ssm.LDS(obs_dim,</span> <span class="pre">state_dim,</span> <span class="pre">emissions=&quot;poisson_orthog&quot;,</span> <span class="pre">emission_kwargs=dict(link=&quot;softplus&quot;))</span>&#160;&#160;&#160; </code></p>
+<p>creates an LDS object with Poisson observations.
+Specifying <code class="docutils literal notranslate"><span class="pre">link=&quot;softplus&quot;</span></code> specifes that the link function will be the softplus function.
+The term <code class="docutils literal notranslate"><span class="pre">link</span></code> refers to the link a generalized linear model, which controls how the linear latent variable, in this case the state <span class="math notranslate nohighlight">\(x_t\)</span> controls the emission distribution.
+When creating a Poisson or Bernoulli LDS, the user specifies the link function, which allows in-turn sets the mean function of the emissions.</p>
+<p>For Poisson LDS, SSM supports two link functions:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">link=&quot;softplus&quot;</span></code>: The mean function <span class="math notranslate nohighlight">\(\eta(x)\)</span> is set to the inverse softplus function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">link=&quot;log&quot;</span></code>: The mean function  <span class="math notranslate nohighlight">\(\eta(x)\)</span> is set to the exponential function.</p></li>
+</ol>
+<p>Below, we copy the parameters from our prior LDS to the new object:<br />
+<code class="docutils literal notranslate"><span class="pre">plds.dynamics.params</span> <span class="pre">=</span> <span class="pre">copy.deepcopy(true_lds.dynamics.params)</span> </code></p>
+<p>We use <code class="docutils literal notranslate"><span class="pre">copy.deepcopy</span></code> to make sure we don’t accidentally change the parameters in the other LDS object.
+The Poisson emissions are composed of a linear mapping from the continuous states:
+$<span class="math notranslate nohighlight">\(z_t = C x_t + d + F u\)</span><span class="math notranslate nohighlight">\(  
+In the below line, we set the bias vector \)</span>d$ in the above equation to zeros:<br />
+<code class="docutils literal notranslate"><span class="pre">plds.emissions.ds</span> <span class="pre">=</span> <span class="pre">0</span> <span class="pre">*</span> <span class="pre">np.ones(obs_dim)</span></code></p>
+<p>After sampling from our Poisson LDS, we sample and show the trajectory, as before. We then also visualize our Poisson observations. Since Poisson observations are nonnegative integers, we plot them as a color density.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">copy</span>
+
+<span class="n">plds</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">LDS</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">,</span> <span class="n">state_dim</span><span class="p">,</span> <span class="n">emissions</span><span class="o">=</span><span class="s2">&quot;poisson_orthog&quot;</span><span class="p">,</span> <span class="n">emission_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">link</span><span class="o">=</span><span class="s2">&quot;softplus&quot;</span><span class="p">))</span>
+<span class="n">plds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">true_lds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+<span class="n">plds</span><span class="o">.</span><span class="n">emissions</span><span class="o">.</span><span class="n">ds</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">)</span>
+<span class="n">states_plds</span><span class="p">,</span> <span class="n">obs_plds</span> <span class="o">=</span> <span class="n">plds</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">time_bins</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the dynamics vector field</span>
+<span class="n">plot_dynamics_2d</span><span class="p">(</span><span class="n">plds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">A</span><span class="p">,</span>
+                 <span class="n">plds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">b</span><span class="p">,</span>
+                 <span class="n">mins</span><span class="o">=</span><span class="n">states_plds</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                 <span class="n">maxs</span><span class="o">=</span><span class="n">states_plds</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                 <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">states_plds</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">states_plds</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x_1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$x_2$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simulated Latent States&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">save_figures</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;lds_6.pdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b8655c3c7a2edd6777d2524ed2f4d47d61157a5bd85a2b8d2c8666f865224602.png" src="../_images/b8655c3c7a2edd6777d2524ed2f4d47d61157a5bd85a2b8d2c8666f865224602.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the dynamics vector field</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">height_ratios</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">obs_dim</span><span class="o">/</span><span class="n">state_dim</span><span class="p">))</span>
+
+<span class="c1"># Plot the continuous latent states</span>
+<span class="n">lim</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">states_plds</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">state_dim</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">states_plds</span><span class="p">[:,</span> <span class="n">d</span><span class="p">]</span> <span class="o">+</span> <span class="n">lim</span> <span class="o">*</span> <span class="n">d</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">state_dim</span><span class="p">)</span> <span class="o">*</span> <span class="n">lim</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;$x_</span><span class="si">{}</span><span class="s2">$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">state_dim</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simulated Latent States&quot;</span><span class="p">)</span>
+
+<span class="n">lim</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">obs_plds</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">obs_plds</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Greys&quot;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">),</span> <span class="p">[</span><span class="s2">&quot;$y_{{ </span><span class="si">{}</span><span class="s2"> }}$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simulated Poisson Observations&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">save_figures</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;lds_7.pdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b420e81c8a88e519c3264f546385c0eb4db53566bf94366e156b41f1812854bc.png" src="../_images/b420e81c8a88e519c3264f546385c0eb4db53566bf94366e156b41f1812854bc.png" />
+</div>
+</div>
+<section id="exercise-7-1-mis-specified-observation-model">
+<h3>Exercise 7.1: Mis-specified Observation Model<a class="headerlink" href="#exercise-7-1-mis-specified-observation-model" title="Permalink to this headline">#</a></h3>
+<p>What you expect to happen if you fit an LDS with Gaussian observations to a system where the true observation model is Poisson?</p>
+<p>You can try this by following the steps in Section 5 using the data we generated in Section 7.</p>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="1-Simple-HMM-Demo.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Hidden Markov Model Demo</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="2-Input-Driven-HMM.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Input Driven HMM</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Scott Linderman<br/>
+  
+      &copy; Copyright 2022, Scott Linderman.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

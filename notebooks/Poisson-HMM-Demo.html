@@ -1,0 +1,933 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Poisson HMM Demo &#8212; ssm  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">ssm  documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="1-Simple-HMM-Demo.html">
+   Hidden Markov Model Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="1b-Simple-Linear-Dynamical-System.html">
+   Simple Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2-Input-Driven-HMM.html">
+   Input Driven HMM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2b-Input-Driven-Observations-%28GLM-HMM%29.html">
+   Input Driven Observations (“GLM-HMM”)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="3-Switching-Linear-Dynamical-System.html">
+   Switching Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="4-Recurrent-SLDS.html">
+   Recurrent SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="5-Poisson-SLDS.html">
+   Poisson SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="6-Poisson-fLDS.html">
+   Poisson fLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="7-Variatonal-Laplace-EM-for-SLDS-Tutorial.html">
+   Variational Laplace-EM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="HMM-State-Clustering.html">
+   HMM State Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Multi-Population-rSLDS.html">
+   Multi-population recurrent switching linear dynamical systems overview
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/1-Simple-HMM-Demo.html">
+   Simple HMM Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/1b-Simple-Linear-Dynamical-System.html">
+   Simple Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/2-Input-Driven-HMM.html">
+   Input Driven HMM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/2b-Input-Driven-Observations-%28GLM-HMM%29.html">
+   Input Driven Observations (GLM-HMM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/3-Switching-Linear-Dynamical-System.html">
+   Switching Linear Dynamical System
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/4-Recurrent-SLDS.html">
+   Recurrent SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/5-Poisson-SLDS.html">
+   Poisson SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/6-Poisson-fLDS.html">
+   Poisson fLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/7-Variatonal-Laplace-EM-for-SLDS-Tutorial.html">
+   Variational Laplace EM for SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/HMM-State-Clustering.html">
+   HMM State Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../auto_examples/Multi-Population-rSLDS.html">
+   Multi-Population rSLDS
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/lindermanlan/ssm-docs/main?urlpath=tree/notebooks/Poisson-HMM-Demo.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/lindermanlan/ssm-docs/blob/main/notebooks/Poisson-HMM-Demo.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/notebooks/Poisson-HMM-Demo.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../_sources/notebooks/Poisson-HMM-Demo.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applying-an-hmm-to-electrophysiology-data-from-a-motor-control-task">
+   Applying an HMM to electrophysiology data from a motor-control task
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background">
+   1. Background
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-the-dataset">
+   2. Load the dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualize-the-targets">
+   3. Visualize the Targets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fit-a-simple-3-state-hmm">
+   4. Fit a simple 3-state HMM
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#format-the-data-for-ssm">
+     4.1 Format the data for SSM
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fit-a-simple-5-state-hmm">
+     4.2 Fit a simple 5-state HMM
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualize-the-posterior-likelihood-over-the-states">
+   4.3 Visualize the posterior likelihood over the states
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decode-reach-directions">
+   5. Decode Reach Directions
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Poisson HMM Demo</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applying-an-hmm-to-electrophysiology-data-from-a-motor-control-task">
+   Applying an HMM to electrophysiology data from a motor-control task
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background">
+   1. Background
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-the-dataset">
+   2. Load the dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualize-the-targets">
+   3. Visualize the Targets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fit-a-simple-3-state-hmm">
+   4. Fit a simple 3-state HMM
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#format-the-data-for-ssm">
+     4.1 Format the data for SSM
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fit-a-simple-5-state-hmm">
+     4.2 Fit a simple 5-state HMM
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualize-the-posterior-likelihood-over-the-states">
+   4.3 Visualize the posterior likelihood over the states
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decode-reach-directions">
+   5. Decode Reach Directions
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="poisson-hmm-demo">
+<h1>Poisson HMM Demo<a class="headerlink" href="#poisson-hmm-demo" title="Permalink to this headline">#</a></h1>
+<p>Written by Benjamin Antin, Scott Linderman, and Krishna Shenoy.
+Thanks to <a class="reference external" href="http://rnel.rice.edu/">Caleb Kemere</a> for sharing his data with us.</p>
+<section id="applying-an-hmm-to-electrophysiology-data-from-a-motor-control-task">
+<h2>Applying an HMM to electrophysiology data from a motor-control task<a class="headerlink" href="#applying-an-hmm-to-electrophysiology-data-from-a-motor-control-task" title="Permalink to this headline">#</a></h2>
+<p>In this notebook, we’ll show how SSM can be used for modeling neuroscience data. This notebook is based off the 2008 paper <a class="reference external" href="https://web.stanford.edu/~shenoy/GroupPublications/KemereEtAlJNeurophysiol2008.pdf">“Detecting Neural-State Transitions Using Hidden Markov Models for Motor Cortical Prostheses”</a> by Caleb Kemere <em>et al</em>.</p>
+<p>Kemere shows that an HMM can be used to detect neural transitions in a reaching task performed by a monkey. Crucially, by cleverly configuring the HMM states, the authors are also able to decode which target the monkey reached to using their trained HMM. See the paper for more details on the data and experimental set-up.</p>
+<p>First, we need to load in the data. Though the data is not yet publicly available, we are hoping to make it available soon. We will assume that you have the dependencies included in SSM installed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">block_diag</span>
+<span class="kn">import</span> <span class="nn">autograd.numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">ssm</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ssm-docs/lib/python3.9/site-packages/tqdm/auto.py:22: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="background">
+<h2>1. Background<a class="headerlink" href="#background" title="Permalink to this headline">#</a></h2>
+<p>This dataset contains neural recordings made using a Utah array (96 electrodes) implanted in pre-motor cortex a macaque performing a reach task.
+During the task, the monkey must reach to one of 8 targets, as indicated by a cue on a screen.
+Each trial consists of 3 phases: a <strong>baseline</strong> phase, a <strong>plan</strong> phase, and a <strong>move</strong> phase.
+We describe these phases below:</p>
+<ol class="arabic simple">
+<li><p><strong>baseline</strong>: The animal fixates and places his hand in the center of the screen.</p></li>
+<li><p><strong>plan</strong>: A target appears in one of 8 locations (radially spread out from the center of the screen).
+The monkey does not yet begin reaching.</p></li>
+<li><p><strong>move</strong>: A go-cue comes on, telling the monkey to begin his reach. Upon successfully reaching the target, the monkey receives a liquid reward.</p></li>
+</ol>
+<p>The neural data has been spike-sorted and binned in 10ms intervals.</p>
+<p><strong>Note</strong>: This data contains both single and multi-unit spiking activity. We’ll be loose with terminology and use the term “neuron” and “unit” interchangeably here.</p>
+</section>
+<section id="load-the-dataset">
+<h2>2. Load the dataset<a class="headerlink" href="#load-the-dataset" title="Permalink to this headline">#</a></h2>
+<p>The dataset is provided as a numpy .npz archive with the following variables:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FR</span></code>: A numpy array of (neuron, time-bin, trial) with size (190, 155, 1127). The trials have already been time aligned, such that the plan and movement periods begin in the same time-bin for all of the 1127 trials.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">base_idx</span></code>: Indices of time-bins corresponding to the baseline period (see Section #1).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plan_idx</span></code>: Indices of time-bins corresponding to the plan period.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">move_idx</span></code>: Indices of time-bins corresponding to the movement period.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">targets</span></code>: Length 8 list of the x,y coordinates for each of the 8 targets.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">target_idx</span></code>: A nested list, where <code class="docutils literal notranslate"><span class="pre">cInds[0]</span></code> is list of all trials to target 1, <code class="docutils literal notranslate"><span class="pre">cInds[1]</span></code> is a list of all trials to target 2, etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">train_idx</span></code>: Indices of the trials we will use for training.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_idx</span></code>: Indices of the trials we will use for testing.</p></li>
+</ol>
+<p>Below, after we pull out the data, we visualize the spike data for the first trials.
+We see that there is a noticeable increase in neural activity when the movement period starts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DATA_PATH</span> <span class="o">=</span> <span class="s2">&quot;/Users/Bantin/Documents/Stanford/Linderman-Shenoy/Kemere2008/extracted_data/H1217/H1217_hmm_data.npz&quot;</span>
+<span class="n">vars_dict</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">DATA_PATH</span> <span class="o">=</span> <span class="s2">&quot;/Users/Bantin/Documents/Stanford/Linderman-Shenoy/Kemere2008/extracted_data/H1217/H1217_hmm_data.npz&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">vars_dict</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nn">File /opt/miniconda3/envs/ssm-docs/lib/python3.9/site-packages/autograd/tracer.py:48,</span> in <span class="ni">primitive.&lt;locals&gt;.f_wrapped</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">46</span>     <span class="k">return</span> <span class="n">new_box</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">trace</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">47</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">48</span>     <span class="k">return</span> <span class="n">f_raw</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /opt/miniconda3/envs/ssm-docs/lib/python3.9/site-packages/numpy/lib/npyio.py:390,</span> in <span class="ni">load</span><span class="nt">(file, mmap_mode, allow_pickle, fix_imports, encoding)</span>
+<span class="g g-Whitespace">    </span><span class="mi">388</span>     <span class="n">own_fid</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">389</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">390</span>     <span class="n">fid</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os_fspath</span><span class="p">(</span><span class="n">file</span><span class="p">),</span> <span class="s2">&quot;rb&quot;</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">391</span>     <span class="n">own_fid</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">393</span> <span class="c1"># Code to distinguish from NumPy binary files and pickles.</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/Users/Bantin/Documents/Stanford/Linderman-Shenoy/Kemere2008/extracted_data/H1217/H1217_hmm_data.npz&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FR</span> <span class="o">=</span> <span class="n">vars_dict</span><span class="p">[</span><span class="s1">&#39;FR&#39;</span><span class="p">]</span>
+<span class="n">base_idx</span> <span class="o">=</span> <span class="n">vars_dict</span><span class="p">[</span><span class="s1">&#39;base_idx&#39;</span><span class="p">]</span>
+<span class="n">plan_idx</span> <span class="o">=</span> <span class="n">vars_dict</span><span class="p">[</span><span class="s1">&#39;plan_idx&#39;</span><span class="p">]</span>
+<span class="n">move_idx</span> <span class="o">=</span> <span class="n">vars_dict</span><span class="p">[</span><span class="s1">&#39;move_idx&#39;</span><span class="p">]</span>
+<span class="n">targets</span> <span class="o">=</span> <span class="n">vars_dict</span><span class="p">[</span><span class="s1">&#39;targets&#39;</span><span class="p">]</span>
+<span class="n">target_idx</span> <span class="o">=</span> <span class="n">vars_dict</span><span class="p">[</span><span class="s1">&#39;target_idx&#39;</span><span class="p">]</span>
+<span class="n">train_idx</span> <span class="o">=</span> <span class="n">vars_dict</span><span class="p">[</span><span class="s1">&#39;train_idx&#39;</span><span class="p">]</span>
+<span class="n">test_idx</span> <span class="o">=</span> <span class="n">vars_dict</span><span class="p">[</span><span class="s1">&#39;test_idx&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display a spike raster of the image</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">FR</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="c1">#plt.axis(&#39;off&#39;)</span>
+
+<span class="c1"># Label the different phases of the trial movement activity</span>
+<span class="n">time_bins</span> <span class="o">=</span> <span class="n">FR</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">plan_start</span> <span class="o">=</span> <span class="n">plan_idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">move_start</span> <span class="o">=</span> <span class="n">move_idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">plan_start</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Plan Start&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">move_start</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Move Start&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Unit&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualize-the-targets">
+<h2>3. Visualize the Targets<a class="headerlink" href="#visualize-the-targets" title="Permalink to this headline">#</a></h2>
+<p>To get a sense of the task, we’ll visualize the 8 targets used in the task. Inspecting the <code class="docutils literal notranslate"><span class="pre">targets</span></code> array, we see
+8 pairs of (x, y) coordinates. These correspond to the location of the 8 targets on the screen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_targets</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span>
+<span class="n">xlist</span> <span class="o">=</span> <span class="p">[</span><span class="n">target</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">targets</span><span class="p">]</span>
+<span class="n">ylist</span> <span class="o">=</span> <span class="p">[</span><span class="n">target</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">targets</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xlist</span><span class="p">,</span>
+            <span class="n">ylist</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+            <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span>
+            <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+            <span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_targets</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
+                 <span class="p">(</span><span class="n">xlist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">5</span><span class="p">,</span> <span class="n">ylist</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+                 <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+                 <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Target Locations&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="fit-a-simple-3-state-hmm">
+<h2>4. Fit a simple 3-state HMM<a class="headerlink" href="#fit-a-simple-3-state-hmm" title="Permalink to this headline">#</a></h2>
+<p>As a first step, we’ll fit a simple 3 state HMM to the training data. For this, we’re not aiming to actually decode which target the monkey reached to, we’re merely going to check if we can uncover the the 3 phases of the reach (baseline, plan, move) in an unsupervised way using an HMM.</p>
+<section id="format-the-data-for-ssm">
+<h3>4.1 Format the data for SSM<a class="headerlink" href="#format-the-data-for-ssm" title="Permalink to this headline">#</a></h3>
+<p>When calling SSM’s <code class="docutils literal notranslate"><span class="pre">fit</span></code> function, the data is expected to be formatted as a list <code class="docutils literal notranslate"><span class="pre">datas</span></code> where <code class="docutils literal notranslate"><span class="pre">datas[i]</span></code> is a 2D array of size <code class="docutils literal notranslate"><span class="pre">time_bins</span> <span class="pre">X</span> <span class="pre">observations</span></code>. Here, we’ll reformat our data to match this. For us, this means that each entry of datas should be a <code class="docutils literal notranslate"><span class="pre">time_bins</span> <span class="pre">X</span> <span class="pre">190</span></code>, because we have 190 neurons.</p>
+<p>In order for the following steps to make sense, we need to give more details about how the <code class="docutils literal notranslate"><span class="pre">FR</span></code> array is arranged. As mentioned, it is formatted as (neurons, time, trials). However, not every trial in the dataset is actually the same length – this is because the length of the delay period is randomized, and it takes the monkey varying amounts of time to reach the target.</p>
+<p>To acount for this, the <code class="docutils literal notranslate"><span class="pre">FR</span></code> array has been padded with NaNs so that all trials have the same length. This is very helpful, because it makes it easy to know which time bins correspond to each phase of the task.
+However, for our purposes, we don’t want to include the NaNS when fitting our HMM (in fact, SSM will throw an error if we do).
+Instead, we will remove the columns of FR which contain NaNs, and create a list that matches the format above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">format_spikes</span><span class="p">(</span><span class="n">FR</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+    <span class="n">datas</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">idx</span><span class="p">:</span>
+        <span class="n">spikes_cur</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">FR</span><span class="p">[:,:,</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="c1"># remove columns which contain NaNs</span>
+        <span class="n">idx_keep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">spikes_cur</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+        <span class="n">spikes_cur</span> <span class="o">=</span> <span class="n">spikes_cur</span><span class="p">[:,</span><span class="n">idx_keep</span><span class="p">]</span>
+
+        <span class="c1"># Transpose the data for passing to SSM fit function</span>
+        <span class="c1"># To use the Poisson observation model, we must also</span>
+        <span class="c1"># convert our arrays to be integer types.</span>
+        <span class="n">datas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">spikes_cur</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">datas</span>
+
+<span class="c1"># We get the indices of all reaches to the left as target_inds[0]</span>
+<span class="c1"># and all reaches to the right as target_inds[7]</span>
+<span class="n">left_reach_idx</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">target_idx</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">right_reach_idx</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">target_idx</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+
+<span class="n">train_right_idx</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">right_reach_idx</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">train_idx</span><span class="p">))</span>
+<span class="n">train_left_idx</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">left_reach_idx</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">train_idx</span><span class="p">))</span>
+
+<span class="n">test_right_idx</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">right_reach_idx</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">test_idx</span><span class="p">))</span>
+<span class="n">test_left_idx</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">left_reach_idx</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">test_idx</span><span class="p">))</span>
+
+<span class="n">train_idx_combined</span> <span class="o">=</span> <span class="n">train_right_idx</span> <span class="o">+</span> <span class="n">train_left_idx</span>
+<span class="n">test_idx_combined</span> <span class="o">=</span> <span class="n">test_right_idx</span> <span class="o">+</span> <span class="n">test_left_idx</span>
+
+<span class="n">train_datas</span> <span class="o">=</span> <span class="n">format_spikes</span><span class="p">(</span><span class="n">FR</span><span class="p">,</span> <span class="n">train_idx_combined</span><span class="p">)</span>
+<span class="n">test_datas</span> <span class="o">=</span> <span class="n">format_spikes</span><span class="p">(</span><span class="n">FR</span><span class="p">,</span> <span class="n">test_idx_combined</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="fit-a-simple-5-state-hmm">
+<h3>4.2 Fit a simple 5-state HMM<a class="headerlink" href="#fit-a-simple-5-state-hmm" title="Permalink to this headline">#</a></h3>
+<p><strong>Assigning States and initializing the transition Matrix</strong></p>
+<p>For this, we’ll replicate Figure 3 in the paper. We’ll fit a simple 5 state HMM with 1 baseline state, and 2-states each for reaches to the left and right (plan and move). We will assign our states as follows:</p>
+<ol class="arabic simple">
+<li><p>Baseline</p></li>
+<li><p>Planning Right</p></li>
+<li><p>Reaching Right</p></li>
+<li><p>Planning Left</p></li>
+<li><p>Reaching Left</p></li>
+</ol>
+<p>We then need to initialize the transition matrix A, along with the mean firing rates for each state.
+We initialize <span class="math notranslate nohighlight">\(A\)</span> as follows:</p>
+<p><span class="math notranslate nohighlight">\(A = \begin{bmatrix}
+0.8 &amp; 0.1 &amp; 0 &amp; 0.1 &amp; 0 \\
+0   &amp; 0.9 &amp; 0.1 &amp; 0 &amp; 0 \\
+0   &amp; 0   &amp; 1   &amp; 0 &amp; 0 \\
+0   &amp; 0   &amp; 0 &amp; 0.9 &amp; 0.1\\
+0   &amp; 0   &amp; 0  &amp;   0 &amp; 1
+\end{bmatrix}\)</span></p>
+<p><strong>Constraining the HMM to avoid certain transitions</strong></p>
+<p>We want our HMM to be a “left-to-right” HMM because certain transitions are not allowed (e.g transitioning from “plan right” to “move left”). To do so we will use the <code class="docutils literal notranslate"><span class="pre">constrained</span></code> transitions class. This class allows us to specify which elements of the transition matrix are allowed to be non-zero.</p>
+<p>To use the <code class="docutils literal notranslate"><span class="pre">constrained</span></code> transitions class, we will also need to provide SSM with a transition mask. This will tell SSM which entries are allowed to be nonzero. The mask must be an array of booleans that is <span class="math notranslate nohighlight">\(K x K\)</span>. Entries of the mask that are zero will force zeros in the transition matrix at corresponding locations.</p>
+<p>We then pass in the transitions mask as <code class="docutils literal notranslate"><span class="pre">transition_kwargs</span></code> inside of a dictionary:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">transition_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">transition_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;transition_mask&quot;</span><span class="p">:</span> <span class="n">transition_mask</span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Creating an HMM Object</strong></p>
+<p>The syntax to create a standard HMM object using SSM is:<br />
+<code class="docutils literal notranslate"><span class="pre">ssm.HMM(K,</span> <span class="pre">N,</span> <span class="pre">transitions=&lt;transition_class&gt;,</span> <span class="pre">observations=&lt;observation_class&gt;)</span></code></p>
+<p>We can manually set the state transition matrix using:<br />
+<code class="docutils literal notranslate"><span class="pre">simple_hmm.transitions.log_Ps</span> <span class="pre">=</span> <span class="pre">log_A</span></code></p>
+<p>Where <span class="math notranslate nohighlight">\(K\)</span> is the number of discrete states, and <span class="math notranslate nohighlight">\(N\)</span> is the dimensensionality of the observations. We’ll use standard transitions and Poisson observations.
+To fit our HMM to the training data, we call <code class="docutils literal notranslate"><span class="pre">HMM.fit(train_trials,</span> <span class="pre">masks=train_masks)</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_states</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">num_neurons</span> <span class="o">=</span> <span class="n">train_datas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Manually set the initial state distribution</span>
+<span class="n">init_dist</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">init_state_distns</span><span class="o">.</span><span class="n">FixedInitialStateDistribution</span><span class="p">(</span><span class="n">num_states</span><span class="p">,</span>
+                                                                <span class="n">num_neurons</span><span class="p">,</span>
+                                                                <span class="n">pi0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+
+
+<span class="c1"># Manually initialize the means for each state</span>
+<span class="n">lambdas_baseline</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">FR</span><span class="p">[:,</span><span class="n">base_idx</span><span class="p">,:],</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">left_trials</span> <span class="o">=</span> <span class="n">FR</span><span class="p">[:,:,</span><span class="n">train_left_idx</span><span class="p">]</span>
+<span class="n">right_trials</span> <span class="o">=</span> <span class="n">FR</span><span class="p">[:,:,</span><span class="n">train_right_idx</span><span class="p">]</span>
+
+<span class="n">lambdas_plan_left</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">left_trials</span><span class="p">[:,</span><span class="n">plan_idx</span><span class="p">,:],</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">lambdas_move_left</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">left_trials</span><span class="p">[:,</span><span class="n">move_idx</span><span class="p">,:],</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">lambdas_plan_right</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">right_trials</span><span class="p">[:,</span><span class="n">plan_idx</span><span class="p">,:],</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">lambdas_move_right</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">right_trials</span><span class="p">[:,</span><span class="n">move_idx</span><span class="p">,:],</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">lambdas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">lambdas_baseline</span><span class="p">,</span>
+                     <span class="n">lambdas_plan_right</span><span class="p">,</span>
+                     <span class="n">lambdas_move_right</span><span class="p">,</span>
+                     <span class="n">lambdas_plan_left</span><span class="p">,</span>
+                     <span class="n">lambdas_move_left</span><span class="p">))</span>
+
+<span class="c1"># Manually initialize the transition probabilities</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+<span class="p">[[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+<span class="p">)</span>
+
+<span class="c1"># Create our HMM</span>
+<span class="n">transition_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">transition_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;transition_mask&quot;</span><span class="p">:</span> <span class="n">transition_mask</span><span class="p">}</span>
+<span class="n">simple_hmm</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">HMM</span><span class="p">(</span><span class="n">num_states</span><span class="p">,</span>
+                     <span class="n">num_neurons</span><span class="p">,</span>
+                     <span class="n">observations</span><span class="o">=</span><span class="s2">&quot;poisson&quot;</span><span class="p">,</span>
+                     <span class="n">transitions</span><span class="o">=</span><span class="s2">&quot;constrained&quot;</span><span class="p">,</span>
+                     <span class="n">init_state_distn</span><span class="o">=</span><span class="n">init_dist</span><span class="p">,</span>
+                     <span class="n">transition_kwargs</span><span class="o">=</span><span class="n">transition_kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_hmm</span><span class="o">.</span><span class="n">log_lambdas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">lambdas</span><span class="p">)</span>
+<span class="n">simple_hmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">log_Ps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">lls</span> <span class="o">=</span> <span class="n">simple_hmm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_datas</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;em&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="visualize-the-posterior-likelihood-over-the-states">
+<h2>4.3 Visualize the posterior likelihood over the states<a class="headerlink" href="#visualize-the-posterior-likelihood-over-the-states" title="Permalink to this headline">#</a></h2>
+<p>We would expect that transitions from “baseline” to “plan” and from “plan” to “reach” should occur roughly when the target first appears, and when the go-cue comes on, respectively. Indeed, that is what we tend to find.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get a random reach</span>
+<span class="n">test_trial_spikes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">test_datas</span><span class="p">)</span>
+<span class="n">posterior</span> <span class="o">=</span> <span class="n">simple_hmm</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">test_trial_spikes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot posterior of states for a single test trial</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_states</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">posterior</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;State </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="decode-reach-directions">
+<h2>5. Decode Reach Directions<a class="headerlink" href="#decode-reach-directions" title="Permalink to this headline">#</a></h2>
+<p>For the purposes of this notebook, we are only going to decode reaches to the left and right targets (we excluded trials to other targets during the data formatting above). To so so, we’ll call <code class="docutils literal notranslate"><span class="pre">hmm.filter</span></code> on each spike train in our test dataset. We’ll then integrate over  window towards the end of the trial (let’s say 50 ms) and pick the state that has the highest posterior probability.</p>
+<p>Recalling from above, we have assigned the states as follows:
+We will assign our states as follows:</p>
+<ol class="arabic simple">
+<li><p>Baseline</p></li>
+<li><p>Planning Right</p></li>
+<li><p>Reaching Right</p></li>
+<li><p>Planning Left</p></li>
+<li><p>Reaching Left</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check accuracy on rightward reaches</span>
+<span class="n">window</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">all_trials</span> <span class="o">=</span> <span class="n">format_spikes</span><span class="p">(</span><span class="n">FR</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">FR</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">num_correct</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">total_test_trials</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_right_idx</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_left_idx</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">test_right_idx</span><span class="p">:</span>
+    <span class="n">trial</span> <span class="o">=</span> <span class="n">all_trials</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">posterior</span> <span class="o">=</span> <span class="n">simple_hmm</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
+    
+    <span class="c1"># Integrate posterior probability</span>
+    <span class="n">p_right</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="o">-</span><span class="n">window</span><span class="p">:,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">p_left</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="o">-</span><span class="n">window</span><span class="p">:,</span> <span class="mi">4</span><span class="p">])</span>
+        
+    <span class="k">if</span> <span class="n">p_right</span> <span class="o">&gt;</span> <span class="n">p_left</span><span class="p">:</span> 
+        <span class="n">num_correct</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+<span class="c1"># Now check accuracy on leftward reaches</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">test_left_idx</span><span class="p">:</span>
+    <span class="n">trial</span> <span class="o">=</span> <span class="n">all_trials</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">posterior</span> <span class="o">=</span> <span class="n">simple_hmm</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
+    
+    <span class="c1"># Integrate posterior probability</span>
+    <span class="n">p_right</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="o">-</span><span class="n">window</span><span class="p">:,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">p_left</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">posterior</span><span class="p">[</span><span class="o">-</span><span class="n">window</span><span class="p">:,</span> <span class="mi">4</span><span class="p">])</span>
+        
+    <span class="k">if</span> <span class="n">p_right</span> <span class="o">&lt;</span> <span class="n">p_left</span><span class="p">:</span> 
+        <span class="n">num_correct</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Percent accuracy on test set </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">num_correct</span> <span class="o">/</span> <span class="n">total_test_trials</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Scott Linderman<br/>
+  
+      &copy; Copyright 2022, Scott Linderman.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
