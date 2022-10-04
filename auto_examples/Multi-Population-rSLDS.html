@@ -1,0 +1,1828 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Multi-Population rSLDS &#8212; ssm  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="HMM State Clustering" href="HMM-State-Clustering.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">ssm  documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="1-Simple-HMM-Demo.html">
+   Simple HMM Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="1b-Simple-Linear-Dynamical-System.html">
+   Simple Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2-Input-Driven-HMM.html">
+   Input Driven HMM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2b-Input-Driven-Observations-%28GLM-HMM%29.html">
+   Input Driven Observations (GLM-HMM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="3-Switching-Linear-Dynamical-System.html">
+   Switching Linear Dynamical System
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="4-Recurrent-SLDS.html">
+   Recurrent SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="5-Poisson-SLDS.html">
+   Poisson SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="6-Poisson-fLDS.html">
+   Poisson fLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="7-Variatonal-Laplace-EM-for-SLDS-Tutorial.html">
+   Variational Laplace EM for SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="HMM-State-Clustering.html">
+   HMM State Clustering
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Multi-Population rSLDS
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/auto_examples/Multi-Population-rSLDS.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Multi-Population rSLDS</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-multi-population-rslds-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="multi-population-rslds">
+<span id="sphx-glr-auto-examples-multi-population-rslds-py"></span><h1>Multi-Population rSLDS<a class="headerlink" href="#multi-population-rslds" title="Permalink to this headline">#</a></h1>
+<ul class="sphx-glr-horizontal">
+<li><img src="../_images/sphx_glr_Multi-Population-rSLDS_001.png" srcset="../_images/sphx_glr_Multi-Population-rSLDS_001.png" alt="Actual State 0" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_Multi-Population-rSLDS_002.png" srcset="../_images/sphx_glr_Multi-Population-rSLDS_002.png" alt="Actual State 1" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_Multi-Population-rSLDS_003.png" srcset="../_images/sphx_glr_Multi-Population-rSLDS_003.png" alt="Actual State 2" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_Multi-Population-rSLDS_004.png" srcset="../_images/sphx_glr_Multi-Population-rSLDS_004.png" alt="Multi Population rSLDS" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_Multi-Population-rSLDS_005.png" srcset="../_images/sphx_glr_Multi-Population-rSLDS_005.png" alt="Multi Population rSLDS" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_Multi-Population-rSLDS_006.png" srcset="../_images/sphx_glr_Multi-Population-rSLDS_006.png" alt="Multi Population rSLDS" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_Multi-Population-rSLDS_007.png" srcset="../_images/sphx_glr_Multi-Population-rSLDS_007.png" alt="Multi Population rSLDS" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_Multi-Population-rSLDS_008.png" srcset="../_images/sphx_glr_Multi-Population-rSLDS_008.png" alt="Multi Population rSLDS" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_Multi-Population-rSLDS_009.png" srcset="../_images/sphx_glr_Multi-Population-rSLDS_009.png" alt="Actual State 0, Aligned Predicted State 0, Raw Predicted State 0, Actual State 1, Aligned Predicted State 1, Raw Predicted State 1, Actual State 2, Aligned Predicted State 2, Raw Predicted State 2" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_Multi-Population-rSLDS_010.png" srcset="../_images/sphx_glr_Multi-Population-rSLDS_010.png" alt="Actual, Predicted" class = "sphx-glr-multi-img"/></li>
+</ul>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>alphas: [0.05336111 0.03343876 0.08800889]
+
+  0%|          | 0/10 [00:00&lt;?, ?it/s]
+ARHMM Initialization restarts:   0%|          | 0/10 [00:00&lt;?, ?it/s]Initializing with an ARHMM using 25 steps of EM.
+
+
+  0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88550.7:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88553.0:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88356.8:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88356.8:   8%|8         | 2/25 [00:00&lt;00:01, 13.04it/s]
+
+LP: -88050.6:   8%|8         | 2/25 [00:00&lt;00:01, 13.04it/s]
+
+LP: -87651.4:   8%|8         | 2/25 [00:00&lt;00:01, 13.04it/s]
+
+LP: -87651.4:  16%|#6        | 4/25 [00:00&lt;00:01, 13.37it/s]
+
+LP: -87209.9:  16%|#6        | 4/25 [00:00&lt;00:01, 13.37it/s]
+
+LP: -86835.6:  16%|#6        | 4/25 [00:00&lt;00:01, 13.37it/s]
+
+LP: -86835.6:  24%|##4       | 6/25 [00:00&lt;00:01, 12.62it/s]
+
+LP: -86617.6:  24%|##4       | 6/25 [00:00&lt;00:01, 12.62it/s]
+
+LP: -86495.2:  24%|##4       | 6/25 [00:00&lt;00:01, 12.62it/s]
+
+LP: -86495.2:  32%|###2      | 8/25 [00:00&lt;00:01, 11.54it/s]
+
+LP: -86415.0:  32%|###2      | 8/25 [00:00&lt;00:01, 11.54it/s]
+
+LP: -86349.3:  32%|###2      | 8/25 [00:00&lt;00:01, 11.54it/s]
+
+LP: -86349.3:  40%|####      | 10/25 [00:00&lt;00:01, 10.15it/s]
+
+LP: -86313.8:  40%|####      | 10/25 [00:01&lt;00:01, 10.15it/s]
+
+LP: -86280.3:  40%|####      | 10/25 [00:01&lt;00:01, 10.15it/s]
+
+LP: -86280.3:  48%|####8     | 12/25 [00:01&lt;00:01, 10.26it/s]
+
+LP: -86262.2:  48%|####8     | 12/25 [00:01&lt;00:01, 10.26it/s]
+
+LP: -86241.7:  48%|####8     | 12/25 [00:01&lt;00:01, 10.26it/s]
+
+LP: -86241.7:  56%|#####6    | 14/25 [00:01&lt;00:01, 10.64it/s]
+
+LP: -86228.6:  56%|#####6    | 14/25 [00:01&lt;00:01, 10.64it/s]
+
+LP: -86217.4:  56%|#####6    | 14/25 [00:01&lt;00:01, 10.64it/s]
+
+LP: -86217.4:  64%|######4   | 16/25 [00:01&lt;00:00, 12.24it/s]
+
+LP: -86209.1:  64%|######4   | 16/25 [00:01&lt;00:00, 12.24it/s]
+
+LP: -86193.5:  64%|######4   | 16/25 [00:01&lt;00:00, 12.24it/s]
+
+LP: -86193.5:  72%|#######2  | 18/25 [00:01&lt;00:00, 13.00it/s]
+
+LP: -86183.7:  72%|#######2  | 18/25 [00:01&lt;00:00, 13.00it/s]
+
+LP: -86175.3:  72%|#######2  | 18/25 [00:01&lt;00:00, 13.00it/s]
+
+LP: -86175.3:  80%|########  | 20/25 [00:01&lt;00:00, 13.27it/s]
+
+LP: -86165.9:  80%|########  | 20/25 [00:01&lt;00:00, 13.27it/s]
+
+LP: -86156.8:  80%|########  | 20/25 [00:01&lt;00:00, 13.27it/s]
+
+LP: -86156.8:  88%|########8 | 22/25 [00:01&lt;00:00, 11.68it/s]
+
+LP: -86140.8:  88%|########8 | 22/25 [00:02&lt;00:00, 11.68it/s]
+
+LP: -86128.8:  88%|########8 | 22/25 [00:02&lt;00:00, 11.68it/s]
+
+LP: -86128.8:  96%|#########6| 24/25 [00:02&lt;00:00, 10.73it/s]
+
+LP: -86116.7:  96%|#########6| 24/25 [00:02&lt;00:00, 10.73it/s]
+LP: -86116.7: 100%|##########| 25/25 [00:02&lt;00:00, 11.58it/s]
+
+ARHMM Initialization restarts:  10%|#         | 1/10 [00:02&lt;00:20,  2.24s/it]Initializing with an ARHMM using 25 steps of EM.
+
+
+  0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88543.6:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88545.9:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88363.0:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88363.0:   8%|8         | 2/25 [00:00&lt;00:01, 12.50it/s]
+
+LP: -88127.2:   8%|8         | 2/25 [00:00&lt;00:01, 12.50it/s]
+
+LP: -87884.1:   8%|8         | 2/25 [00:00&lt;00:01, 12.50it/s]
+
+LP: -87884.1:  16%|#6        | 4/25 [00:00&lt;00:01, 10.73it/s]
+
+LP: -87642.4:  16%|#6        | 4/25 [00:00&lt;00:01, 10.73it/s]
+
+LP: -87395.3:  16%|#6        | 4/25 [00:00&lt;00:01, 10.73it/s]
+
+LP: -87395.3:  24%|##4       | 6/25 [00:00&lt;00:01, 10.55it/s]
+
+LP: -87136.5:  24%|##4       | 6/25 [00:00&lt;00:01, 10.55it/s]
+
+LP: -86886.3:  24%|##4       | 6/25 [00:00&lt;00:01, 10.55it/s]
+
+LP: -86886.3:  32%|###2      | 8/25 [00:00&lt;00:01, 10.38it/s]
+
+LP: -86675.0:  32%|###2      | 8/25 [00:00&lt;00:01, 10.38it/s]
+
+LP: -86534.1:  32%|###2      | 8/25 [00:00&lt;00:01, 10.38it/s]
+
+LP: -86534.1:  40%|####      | 10/25 [00:00&lt;00:01, 10.87it/s]
+
+LP: -86427.5:  40%|####      | 10/25 [00:01&lt;00:01, 10.87it/s]
+
+LP: -86343.3:  40%|####      | 10/25 [00:01&lt;00:01, 10.87it/s]
+
+LP: -86343.3:  48%|####8     | 12/25 [00:01&lt;00:01, 11.17it/s]
+
+LP: -86280.3:  48%|####8     | 12/25 [00:01&lt;00:01, 11.17it/s]
+
+LP: -86238.2:  48%|####8     | 12/25 [00:01&lt;00:01, 11.17it/s]
+
+LP: -86238.2:  56%|#####6    | 14/25 [00:01&lt;00:00, 12.19it/s]
+
+LP: -86199.4:  56%|#####6    | 14/25 [00:01&lt;00:00, 12.19it/s]
+
+LP: -86174.6:  56%|#####6    | 14/25 [00:01&lt;00:00, 12.19it/s]
+
+LP: -86174.6:  64%|######4   | 16/25 [00:01&lt;00:00, 13.29it/s]
+
+LP: -86146.4:  64%|######4   | 16/25 [00:01&lt;00:00, 13.29it/s]
+
+LP: -86126.4:  64%|######4   | 16/25 [00:01&lt;00:00, 13.29it/s]
+
+LP: -86126.4:  72%|#######2  | 18/25 [00:01&lt;00:00, 14.03it/s]
+
+LP: -86101.5:  72%|#######2  | 18/25 [00:01&lt;00:00, 14.03it/s]
+
+LP: -86087.0:  72%|#######2  | 18/25 [00:01&lt;00:00, 14.03it/s]
+
+LP: -86087.0:  80%|########  | 20/25 [00:01&lt;00:00, 14.33it/s]
+
+LP: -86066.6:  80%|########  | 20/25 [00:01&lt;00:00, 14.33it/s]
+
+LP: -86054.1:  80%|########  | 20/25 [00:01&lt;00:00, 14.33it/s]
+
+LP: -86054.1:  88%|########8 | 22/25 [00:01&lt;00:00, 14.24it/s]
+
+LP: -86034.5:  88%|########8 | 22/25 [00:01&lt;00:00, 14.24it/s]
+
+LP: -86021.3:  88%|########8 | 22/25 [00:01&lt;00:00, 14.24it/s]
+
+LP: -86021.3:  96%|#########6| 24/25 [00:01&lt;00:00, 15.35it/s]
+
+LP: -85998.0:  96%|#########6| 24/25 [00:01&lt;00:00, 15.35it/s]
+LP: -85998.0: 100%|##########| 25/25 [00:01&lt;00:00, 13.16it/s]
+
+ARHMM Initialization restarts:  20%|##        | 2/10 [00:04&lt;00:16,  2.10s/it]Initializing with an ARHMM using 25 steps of EM.
+
+
+  0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88563.6:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88566.0:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88406.6:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88175.4:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88175.4:  12%|#2        | 3/25 [00:00&lt;00:00, 23.22it/s]
+
+LP: -87874.9:  12%|#2        | 3/25 [00:00&lt;00:00, 23.22it/s]
+
+LP: -87541.0:  12%|#2        | 3/25 [00:00&lt;00:00, 23.22it/s]
+
+LP: -87217.5:  12%|#2        | 3/25 [00:00&lt;00:00, 23.22it/s]
+
+LP: -87217.5:  24%|##4       | 6/25 [00:00&lt;00:01, 16.60it/s]
+
+LP: -86977.8:  24%|##4       | 6/25 [00:00&lt;00:01, 16.60it/s]
+
+LP: -86811.6:  24%|##4       | 6/25 [00:00&lt;00:01, 16.60it/s]
+
+LP: -86811.6:  32%|###2      | 8/25 [00:00&lt;00:01, 15.09it/s]
+
+LP: -86691.1:  32%|###2      | 8/25 [00:00&lt;00:01, 15.09it/s]
+
+LP: -86604.0:  32%|###2      | 8/25 [00:00&lt;00:01, 15.09it/s]
+
+LP: -86604.0:  40%|####      | 10/25 [00:00&lt;00:01, 14.12it/s]
+
+LP: -86536.7:  40%|####      | 10/25 [00:00&lt;00:01, 14.12it/s]
+
+LP: -86480.9:  40%|####      | 10/25 [00:00&lt;00:01, 14.12it/s]
+
+LP: -86480.9:  48%|####8     | 12/25 [00:00&lt;00:00, 14.96it/s]
+
+LP: -86439.7:  48%|####8     | 12/25 [00:00&lt;00:00, 14.96it/s]
+
+LP: -86400.3:  48%|####8     | 12/25 [00:00&lt;00:00, 14.96it/s]
+
+LP: -86372.9:  48%|####8     | 12/25 [00:00&lt;00:00, 14.96it/s]
+
+LP: -86372.9:  60%|######    | 15/25 [00:00&lt;00:00, 16.15it/s]
+
+LP: -86346.6:  60%|######    | 15/25 [00:01&lt;00:00, 16.15it/s]
+
+LP: -86326.7:  60%|######    | 15/25 [00:01&lt;00:00, 16.15it/s]
+
+LP: -86326.7:  68%|######8   | 17/25 [00:01&lt;00:00, 15.83it/s]
+
+LP: -86308.0:  68%|######8   | 17/25 [00:01&lt;00:00, 15.83it/s]
+
+LP: -86297.3:  68%|######8   | 17/25 [00:01&lt;00:00, 15.83it/s]
+
+LP: -86289.5:  68%|######8   | 17/25 [00:01&lt;00:00, 15.83it/s]
+
+LP: -86289.5:  80%|########  | 20/25 [00:01&lt;00:00, 17.01it/s]
+
+LP: -86278.8:  80%|########  | 20/25 [00:01&lt;00:00, 17.01it/s]
+
+LP: -86273.6:  80%|########  | 20/25 [00:01&lt;00:00, 17.01it/s]
+
+LP: -86269.4:  80%|########  | 20/25 [00:01&lt;00:00, 17.01it/s]
+
+LP: -86269.4:  92%|#########2| 23/25 [00:01&lt;00:00, 19.83it/s]
+
+LP: -86266.0:  92%|#########2| 23/25 [00:01&lt;00:00, 19.83it/s]
+
+LP: -86263.5:  92%|#########2| 23/25 [00:01&lt;00:00, 19.83it/s]
+LP: -86263.5: 100%|##########| 25/25 [00:01&lt;00:00, 17.88it/s]
+
+ARHMM Initialization restarts:  30%|###       | 3/10 [00:05&lt;00:12,  1.79s/it]Initializing with an ARHMM using 25 steps of EM.
+
+
+  0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88547.5:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88549.6:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88363.1:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88363.1:   8%|8         | 2/25 [00:00&lt;00:01, 19.27it/s]
+
+LP: -88060.3:   8%|8         | 2/25 [00:00&lt;00:01, 19.27it/s]
+
+LP: -87632.6:   8%|8         | 2/25 [00:00&lt;00:01, 19.27it/s]
+
+LP: -87632.6:  16%|#6        | 4/25 [00:00&lt;00:01, 15.78it/s]
+
+LP: -87159.0:  16%|#6        | 4/25 [00:00&lt;00:01, 15.78it/s]
+
+LP: -86797.0:  16%|#6        | 4/25 [00:00&lt;00:01, 15.78it/s]
+
+LP: -86797.0:  24%|##4       | 6/25 [00:00&lt;00:01, 15.33it/s]
+
+LP: -86604.4:  24%|##4       | 6/25 [00:00&lt;00:01, 15.33it/s]
+
+LP: -86488.7:  24%|##4       | 6/25 [00:00&lt;00:01, 15.33it/s]
+
+LP: -86488.7:  32%|###2      | 8/25 [00:00&lt;00:01, 14.08it/s]
+
+LP: -86406.2:  32%|###2      | 8/25 [00:00&lt;00:01, 14.08it/s]
+
+LP: -86342.3:  32%|###2      | 8/25 [00:00&lt;00:01, 14.08it/s]
+
+LP: -86342.3:  40%|####      | 10/25 [00:00&lt;00:01, 14.17it/s]
+
+LP: -86296.8:  40%|####      | 10/25 [00:00&lt;00:01, 14.17it/s]
+
+LP: -86247.3:  40%|####      | 10/25 [00:00&lt;00:01, 14.17it/s]
+
+LP: -86247.3:  48%|####8     | 12/25 [00:00&lt;00:00, 15.68it/s]
+
+LP: -86209.6:  48%|####8     | 12/25 [00:00&lt;00:00, 15.68it/s]
+
+LP: -86171.0:  48%|####8     | 12/25 [00:00&lt;00:00, 15.68it/s]
+
+LP: -86171.0:  56%|#####6    | 14/25 [00:00&lt;00:00, 15.61it/s]
+
+LP: -86143.4:  56%|#####6    | 14/25 [00:00&lt;00:00, 15.61it/s]
+
+LP: -86111.4:  56%|#####6    | 14/25 [00:01&lt;00:00, 15.61it/s]
+
+LP: -86111.4:  64%|######4   | 16/25 [00:01&lt;00:00, 15.83it/s]
+
+LP: -86082.2:  64%|######4   | 16/25 [00:01&lt;00:00, 15.83it/s]
+
+LP: -86042.8:  64%|######4   | 16/25 [00:01&lt;00:00, 15.83it/s]
+
+LP: -86042.8:  72%|#######2  | 18/25 [00:01&lt;00:00, 15.01it/s]
+
+LP: -86006.3:  72%|#######2  | 18/25 [00:01&lt;00:00, 15.01it/s]
+
+LP: -85957.5:  72%|#######2  | 18/25 [00:01&lt;00:00, 15.01it/s]
+
+LP: -85957.5:  80%|########  | 20/25 [00:01&lt;00:00, 16.05it/s]
+
+LP: -85891.3:  80%|########  | 20/25 [00:01&lt;00:00, 16.05it/s]
+
+LP: -85807.6:  80%|########  | 20/25 [00:01&lt;00:00, 16.05it/s]
+
+LP: -85807.6:  88%|########8 | 22/25 [00:01&lt;00:00, 14.93it/s]
+
+LP: -85725.3:  88%|########8 | 22/25 [00:01&lt;00:00, 14.93it/s]
+
+LP: -85645.0:  88%|########8 | 22/25 [00:01&lt;00:00, 14.93it/s]
+
+LP: -85645.0:  96%|#########6| 24/25 [00:01&lt;00:00, 13.60it/s]
+
+LP: -85570.7:  96%|#########6| 24/25 [00:01&lt;00:00, 13.60it/s]
+LP: -85570.7: 100%|##########| 25/25 [00:01&lt;00:00, 14.49it/s]
+
+ARHMM Initialization restarts:  40%|####      | 4/10 [00:07&lt;00:10,  1.78s/it]Initializing with an ARHMM using 25 steps of EM.
+
+
+  0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88564.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88565.8:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88415.3:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88415.3:   8%|8         | 2/25 [00:00&lt;00:01, 18.50it/s]
+
+LP: -88211.4:   8%|8         | 2/25 [00:00&lt;00:01, 18.50it/s]
+
+LP: -87988.9:   8%|8         | 2/25 [00:00&lt;00:01, 18.50it/s]
+
+LP: -87988.9:  16%|#6        | 4/25 [00:00&lt;00:01, 17.22it/s]
+
+LP: -87765.8:  16%|#6        | 4/25 [00:00&lt;00:01, 17.22it/s]
+
+LP: -87522.8:  16%|#6        | 4/25 [00:00&lt;00:01, 17.22it/s]
+
+LP: -87522.8:  24%|##4       | 6/25 [00:00&lt;00:01, 17.78it/s]
+
+LP: -87245.8:  24%|##4       | 6/25 [00:00&lt;00:01, 17.78it/s]
+
+LP: -86996.6:  24%|##4       | 6/25 [00:00&lt;00:01, 17.78it/s]
+
+LP: -86996.6:  32%|###2      | 8/25 [00:00&lt;00:00, 18.26it/s]
+
+LP: -86810.2:  32%|###2      | 8/25 [00:00&lt;00:00, 18.26it/s]
+
+LP: -86680.2:  32%|###2      | 8/25 [00:00&lt;00:00, 18.26it/s]
+
+LP: -86680.2:  40%|####      | 10/25 [00:00&lt;00:00, 16.41it/s]
+
+LP: -86585.3:  40%|####      | 10/25 [00:00&lt;00:00, 16.41it/s]
+
+LP: -86507.5:  40%|####      | 10/25 [00:00&lt;00:00, 16.41it/s]
+
+LP: -86507.5:  48%|####8     | 12/25 [00:00&lt;00:00, 15.95it/s]
+
+LP: -86446.2:  48%|####8     | 12/25 [00:00&lt;00:00, 15.95it/s]
+
+LP: -86405.9:  48%|####8     | 12/25 [00:00&lt;00:00, 15.95it/s]
+
+LP: -86372.4:  48%|####8     | 12/25 [00:00&lt;00:00, 15.95it/s]
+
+LP: -86372.4:  60%|######    | 15/25 [00:00&lt;00:00, 18.70it/s]
+
+LP: -86338.4:  60%|######    | 15/25 [00:00&lt;00:00, 18.70it/s]
+
+LP: -86310.8:  60%|######    | 15/25 [00:00&lt;00:00, 18.70it/s]
+
+LP: -86280.0:  60%|######    | 15/25 [00:00&lt;00:00, 18.70it/s]
+
+LP: -86280.0:  72%|#######2  | 18/25 [00:00&lt;00:00, 20.09it/s]
+
+LP: -86247.6:  72%|#######2  | 18/25 [00:01&lt;00:00, 20.09it/s]
+
+LP: -86218.4:  72%|#######2  | 18/25 [00:01&lt;00:00, 20.09it/s]
+
+LP: -86181.1:  72%|#######2  | 18/25 [00:01&lt;00:00, 20.09it/s]
+
+LP: -86181.1:  84%|########4 | 21/25 [00:01&lt;00:00, 20.07it/s]
+
+LP: -86149.1:  84%|########4 | 21/25 [00:01&lt;00:00, 20.07it/s]
+
+LP: -86110.1:  84%|########4 | 21/25 [00:01&lt;00:00, 20.07it/s]
+
+LP: -86062.6:  84%|########4 | 21/25 [00:01&lt;00:00, 20.07it/s]
+
+LP: -86062.6:  96%|#########6| 24/25 [00:01&lt;00:00, 17.48it/s]
+
+LP: -86011.9:  96%|#########6| 24/25 [00:01&lt;00:00, 17.48it/s]
+LP: -86011.9: 100%|##########| 25/25 [00:01&lt;00:00, 17.62it/s]
+
+ARHMM Initialization restarts:  50%|#####     | 5/10 [00:08&lt;00:08,  1.66s/it]Initializing with an ARHMM using 25 steps of EM.
+
+
+  0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88560.5:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88562.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88412.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88212.4:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88212.4:  12%|#2        | 3/25 [00:00&lt;00:00, 26.17it/s]
+
+LP: -87975.0:  12%|#2        | 3/25 [00:00&lt;00:00, 26.17it/s]
+
+LP: -87693.5:  12%|#2        | 3/25 [00:00&lt;00:00, 26.17it/s]
+
+LP: -87390.3:  12%|#2        | 3/25 [00:00&lt;00:00, 26.17it/s]
+
+LP: -87390.3:  24%|##4       | 6/25 [00:00&lt;00:01, 16.31it/s]
+
+LP: -87118.9:  24%|##4       | 6/25 [00:00&lt;00:01, 16.31it/s]
+
+LP: -86881.5:  24%|##4       | 6/25 [00:00&lt;00:01, 16.31it/s]
+
+LP: -86881.5:  32%|###2      | 8/25 [00:00&lt;00:01, 14.91it/s]
+
+LP: -86666.9:  32%|###2      | 8/25 [00:00&lt;00:01, 14.91it/s]
+
+LP: -86471.1:  32%|###2      | 8/25 [00:00&lt;00:01, 14.91it/s]
+
+LP: -86471.1:  40%|####      | 10/25 [00:00&lt;00:00, 15.04it/s]
+
+LP: -86320.8:  40%|####      | 10/25 [00:00&lt;00:00, 15.04it/s]
+
+LP: -86211.7:  40%|####      | 10/25 [00:00&lt;00:00, 15.04it/s]
+
+LP: -86211.7:  48%|####8     | 12/25 [00:00&lt;00:00, 14.01it/s]
+
+LP: -86121.5:  48%|####8     | 12/25 [00:00&lt;00:00, 14.01it/s]
+
+LP: -86034.0:  48%|####8     | 12/25 [00:00&lt;00:00, 14.01it/s]
+
+LP: -86034.0:  56%|#####6    | 14/25 [00:00&lt;00:00, 12.89it/s]
+
+LP: -85977.4:  56%|#####6    | 14/25 [00:01&lt;00:00, 12.89it/s]
+
+LP: -85942.5:  56%|#####6    | 14/25 [00:01&lt;00:00, 12.89it/s]
+
+LP: -85942.5:  64%|######4   | 16/25 [00:01&lt;00:00, 13.13it/s]
+
+LP: -85926.8:  64%|######4   | 16/25 [00:01&lt;00:00, 13.13it/s]
+
+LP: -85916.4:  64%|######4   | 16/25 [00:01&lt;00:00, 13.13it/s]
+
+LP: -85916.4:  72%|#######2  | 18/25 [00:01&lt;00:00, 13.61it/s]
+
+LP: -85903.2:  72%|#######2  | 18/25 [00:01&lt;00:00, 13.61it/s]
+
+LP: -85891.4:  72%|#######2  | 18/25 [00:01&lt;00:00, 13.61it/s]
+
+LP: -85891.4:  80%|########  | 20/25 [00:01&lt;00:00, 14.97it/s]
+
+LP: -85879.8:  80%|########  | 20/25 [00:01&lt;00:00, 14.97it/s]
+
+LP: -85869.2:  80%|########  | 20/25 [00:01&lt;00:00, 14.97it/s]
+
+LP: -85869.2:  88%|########8 | 22/25 [00:01&lt;00:00, 15.89it/s]
+
+LP: -85859.8:  88%|########8 | 22/25 [00:01&lt;00:00, 15.89it/s]
+
+LP: -85850.2:  88%|########8 | 22/25 [00:01&lt;00:00, 15.89it/s]
+
+LP: -85850.2:  96%|#########6| 24/25 [00:01&lt;00:00, 16.73it/s]
+
+LP: -85838.7:  96%|#########6| 24/25 [00:01&lt;00:00, 16.73it/s]
+LP: -85838.7: 100%|##########| 25/25 [00:01&lt;00:00, 15.36it/s]
+
+ARHMM Initialization restarts:  60%|######    | 6/10 [00:10&lt;00:06,  1.66s/it]Initializing with an ARHMM using 25 steps of EM.
+
+
+  0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88544.4:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88547.0:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88350.3:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88063.9:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88063.9:  12%|#2        | 3/25 [00:00&lt;00:01, 20.25it/s]
+
+LP: -87746.8:  12%|#2        | 3/25 [00:00&lt;00:01, 20.25it/s]
+
+LP: -87458.9:  12%|#2        | 3/25 [00:00&lt;00:01, 20.25it/s]
+
+LP: -87208.1:  12%|#2        | 3/25 [00:00&lt;00:01, 20.25it/s]
+
+LP: -87208.1:  24%|##4       | 6/25 [00:00&lt;00:01, 10.34it/s]
+
+LP: -87006.6:  24%|##4       | 6/25 [00:00&lt;00:01, 10.34it/s]
+
+LP: -86849.3:  24%|##4       | 6/25 [00:00&lt;00:01, 10.34it/s]
+
+LP: -86849.3:  32%|###2      | 8/25 [00:00&lt;00:01, 11.42it/s]
+
+LP: -86703.1:  32%|###2      | 8/25 [00:00&lt;00:01, 11.42it/s]
+
+LP: -86553.2:  32%|###2      | 8/25 [00:00&lt;00:01, 11.42it/s]
+
+LP: -86553.2:  40%|####      | 10/25 [00:00&lt;00:01, 11.52it/s]
+
+LP: -86412.4:  40%|####      | 10/25 [00:00&lt;00:01, 11.52it/s]
+
+LP: -86281.9:  40%|####      | 10/25 [00:00&lt;00:01, 11.52it/s]
+
+LP: -86281.9:  48%|####8     | 12/25 [00:00&lt;00:01, 12.28it/s]
+
+LP: -86180.1:  48%|####8     | 12/25 [00:01&lt;00:01, 12.28it/s]
+
+LP: -86095.5:  48%|####8     | 12/25 [00:01&lt;00:01, 12.28it/s]
+
+LP: -86095.5:  56%|#####6    | 14/25 [00:01&lt;00:00, 13.46it/s]
+
+LP: -86024.2:  56%|#####6    | 14/25 [00:01&lt;00:00, 13.46it/s]
+
+LP: -85961.5:  56%|#####6    | 14/25 [00:01&lt;00:00, 13.46it/s]
+
+LP: -85961.5:  64%|######4   | 16/25 [00:01&lt;00:00, 10.93it/s]
+
+LP: -85893.3:  64%|######4   | 16/25 [00:01&lt;00:00, 10.93it/s]
+
+LP: -85817.9:  64%|######4   | 16/25 [00:01&lt;00:00, 10.93it/s]
+
+LP: -85817.9:  72%|#######2  | 18/25 [00:01&lt;00:00, 10.95it/s]
+
+LP: -85733.9:  72%|#######2  | 18/25 [00:01&lt;00:00, 10.95it/s]
+
+LP: -85643.0:  72%|#######2  | 18/25 [00:01&lt;00:00, 10.95it/s]
+
+LP: -85643.0:  80%|########  | 20/25 [00:01&lt;00:00, 11.40it/s]
+
+LP: -85549.4:  80%|########  | 20/25 [00:01&lt;00:00, 11.40it/s]
+
+LP: -85460.6:  80%|########  | 20/25 [00:01&lt;00:00, 11.40it/s]
+
+LP: -85460.6:  88%|########8 | 22/25 [00:01&lt;00:00, 10.41it/s]
+
+LP: -85379.9:  88%|########8 | 22/25 [00:02&lt;00:00, 10.41it/s]
+
+LP: -85320.4:  88%|########8 | 22/25 [00:02&lt;00:00, 10.41it/s]
+
+LP: -85320.4:  96%|#########6| 24/25 [00:02&lt;00:00, 10.11it/s]
+
+LP: -85282.0:  96%|#########6| 24/25 [00:02&lt;00:00, 10.11it/s]
+LP: -85282.0: 100%|##########| 25/25 [00:02&lt;00:00, 11.04it/s]
+
+ARHMM Initialization restarts:  70%|#######   | 7/10 [00:12&lt;00:05,  1.88s/it]Initializing with an ARHMM using 25 steps of EM.
+
+
+  0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88560.7:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88562.7:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88398.9:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88167.0:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88167.0:  12%|#2        | 3/25 [00:00&lt;00:00, 28.59it/s]
+
+LP: -87870.5:  12%|#2        | 3/25 [00:00&lt;00:00, 28.59it/s]
+
+LP: -87526.6:  12%|#2        | 3/25 [00:00&lt;00:00, 28.59it/s]
+
+LP: -87179.8:  12%|#2        | 3/25 [00:00&lt;00:00, 28.59it/s]
+
+LP: -87179.8:  24%|##4       | 6/25 [00:00&lt;00:01, 18.30it/s]
+
+LP: -86899.6:  24%|##4       | 6/25 [00:00&lt;00:01, 18.30it/s]
+
+LP: -86678.3:  24%|##4       | 6/25 [00:00&lt;00:01, 18.30it/s]
+
+LP: -86472.0:  24%|##4       | 6/25 [00:00&lt;00:01, 18.30it/s]
+
+LP: -86472.0:  36%|###6      | 9/25 [00:00&lt;00:01, 14.38it/s]
+
+LP: -86277.4:  36%|###6      | 9/25 [00:00&lt;00:01, 14.38it/s]
+
+LP: -86134.2:  36%|###6      | 9/25 [00:00&lt;00:01, 14.38it/s]
+
+LP: -86134.2:  44%|####4     | 11/25 [00:00&lt;00:01, 13.73it/s]
+
+LP: -86035.3:  44%|####4     | 11/25 [00:00&lt;00:01, 13.73it/s]
+
+LP: -85939.7:  44%|####4     | 11/25 [00:00&lt;00:01, 13.73it/s]
+
+LP: -85939.7:  52%|#####2    | 13/25 [00:00&lt;00:00, 13.02it/s]
+
+LP: -85840.8:  52%|#####2    | 13/25 [00:01&lt;00:00, 13.02it/s]
+
+LP: -85735.6:  52%|#####2    | 13/25 [00:01&lt;00:00, 13.02it/s]
+
+LP: -85735.6:  60%|######    | 15/25 [00:01&lt;00:00, 12.39it/s]
+
+LP: -85622.8:  60%|######    | 15/25 [00:01&lt;00:00, 12.39it/s]
+
+LP: -85520.5:  60%|######    | 15/25 [00:01&lt;00:00, 12.39it/s]
+
+LP: -85520.5:  68%|######8   | 17/25 [00:01&lt;00:00, 11.57it/s]
+
+LP: -85426.0:  68%|######8   | 17/25 [00:01&lt;00:00, 11.57it/s]
+
+LP: -85350.5:  68%|######8   | 17/25 [00:01&lt;00:00, 11.57it/s]
+
+LP: -85350.5:  76%|#######6  | 19/25 [00:01&lt;00:00, 11.20it/s]
+
+LP: -85295.8:  76%|#######6  | 19/25 [00:01&lt;00:00, 11.20it/s]
+
+LP: -85261.0:  76%|#######6  | 19/25 [00:01&lt;00:00, 11.20it/s]
+
+LP: -85261.0:  84%|########4 | 21/25 [00:01&lt;00:00, 11.72it/s]
+
+LP: -85244.3:  84%|########4 | 21/25 [00:01&lt;00:00, 11.72it/s]
+
+LP: -85229.6:  84%|########4 | 21/25 [00:01&lt;00:00, 11.72it/s]
+
+LP: -85229.6:  92%|#########2| 23/25 [00:01&lt;00:00, 12.23it/s]
+
+LP: -85223.3:  92%|#########2| 23/25 [00:01&lt;00:00, 12.23it/s]
+
+LP: -85218.0:  92%|#########2| 23/25 [00:01&lt;00:00, 12.23it/s]
+
+LP: -85218.0: 100%|##########| 25/25 [00:01&lt;00:00, 13.71it/s]
+LP: -85218.0: 100%|##########| 25/25 [00:01&lt;00:00, 13.30it/s]
+
+ARHMM Initialization restarts:  80%|########  | 8/10 [00:14&lt;00:03,  1.90s/it]Initializing with an ARHMM using 25 steps of EM.
+
+
+  0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88549.6:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88552.3:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88405.6:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88405.6:   8%|8         | 2/25 [00:00&lt;00:01, 17.27it/s]
+
+LP: -88235.5:   8%|8         | 2/25 [00:00&lt;00:01, 17.27it/s]
+
+LP: -88062.3:   8%|8         | 2/25 [00:00&lt;00:01, 17.27it/s]
+
+LP: -88062.3:  16%|#6        | 4/25 [00:00&lt;00:01, 16.83it/s]
+
+LP: -87890.7:  16%|#6        | 4/25 [00:00&lt;00:01, 16.83it/s]
+
+LP: -87722.7:  16%|#6        | 4/25 [00:00&lt;00:01, 16.83it/s]
+
+LP: -87722.7:  24%|##4       | 6/25 [00:00&lt;00:01, 17.09it/s]
+
+LP: -87531.4:  24%|##4       | 6/25 [00:00&lt;00:01, 17.09it/s]
+
+LP: -87319.1:  24%|##4       | 6/25 [00:00&lt;00:01, 17.09it/s]
+
+LP: -87319.1:  32%|###2      | 8/25 [00:00&lt;00:01, 16.58it/s]
+
+LP: -87120.1:  32%|###2      | 8/25 [00:00&lt;00:01, 16.58it/s]
+
+LP: -86918.3:  32%|###2      | 8/25 [00:00&lt;00:01, 16.58it/s]
+
+LP: -86918.3:  40%|####      | 10/25 [00:00&lt;00:00, 16.35it/s]
+
+LP: -86729.1:  40%|####      | 10/25 [00:00&lt;00:00, 16.35it/s]
+
+LP: -86584.5:  40%|####      | 10/25 [00:00&lt;00:00, 16.35it/s]
+
+LP: -86584.5:  48%|####8     | 12/25 [00:00&lt;00:00, 14.98it/s]
+
+LP: -86487.4:  48%|####8     | 12/25 [00:00&lt;00:00, 14.98it/s]
+
+LP: -86430.4:  48%|####8     | 12/25 [00:00&lt;00:00, 14.98it/s]
+
+LP: -86430.4:  56%|#####6    | 14/25 [00:00&lt;00:00, 15.64it/s]
+
+LP: -86390.5:  56%|#####6    | 14/25 [00:00&lt;00:00, 15.64it/s]
+
+LP: -86365.0:  56%|#####6    | 14/25 [00:00&lt;00:00, 15.64it/s]
+
+LP: -86344.5:  56%|#####6    | 14/25 [00:01&lt;00:00, 15.64it/s]
+
+LP: -86344.5:  68%|######8   | 17/25 [00:01&lt;00:00, 17.73it/s]
+
+LP: -86328.2:  68%|######8   | 17/25 [00:01&lt;00:00, 17.73it/s]
+
+LP: -86313.2:  68%|######8   | 17/25 [00:01&lt;00:00, 17.73it/s]
+
+LP: -86313.2:  76%|#######6  | 19/25 [00:01&lt;00:00, 17.57it/s]
+
+LP: -86299.4:  76%|#######6  | 19/25 [00:01&lt;00:00, 17.57it/s]
+
+LP: -86285.6:  76%|#######6  | 19/25 [00:01&lt;00:00, 17.57it/s]
+
+LP: -86285.6:  84%|########4 | 21/25 [00:01&lt;00:00, 17.40it/s]
+
+LP: -86274.3:  84%|########4 | 21/25 [00:01&lt;00:00, 17.40it/s]
+
+LP: -86262.7:  84%|########4 | 21/25 [00:01&lt;00:00, 17.40it/s]
+
+LP: -86262.7:  92%|#########2| 23/25 [00:01&lt;00:00, 17.12it/s]
+
+LP: -86250.4:  92%|#########2| 23/25 [00:01&lt;00:00, 17.12it/s]
+
+LP: -86239.3:  92%|#########2| 23/25 [00:01&lt;00:00, 17.12it/s]
+
+LP: -86239.3: 100%|##########| 25/25 [00:01&lt;00:00, 17.35it/s]
+LP: -86239.3: 100%|##########| 25/25 [00:01&lt;00:00, 16.90it/s]
+
+ARHMM Initialization restarts:  90%|######### | 9/10 [00:16&lt;00:01,  1.78s/it]Initializing with an ARHMM using 25 steps of EM.
+
+
+  0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88554.1:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88556.8:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88381.9:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -88381.9:   8%|8         | 2/25 [00:00&lt;00:01, 19.45it/s]
+
+LP: -88134.9:   8%|8         | 2/25 [00:00&lt;00:01, 19.45it/s]
+
+LP: -87867.2:   8%|8         | 2/25 [00:00&lt;00:01, 19.45it/s]
+
+LP: -87867.2:  16%|#6        | 4/25 [00:00&lt;00:01, 17.12it/s]
+
+LP: -87643.9:  16%|#6        | 4/25 [00:00&lt;00:01, 17.12it/s]
+
+LP: -87471.3:  16%|#6        | 4/25 [00:00&lt;00:01, 17.12it/s]
+
+LP: -87471.3:  24%|##4       | 6/25 [00:00&lt;00:01, 16.01it/s]
+
+LP: -87335.7:  24%|##4       | 6/25 [00:00&lt;00:01, 16.01it/s]
+
+LP: -87210.5:  24%|##4       | 6/25 [00:00&lt;00:01, 16.01it/s]
+
+LP: -87210.5:  32%|###2      | 8/25 [00:00&lt;00:01, 14.10it/s]
+
+LP: -87077.2:  32%|###2      | 8/25 [00:00&lt;00:01, 14.10it/s]
+
+LP: -86936.6:  32%|###2      | 8/25 [00:00&lt;00:01, 14.10it/s]
+
+LP: -86936.6:  40%|####      | 10/25 [00:00&lt;00:01, 14.93it/s]
+
+LP: -86772.2:  40%|####      | 10/25 [00:00&lt;00:01, 14.93it/s]
+
+LP: -86591.4:  40%|####      | 10/25 [00:00&lt;00:01, 14.93it/s]
+
+LP: -86591.4:  48%|####8     | 12/25 [00:00&lt;00:00, 13.42it/s]
+
+LP: -86405.8:  48%|####8     | 12/25 [00:00&lt;00:00, 13.42it/s]
+
+LP: -86206.6:  48%|####8     | 12/25 [00:01&lt;00:00, 13.42it/s]
+
+LP: -86206.6:  56%|#####6    | 14/25 [00:01&lt;00:00, 12.42it/s]
+
+LP: -86008.2:  56%|#####6    | 14/25 [00:01&lt;00:00, 12.42it/s]
+
+LP: -85809.3:  56%|#####6    | 14/25 [00:01&lt;00:00, 12.42it/s]
+
+LP: -85809.3:  64%|######4   | 16/25 [00:01&lt;00:00, 11.91it/s]
+
+LP: -85625.4:  64%|######4   | 16/25 [00:01&lt;00:00, 11.91it/s]
+
+LP: -85458.3:  64%|######4   | 16/25 [00:01&lt;00:00, 11.91it/s]
+
+LP: -85458.3:  72%|#######2  | 18/25 [00:01&lt;00:00, 11.41it/s]
+
+LP: -85344.3:  72%|#######2  | 18/25 [00:01&lt;00:00, 11.41it/s]
+
+LP: -85286.3:  72%|#######2  | 18/25 [00:01&lt;00:00, 11.41it/s]
+
+LP: -85286.3:  80%|########  | 20/25 [00:01&lt;00:00, 10.66it/s]
+
+LP: -85245.4:  80%|########  | 20/25 [00:01&lt;00:00, 10.66it/s]
+
+LP: -85229.2:  80%|########  | 20/25 [00:01&lt;00:00, 10.66it/s]
+
+LP: -85224.2:  80%|########  | 20/25 [00:01&lt;00:00, 10.66it/s]
+
+LP: -85224.2:  92%|#########2| 23/25 [00:01&lt;00:00, 12.33it/s]
+
+LP: -85217.3:  92%|#########2| 23/25 [00:01&lt;00:00, 12.33it/s]
+
+LP: -85214.4:  92%|#########2| 23/25 [00:01&lt;00:00, 12.33it/s]
+LP: -85214.4: 100%|##########| 25/25 [00:01&lt;00:00, 13.23it/s]
+
+ARHMM Initialization restarts: 100%|##########| 10/10 [00:18&lt;00:00,  1.83s/it]
+ARHMM Initialization restarts: 100%|##########| 10/10 [00:18&lt;00:00,  1.83s/it]
+
+  0%|          | 0/30 [00:00&lt;?, ?it/s]
+ELBO: -464532.6:   0%|          | 0/30 [00:00&lt;?, ?it/s]
+ELBO: -310624.2:   0%|          | 0/30 [00:11&lt;?, ?it/s]
+ELBO: -310624.2:   3%|3         | 1/30 [00:11&lt;05:40, 11.76s/it]
+ELBO: -302823.3:   3%|3         | 1/30 [00:21&lt;05:40, 11.76s/it]
+ELBO: -302823.3:   7%|6         | 2/30 [00:21&lt;04:53, 10.50s/it]
+ELBO: -299983.3:   7%|6         | 2/30 [00:30&lt;04:53, 10.50s/it]
+ELBO: -299983.3:  10%|#         | 3/30 [00:30&lt;04:26,  9.86s/it]
+ELBO: -298108.0:  10%|#         | 3/30 [00:39&lt;04:26,  9.86s/it]
+ELBO: -298108.0:  13%|#3        | 4/30 [00:39&lt;04:05,  9.44s/it]
+ELBO: -297458.8:  13%|#3        | 4/30 [00:46&lt;04:05,  9.44s/it]
+ELBO: -297458.8:  17%|#6        | 5/30 [00:46&lt;03:38,  8.74s/it]
+ELBO: -297252.5:  17%|#6        | 5/30 [00:54&lt;03:38,  8.74s/it]
+ELBO: -297252.5:  20%|##        | 6/30 [00:54&lt;03:19,  8.32s/it]
+ELBO: -296877.2:  20%|##        | 6/30 [01:01&lt;03:19,  8.32s/it]
+ELBO: -296877.2:  23%|##3       | 7/30 [01:01&lt;03:04,  8.01s/it]
+ELBO: -297119.1:  23%|##3       | 7/30 [01:08&lt;03:04,  8.01s/it]
+ELBO: -297119.1:  27%|##6       | 8/30 [01:08&lt;02:50,  7.76s/it]
+ELBO: -296639.7:  27%|##6       | 8/30 [01:16&lt;02:50,  7.76s/it]
+ELBO: -296639.7:  30%|###       | 9/30 [01:16&lt;02:40,  7.63s/it]
+ELBO: -296420.9:  30%|###       | 9/30 [01:23&lt;02:40,  7.63s/it]
+ELBO: -296420.9:  33%|###3      | 10/30 [01:23&lt;02:30,  7.51s/it]
+ELBO: -296467.9:  33%|###3      | 10/30 [01:30&lt;02:30,  7.51s/it]
+ELBO: -296467.9:  37%|###6      | 11/30 [01:30&lt;02:21,  7.44s/it]
+ELBO: -296510.5:  37%|###6      | 11/30 [01:38&lt;02:21,  7.44s/it]
+ELBO: -296510.5:  40%|####      | 12/30 [01:38&lt;02:13,  7.44s/it]
+ELBO: -296649.0:  40%|####      | 12/30 [01:46&lt;02:13,  7.44s/it]
+ELBO: -296649.0:  43%|####3     | 13/30 [01:46&lt;02:09,  7.61s/it]
+ELBO: -296362.8:  43%|####3     | 13/30 [01:54&lt;02:09,  7.61s/it]
+ELBO: -296362.8:  47%|####6     | 14/30 [01:54&lt;02:04,  7.76s/it]
+ELBO: -296321.8:  47%|####6     | 14/30 [02:01&lt;02:04,  7.76s/it]
+ELBO: -296321.8:  50%|#####     | 15/30 [02:01&lt;01:54,  7.65s/it]
+ELBO: -296221.9:  50%|#####     | 15/30 [02:08&lt;01:54,  7.65s/it]
+ELBO: -296221.9:  53%|#####3    | 16/30 [02:08&lt;01:45,  7.53s/it]
+ELBO: -296085.0:  53%|#####3    | 16/30 [02:16&lt;01:45,  7.53s/it]
+ELBO: -296085.0:  57%|#####6    | 17/30 [02:16&lt;01:36,  7.43s/it]
+ELBO: -295992.1:  57%|#####6    | 17/30 [02:23&lt;01:36,  7.43s/it]
+ELBO: -295992.1:  60%|######    | 18/30 [02:23&lt;01:28,  7.40s/it]
+ELBO: -296281.7:  60%|######    | 18/30 [02:30&lt;01:28,  7.40s/it]
+ELBO: -296281.7:  63%|######3   | 19/30 [02:30&lt;01:20,  7.36s/it]
+ELBO: -295891.4:  63%|######3   | 19/30 [02:38&lt;01:20,  7.36s/it]
+ELBO: -295891.4:  67%|######6   | 20/30 [02:38&lt;01:13,  7.36s/it]
+ELBO: -296296.8:  67%|######6   | 20/30 [02:45&lt;01:13,  7.36s/it]
+ELBO: -296296.8:  70%|#######   | 21/30 [02:45&lt;01:06,  7.39s/it]
+ELBO: -296196.2:  70%|#######   | 21/30 [02:52&lt;01:06,  7.39s/it]
+ELBO: -296196.2:  73%|#######3  | 22/30 [02:52&lt;00:58,  7.37s/it]
+ELBO: -296300.0:  73%|#######3  | 22/30 [03:00&lt;00:58,  7.37s/it]
+ELBO: -296300.0:  77%|#######6  | 23/30 [03:00&lt;00:51,  7.35s/it]
+ELBO: -296139.2:  77%|#######6  | 23/30 [03:07&lt;00:51,  7.35s/it]
+ELBO: -296139.2:  80%|########  | 24/30 [03:07&lt;00:43,  7.31s/it]
+ELBO: -296013.9:  80%|########  | 24/30 [03:14&lt;00:43,  7.31s/it]
+ELBO: -296013.9:  83%|########3 | 25/30 [03:14&lt;00:36,  7.32s/it]
+ELBO: -296084.1:  83%|########3 | 25/30 [03:22&lt;00:36,  7.32s/it]
+ELBO: -296084.1:  87%|########6 | 26/30 [03:22&lt;00:29,  7.34s/it]
+ELBO: -296109.2:  87%|########6 | 26/30 [03:29&lt;00:29,  7.34s/it]
+ELBO: -296109.2:  90%|######### | 27/30 [03:29&lt;00:21,  7.32s/it]
+ELBO: -296167.3:  90%|######### | 27/30 [03:36&lt;00:21,  7.32s/it]
+ELBO: -296167.3:  93%|#########3| 28/30 [03:36&lt;00:14,  7.30s/it]
+ELBO: -296169.1:  93%|#########3| 28/30 [03:43&lt;00:14,  7.30s/it]
+ELBO: -296169.1:  97%|#########6| 29/30 [03:43&lt;00:07,  7.28s/it]
+ELBO: -295957.2:  97%|#########6| 29/30 [03:51&lt;00:07,  7.28s/it]
+ELBO: -295957.2: 100%|##########| 30/30 [03:51&lt;00:00,  7.27s/it]
+ELBO: -295957.2: 100%|##########| 30/30 [03:51&lt;00:00,  7.70s/it]
+Discrete state accuracy:  0.978
+
+&lt;matplotlib.legend.Legend object at 0x16e67d520&gt;
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;view-in-github&quot;</span>
+<span class="c1"># &lt;a href=&quot;https://colab.research.google.com/github/lindermanlab/ssm/blob/master/notebooks/Multi-Population%20rSLDS.ipynb&quot; target=&quot;_parent&quot;&gt;&lt;img src=&quot;https://colab.research.google.com/assets/colab-badge.svg&quot; alt=&quot;Open In Colab&quot;/&gt;&lt;/a&gt;</span>
+<span class="c1"># -</span>
+
+<span class="c1"># ### If you want to quickly see how to fit your own data, jump down to the &quot;Fit model to data&quot; section</span>
+<span class="c1"># &lt;br /&gt;</span>
+<span class="c1"># &lt;br /&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># # Multi-population recurrent switching linear dynamical systems overview</span>
+<span class="c1">#</span>
+<span class="c1"># This notebook goes through the simulation example shown in our manuscript (Figure 2A,B).</span>
+<span class="c1">#</span>
+<span class="c1"># Below, we briefly describe the model. We also recommend looking at the &quot;Recurrent SLDS&quot; notebook, which provides more details on the standard rSLDS.</span>
+<span class="c1"># &lt;br /&gt;</span>
+<span class="c1"># &lt;br /&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># **1. Data**.</span>
+<span class="c1"># Let $y_t^{_{(j)}}$ denote a vector of activity measurements of the $N_j$ neurons in population $j$ in time bin $t$.</span>
+<span class="c1"># &lt;br /&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># **2. Emissions**.</span>
+<span class="c1"># let $x_t^{_{(j)}}$ denote a continuous latent state of population $j$ at time $t$. The population states may differ in dimensionality~$D_j$, since populations may differ in size and complexity. The observed activity of population $j$ is modeled with a generalized linear model,</span>
+<span class="c1"># \begin{align}</span>
+<span class="c1">#     E[y_t^{(j)}] &amp;= f(C_j x_t^{(j)} + d_j),</span>
+<span class="c1"># \end{align}</span>
+<span class="c1"># where each population has its own linear mapping parameterized by $\{C_j, d_j\}$. In this notebook, we use a Poisson GLM. Inputs can also be passed into this GLM, as described in the rSLDS notebook.</span>
+<span class="c1">#</span>
+<span class="c1"># There are multi-population emissions classes that will be loaded in the example below.</span>
+<span class="c1"># &lt;br /&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># **3. Continuous State Update (Dynamics)**.</span>
+<span class="c1"># The dynamics of a switching linear dynamical system are piecewise linear, with the linear dynamics at a given time determined by a discrete state, (more on discrete states below).</span>
+<span class="c1">#</span>
+<span class="c1"># \begin{align}</span>
+<span class="c1">#     x_t \sim</span>
+<span class="c1">#     A^{(z_t)} x_{t-1} + b^{(z_t)}</span>
+<span class="c1"># \end{align}</span>
+<span class="c1">#</span>
+<span class="c1"># where $z_t$ is the discrete state, $A^{(z_t)}$ is the dynamics for that discrete state, and $x_t$ contains the latents from all populations, $[x_t^1, x_t^2, ..., x_t^J]$. We ignore the noise term here for simplicity.</span>
+<span class="c1">#</span>
+<span class="c1"># Having unique continuous latents for each population allows us to decompose the dynamics in an interpretable manner. We model the temporal dynamics of the continuous states as</span>
+<span class="c1"># \begin{align}</span>
+<span class="c1">#     x_t^{(j)} \sim</span>
+<span class="c1">#     A_{(j \: to \: j)}^{(z_t)} x_{t-1}^{(j)}</span>
+<span class="c1">#     + \sum_{i \neq j} A_{(i \: to \: j)}^{(z_t)} x_{t-1}^{(i)}</span>
+<span class="c1">#     + b_j^{(z_t)}.</span>
+<span class="c1"># \end{align}</span>
+<span class="c1">#</span>
+<span class="c1"># In the full dynamics matrices, $A^{(z_t)}$ we will show in the example below, the on-diagonal blocks represent the internal dynamics, $A_{(j \: to \: j)}^{(z_t)}$ and the off-diagonal blocks represent the external dynamics, $A_{(i \: to \: j)}^{(z_t)}$.</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># **4. Discrete State Update (Transitions)**.</span>
+<span class="c1"># Recurrent transitions are based on the continuous latent state. Our recurrent transitions have a sticky component, $S$ that determines the probabilities of staying in a state, and a switching component, $R$, that determines the probabilities of switching to states. In the model we use in this notebook:</span>
+<span class="c1">#</span>
+<span class="c1"># \begin{align}</span>
+<span class="c1">#     p(z_t = i \mid z_{t-1} = j, x_{t-1}) &amp;= \mathrm{softmax}\bigg\{ \Big( \big(R x_{t-1}\big) + r\Big) \odot (1 - e_{z_{t-1}})  + \Big( \big(S x_{t-1} \big) + s \Big) \odot e_{z_{t-1}}  \bigg\},</span>
+<span class="c1"># \end{align}</span>
+<span class="c1">#</span>
+<span class="c1"># where $e_{z_{t-1}} \in \{0,1\}^K$ is a one-hot encoding of $z_{t-1}$.</span>
+<span class="c1">#</span>
+<span class="c1"># To understand which populations are contributing to the transitions, we can decompose this equation:</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># \begin{align}</span>
+<span class="c1">#     p(z_t = i \mid z_{t-1} = j, x_{t-1}) &amp;= \mathrm{softmax}\bigg\{ \Big( \sum_{j=1}^J \big(R_j x_{t-1}^{(j)}\big) + r\Big) \odot (1 - e_{z_{t-1}})  + \Big( \sum_{j=1}^J \big(S_j x_{t-1}^{(j)} \big) + s \Big) \odot e_{z_{t-1}}  \bigg\},</span>
+<span class="c1"># \end{align}</span>
+<span class="c1"># where, for example, $R_j x_{t-1}^{(j)}$ contains the contribution of population $j$ towards switching to each state.</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># Additionally, we can include a dependency on the previous discrete state. This is included in the code package, but is not used in the example below.</span>
+<span class="c1">#</span>
+<span class="c1"># \begin{align}</span>
+<span class="c1">#     p(z_t = i \mid z_{t-1} = j, x_{t-1}) &amp;= \mathrm{softmax}\bigg\{ \log(P_{j,i}) +  \big(R x_{t-1}\big) \odot (1 - e_{z_{t-1}})  + \big(S x_{t-1} \big) \odot e_{z_{t-1}}  \bigg\},</span>
+<span class="c1"># \end{align}</span>
+<span class="c1">#</span>
+<span class="c1"># There are sticky multi-population emissions classes that will be loaded in the example below.</span>
+<span class="c1"># &lt;br /&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># **5. Model fitting**.</span>
+<span class="c1"># We fit the model with variational laplace EM - see the &quot;Variational Laplace EM for SLDS Tutorial&quot; for more information.</span>
+<span class="c1">#</span>
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;8OzC8q4bRFQv&quot;</span>
+<span class="c1"># ## Import packages, including multipopulation extensions</span>
+
+<span class="c1"># + colab={&quot;base_uri&quot;: &quot;https://localhost:8080/&quot;, &quot;height&quot;: 581} colab_type=&quot;code&quot; id=&quot;ruUnNqi5RZqT&quot; outputId=&quot;228b6c8e-c064-46c2-ce57-9ad88daca5c8&quot;</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">ssm</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="c1"># !pip install git+https://github.com/lindermanlab/ssm.git#egg=ssm</span>
+    <span class="kn">import</span> <span class="nn">ssm</span>
+
+<span class="c1"># + colab={&quot;base_uri&quot;: &quot;https://localhost:8080/&quot;, &quot;height&quot;: 71} colab_type=&quot;code&quot; id=&quot;zDn3tEJhRFQv&quot; outputId=&quot;2f1ca1d0-8f17-404a-897f-57b8c5d353cb&quot;</span>
+<span class="c1">#### General packages</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="c1"># %matplotlib inline</span>
+<span class="kn">import</span> <span class="nn">autograd.numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">autograd.numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;talk&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;ticks&#39;</span><span class="p">,{</span><span class="s2">&quot;xtick.major.size&quot;</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span>
+<span class="s2">&quot;ytick.major.size&quot;</span><span class="p">:</span><span class="mi">8</span><span class="p">})</span>
+<span class="kn">from</span> <span class="nn">ssm.plots</span> <span class="kn">import</span> <span class="n">gradient_cmap</span><span class="p">,</span> <span class="n">white_to_color_cmap</span>
+
+<span class="n">color_names</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;purple&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;red&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;amber&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;faded green&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;windows blue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;orange&quot;</span>
+    <span class="p">]</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">xkcd_palette</span><span class="p">(</span><span class="n">color_names</span><span class="p">)</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">gradient_cmap</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span>
+
+<span class="c1"># + colab={} colab_type=&quot;code&quot; id=&quot;0rq19iIQRFQy&quot;</span>
+<span class="c1">#### SSM PACKAGES ###</span>
+
+<span class="kn">import</span> <span class="nn">ssm</span>
+<span class="kn">from</span> <span class="nn">ssm.variational</span> <span class="kn">import</span> <span class="n">SLDSMeanFieldVariationalPosterior</span><span class="p">,</span> <span class="n">SLDSTriDiagVariationalPosterior</span><span class="p">,</span> \
+    <span class="n">SLDSStructuredMeanFieldVariationalPosterior</span>
+<span class="kn">from</span> <span class="nn">ssm.util</span> <span class="kn">import</span> <span class="n">random_rotation</span><span class="p">,</span> <span class="n">find_permutation</span><span class="p">,</span> <span class="n">relu</span>
+
+<span class="c1">#Load from extensions</span>
+<span class="kn">from</span> <span class="nn">ssm.extensions.mp_srslds.emissions_ext</span> <span class="kn">import</span> <span class="n">GaussianOrthogonalCompoundEmissions</span><span class="p">,</span> <span class="n">PoissonOrthogonalCompoundEmissions</span>
+<span class="kn">from</span> <span class="nn">ssm.extensions.mp_srslds.transitions_ext</span> <span class="kn">import</span> <span class="n">StickyRecurrentOnlyTransitions</span><span class="p">,</span> <span class="n">StickyRecurrentTransitions</span>
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;Ty3EOi8bRFQ1&quot;</span>
+<span class="c1"># ## Simulate (somewhat realistic) data</span>
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;QxDoYCRDRFQ2&quot;</span>
+<span class="c1"># ### Set parameters of simulation</span>
+
+<span class="c1"># + colab={} colab_type=&quot;code&quot; id=&quot;dalqY6zvRFQ2&quot;</span>
+<span class="n">K</span><span class="o">=</span><span class="mi">3</span> <span class="c1">#Number of discrete states</span>
+
+<span class="n">num_gr</span><span class="o">=</span><span class="mi">3</span> <span class="c1">#Number of populations</span>
+<span class="n">num_per_gr</span><span class="o">=</span><span class="mi">5</span> <span class="c1">#Number of latents per population</span>
+<span class="n">neur_per_gr</span><span class="o">=</span><span class="mi">75</span> <span class="c1">#Number of neurons per population</span>
+
+<span class="n">t_end</span><span class="o">=</span><span class="mi">3000</span> <span class="c1">#number of time bins</span>
+<span class="n">num_trials</span><span class="o">=</span><span class="mi">1</span> <span class="c1">#number of trials</span>
+
+<span class="c1"># + colab={&quot;base_uri&quot;: &quot;https://localhost:8080/&quot;, &quot;height&quot;: 34} colab_type=&quot;code&quot; id=&quot;OHTSTNbTRFQ4&quot; outputId=&quot;fd3b833b-8df2-425b-d3ce-103cf42d5153&quot;</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">108</span><span class="p">)</span> <span class="c1">#To create replicable dynamics</span>
+
+<span class="n">alphas</span><span class="o">=</span><span class="mf">.03</span><span class="o">+</span><span class="mf">.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="c1">#Determines the distribution of values in the dynamics matrix, for each discrete state</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;alphas:&#39;</span><span class="p">,</span> <span class="n">alphas</span><span class="p">)</span>
+
+<span class="n">sparsity</span><span class="o">=</span><span class="mf">.33</span> <span class="c1">#Proportion of non-diagonal blocks in the dynamics matrix that are 0</span>
+
+<span class="n">e1</span><span class="o">=</span><span class="mf">.1</span> <span class="c1">#Amount of noise in the dynamics</span>
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;t91lYSkPRFQ7&quot;</span>
+<span class="c1"># ### Get new emissions and transitions classes for the simulated data</span>
+
+<span class="c1"># + colab={} colab_type=&quot;code&quot; id=&quot;tQx540b6RFQ8&quot;</span>
+<span class="c1">#Vector containing number of latents per population</span>
+<span class="n">D_vec</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_gr</span><span class="p">):</span>
+    <span class="n">D_vec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num_per_gr</span><span class="p">)</span>
+
+<span class="c1">#Vector containing number of neurons per population</span>
+<span class="n">N_vec</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_gr</span><span class="p">):</span>
+    <span class="n">N_vec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">neur_per_gr</span><span class="p">)</span>
+
+<span class="n">D</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D_vec</span><span class="p">)</span>
+<span class="n">num_gr</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">D_vec</span><span class="p">)</span>
+<span class="n">D_vec_cumsum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(([</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">D_vec</span><span class="p">)))</span>
+
+<span class="c1">#Get new multipopulation emissions class for the simulation</span>
+
+<span class="c1"># gauss_comp_emissions=GaussianOrthogonalCompoundEmissions(N=np.sum(N_vec),K=1,D=np.sum(D_vec),D_vec=D_vec,N_vec=N_vec)</span>
+<span class="n">poiss_comp_emissions</span><span class="o">=</span><span class="n">PoissonOrthogonalCompoundEmissions</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">N_vec</span><span class="p">),</span><span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">D</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D_vec</span><span class="p">),</span><span class="n">D_vec</span><span class="o">=</span><span class="n">D_vec</span><span class="p">,</span><span class="n">N_vec</span><span class="o">=</span><span class="n">N_vec</span><span class="p">,</span><span class="n">link</span><span class="o">=</span><span class="s1">&#39;softplus&#39;</span><span class="p">)</span>
+
+<span class="c1">#Get transitions class</span>
+<span class="n">true_sro_trans</span><span class="o">=</span><span class="n">StickyRecurrentOnlyTransitions</span><span class="p">(</span><span class="n">K</span><span class="o">=</span><span class="n">K</span><span class="p">,</span><span class="n">D</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D_vec</span><span class="p">))</span>
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;DDu2GnRGRFQ-&quot;</span>
+<span class="c1"># ### Create simulated data</span>
+
+<span class="c1"># + colab={} colab_type=&quot;code&quot; id=&quot;VLN8FWLLRFQ_&quot;</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1">#To create replicable simulations</span>
+
+<span class="n">A_masks</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="n">A_all</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">K</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">D</span><span class="p">])</span> <span class="c1">#Initialize dynamics matrix</span>
+<span class="n">b_all</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">K</span><span class="p">,</span><span class="n">D</span><span class="p">])</span> <span class="c1">#Initialize dynamics offset</span>
+
+
+<span class="c1">#Create initial ground truth model, that we will modify</span>
+<span class="n">true_slds</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">SLDS</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">N_vec</span><span class="p">),</span><span class="n">K</span><span class="o">=</span><span class="n">K</span><span class="p">,</span><span class="n">D</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D_vec</span><span class="p">)),</span>
+             <span class="n">dynamics</span><span class="o">=</span><span class="s2">&quot;gaussian&quot;</span><span class="p">,</span>
+             <span class="n">emissions</span><span class="o">=</span><span class="n">poiss_comp_emissions</span><span class="p">,</span>
+             <span class="n">transitions</span><span class="o">=</span><span class="n">true_sro_trans</span><span class="p">)</span>
+
+<span class="c1">#Create ground truth transitions</span>
+<span class="n">v</span><span class="o">=</span><span class="mf">.2</span><span class="o">+</span><span class="mf">.2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+    <span class="n">inc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">true_slds</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">Rs</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">inc</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">inc</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">v</span>
+    <span class="n">true_slds</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">Ss</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">inc</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">inc</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">v</span><span class="o">-</span><span class="mf">.1</span>
+
+<span class="n">true_slds</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">r</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">K</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">true_slds</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">K</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1">#Create ground truth dynamics for each state</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+
+    <span class="c1">##Create dynamics##</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="n">alphas</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+
+    <span class="n">A_mask</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">num_gr</span><span class="p">,</span><span class="n">num_gr</span><span class="p">)</span><span class="o">&gt;</span><span class="n">sparsity</span> <span class="c1">#Make some blocks of the dynamics matrix 0</span>
+
+    <span class="n">A_masks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">A_mask</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_gr</span><span class="p">):</span>
+        <span class="n">A_mask</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+
+    <span class="n">A0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">D</span><span class="p">,</span><span class="n">D</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">D</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">A0</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span><span class="o">=</span><span class="n">alpha</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">D</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">A0</span><span class="o">=</span><span class="p">(</span><span class="n">A0</span><span class="o">-</span><span class="n">A0</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_gr</span><span class="p">):</span>
+        <span class="n">A0</span><span class="p">[</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">A0</span><span class="p">[</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span>
+
+
+    <span class="n">A0</span><span class="o">=</span><span class="n">A0</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+    <span class="n">A</span><span class="o">=</span><span class="n">A0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">A_mask</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">num_per_gr</span><span class="p">,</span> <span class="n">num_per_gr</span><span class="p">)))</span>
+
+    <span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">A</span><span class="p">)))</span><span class="o">+</span><span class="mf">.01</span><span class="p">)</span> <span class="c1">#.97</span>
+
+    <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+
+    <span class="n">A_all</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">A</span>
+    <span class="n">b_all</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">b</span>
+
+<span class="n">true_slds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">As</span><span class="o">=</span><span class="n">A_all</span>
+<span class="n">true_slds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">bs</span><span class="o">=</span><span class="n">b_all</span>
+
+
+<span class="n">zs</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">true_slds</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">t_end</span><span class="p">)</span> <span class="c1">#Sample discrete and continuous latents from model for simulation</span>
+
+<span class="c1">#Get spike trains that have an average firing rate of 0.25 per bin</span>
+<span class="n">tmp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">relu</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">true_slds</span><span class="o">.</span><span class="n">emissions</span><span class="o">.</span><span class="n">Cs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">xs</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">+</span><span class="mf">.1</span><span class="o">*</span><span class="n">true_slds</span><span class="o">.</span><span class="n">emissions</span><span class="o">.</span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="kc">None</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">mult</span><span class="o">=</span><span class="mf">.25</span><span class="o">/</span><span class="n">tmp</span>
+<span class="n">lams</span><span class="o">=</span><span class="n">relu</span><span class="p">(</span><span class="n">mult</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">true_slds</span><span class="o">.</span><span class="n">emissions</span><span class="o">.</span><span class="n">Cs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">xs</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">+</span><span class="mf">.1</span><span class="o">*</span><span class="n">true_slds</span><span class="o">.</span><span class="n">emissions</span><span class="o">.</span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="kc">None</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">ys</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lams</span><span class="p">)</span> <span class="c1">#Get spiking activity based on poisson statistics</span>
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;twuPg8wRRFRC&quot;</span>
+<span class="c1"># ## Plot simulated data</span>
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;1-VkH7xSRFRC&quot;</span>
+<span class="c1"># ### Dynamics matrices ($A^z$)</span>
+
+<span class="c1"># + colab={&quot;base_uri&quot;: &quot;https://localhost:8080/&quot;, &quot;height&quot;: 797} colab_type=&quot;code&quot; id=&quot;qv7hO5fgRFRD&quot; outputId=&quot;7b2a3151-a5dc-4ac0-c446-ecbb212ffb61&quot;</span>
+<span class="c1"># vmin,vmax=[-1,1]</span>
+<span class="n">vmin</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">.5</span><span class="p">,</span><span class="mf">.5</span><span class="p">]</span> <span class="c1">#zoom in to see colors more clearly</span>
+
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">true_slds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">As</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu&#39;</span><span class="p">)</span>
+    <span class="n">offset</span><span class="o">=-</span><span class="mf">.5</span>
+    <span class="k">for</span> <span class="n">nf</span> <span class="ow">in</span> <span class="n">D_vec</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">D</span><span class="o">-</span><span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="n">offset</span><span class="p">,</span> <span class="n">offset</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">offset</span><span class="p">,</span> <span class="n">offset</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">D</span><span class="o">-</span><span class="mf">0.5</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+        <span class="n">offset</span> <span class="o">+=</span> <span class="n">nf</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Actual State &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;-Y7R3y6TRFRF&quot;</span>
+<span class="c1"># ### Discrete states ($z$)</span>
+
+<span class="c1"># + colab={&quot;base_uri&quot;: &quot;https://localhost:8080/&quot;, &quot;height&quot;: 177} colab_type=&quot;code&quot; id=&quot;Wmk2_uI-RFRG&quot; outputId=&quot;2f434446-fbaf-4a00-d186-81a557b35011&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">zs</span><span class="p">[</span><span class="kc">None</span><span class="p">,:],</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t_end</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$z_{</span><span class="se">\\</span><span class="s2">mathrm</span><span class="si">{true}</span><span class="s2">}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;ufQwDDKTRFRI&quot;</span>
+<span class="c1"># ### Transitions (in a shorter time window)</span>
+<span class="c1"># The contribution of population $j$ to staying in a state is $S_j x^{j}$ and the contribution to switching to a state is $R_j x^{j}$</span>
+
+<span class="c1"># + colab={} colab_type=&quot;code&quot; id=&quot;fp1QQ_7dRFRI&quot;</span>
+<span class="n">dur</span><span class="o">=</span><span class="mi">200</span>
+<span class="n">st_t</span><span class="o">=</span><span class="mi">650</span>
+<span class="n">end_t</span><span class="o">=</span><span class="n">st_t</span><span class="o">+</span><span class="n">dur</span>
+
+<span class="c1"># + colab={&quot;base_uri&quot;: &quot;https://localhost:8080/&quot;, &quot;height&quot;: 310} colab_type=&quot;code&quot; id=&quot;-FWpoP7-RFRK&quot; outputId=&quot;bcc60411-fb9e-44d0-bc16-e382fe7919aa&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">j</span><span class="o">=</span><span class="mi">0</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">st_t</span><span class="p">:</span><span class="n">end_t</span><span class="p">,</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">]],</span><span class="n">true_slds</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">Rs</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dur</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Contribution towards </span><span class="se">\n</span><span class="s1"> switching to </span><span class="se">\n</span><span class="s1"> purple state&#39;</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+<span class="n">j</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">st_t</span><span class="p">:</span><span class="n">end_t</span><span class="p">,</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">]],</span><span class="n">true_slds</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">Ss</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dur</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Contribution towards </span><span class="se">\n</span><span class="s1"> staying in red state&#39;</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Pop 1&#39;</span><span class="p">,</span><span class="s1">&#39;Pop 2&#39;</span><span class="p">,</span><span class="s1">&#39;Pop 3&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;wOO48DPARFRN&quot;</span>
+<span class="c1"># ### Continuous latents ($x$) and spikes ($y$) for an example population</span>
+
+<span class="c1"># + colab={&quot;base_uri&quot;: &quot;https://localhost:8080/&quot;, &quot;height&quot;: 449} colab_type=&quot;code&quot; id=&quot;YllKBbdhRFRN&quot; outputId=&quot;dc7f9218-0100-4263-8501-9d2fb1696a9e&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">st_t</span><span class="p">:</span><span class="n">end_t</span><span class="p">,:</span><span class="n">num_per_gr</span><span class="p">])</span> <span class="c1">#Show latents of first group</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ys</span><span class="p">[</span><span class="n">st_t</span><span class="p">:</span><span class="n">end_t</span><span class="p">,:</span><span class="mi">10</span><span class="p">])</span> <span class="c1">#Show first 10 neurons</span>
+
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;OZ_iLjiyRFRV&quot;</span>
+<span class="c1"># ## Fit model to data</span>
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;g6QfY0j-RFRV&quot;</span>
+<span class="c1"># #### To create the emissions classes for the multipopulation models, we need vectors containing the number of continuous latents per population (&quot;D_vec&quot;) and neurons per population (&quot;N_vec&quot;)</span>
+<span class="c1">#</span>
+
+<span class="c1"># + colab={} colab_type=&quot;code&quot; id=&quot;kVZDXyIiRFRW&quot;</span>
+<span class="n">num_gr</span><span class="o">=</span><span class="mi">3</span> <span class="c1">#Number of populations</span>
+<span class="n">num_per_gr</span><span class="o">=</span><span class="mi">5</span> <span class="c1">#Number of latents per population</span>
+<span class="n">neur_per_gr</span><span class="o">=</span><span class="mi">75</span> <span class="c1">#Number of neurons per population</span>
+
+<span class="c1">#Vector containing number of latents per population</span>
+<span class="n">D_vec</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_gr</span><span class="p">):</span>
+    <span class="n">D_vec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num_per_gr</span><span class="p">)</span>
+
+<span class="c1">#Vector containing number of neurons per population</span>
+<span class="n">N_vec</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_gr</span><span class="p">):</span>
+    <span class="n">N_vec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">neur_per_gr</span><span class="p">)</span>
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;_I-JFqbHRFRZ&quot;</span>
+<span class="c1"># #### Now create the multipopulation emissions and transitions classes for our model</span>
+
+<span class="c1"># + colab={} colab_type=&quot;code&quot; id=&quot;dhnavgIgRFRa&quot;</span>
+<span class="c1">#Get new multipopulation emissions class</span>
+<span class="n">poiss_comp_emissions</span><span class="o">=</span><span class="n">PoissonOrthogonalCompoundEmissions</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">N_vec</span><span class="p">),</span><span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">D</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D_vec</span><span class="p">),</span><span class="n">D_vec</span><span class="o">=</span><span class="n">D_vec</span><span class="p">,</span><span class="n">N_vec</span><span class="o">=</span><span class="n">N_vec</span><span class="p">,</span><span class="n">link</span><span class="o">=</span><span class="s1">&#39;softplus&#39;</span><span class="p">)</span>
+
+<span class="c1">#Get new transitions class</span>
+<span class="n">sro_trans</span><span class="o">=</span><span class="n">StickyRecurrentOnlyTransitions</span><span class="p">(</span><span class="n">K</span><span class="o">=</span><span class="n">K</span><span class="p">,</span><span class="n">D</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D_vec</span><span class="p">),</span> <span class="n">l2_penalty_similarity</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">l1_penalty</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="c1">#The above l2 penalty is on the similarity between R and S (its assuming the activity to switch into a state is similar to activity to stay in a state)</span>
+<span class="c1">#The L1 penalty is on the entries of R and S</span>
+<span class="c1"># -</span>
+
+<span class="c1"># Note that another new emissions class is &quot;GaussianOrthogonalCompoundEmissions&quot; &lt;br /&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># Note that another new transitions class is &quot;StickyRecurrentTransitions&quot;</span>
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;syHDAea_RFRc&quot;</span>
+<span class="c1"># #### Now declare and fit the model</span>
+
+<span class="c1"># + colab={&quot;base_uri&quot;: &quot;https://localhost:8080/&quot;, &quot;height&quot;: 166, &quot;referenced_widgets&quot;: [&quot;36b4e6c4b2064572a4412f8bc298caeb&quot;, &quot;97247a689ff744689528aa9555c13c62&quot;, &quot;581b2c1a39eb439581308a5cdea07389&quot;, &quot;e8e6a6b80ed14b77900e87e1c779f459&quot;, &quot;2e200ca5be3141f2b2ee041ec8b08e49&quot;, &quot;f4e534f4d6ac45c6a7da04be7d341968&quot;, &quot;ced98407e9ee4ee4bd0baaa24d4765b9&quot;, &quot;14de5bf9b23f47d4867e135cf156ac97&quot;, &quot;6bd4692a8c95492d84f6353069342d4f&quot;, &quot;62f38f8736314a098f91d7486b5b84f6&quot;, &quot;d7ffd5a5a8874c2d8e593cb29c8f14b2&quot;, &quot;2ddbbe21934547db9e365d905ea1f024&quot;, &quot;19ad77a391f7459f811262d5bdbeb783&quot;, &quot;5da21c8eac7041898c7a468f0388e632&quot;, &quot;eb1c51978e0f4b79968cf6618a959007&quot;, &quot;c0204fcad9f64dd48580f7d17767abc6&quot;]} colab_type=&quot;code&quot; id=&quot;n7WRqQufRFRd&quot; outputId=&quot;28ddbaaa-221c-4ca8-db59-b76bbeff1dd0&quot;</span>
+<span class="n">K</span><span class="o">=</span><span class="mi">3</span> <span class="c1">#Number of discrete states</span>
+
+<span class="n">rslds</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">SLDS</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">N_vec</span><span class="p">),</span><span class="n">K</span><span class="o">=</span><span class="n">K</span><span class="p">,</span><span class="n">D</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D_vec</span><span class="p">),</span>
+             <span class="n">dynamics</span><span class="o">=</span><span class="s2">&quot;gaussian&quot;</span><span class="p">,</span>
+             <span class="n">emissions</span><span class="o">=</span><span class="n">poiss_comp_emissions</span><span class="p">,</span>
+             <span class="n">transitions</span><span class="o">=</span><span class="n">sro_trans</span><span class="p">,</span>
+             <span class="n">dynamics_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">l2_penalty_A</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span> <span class="c1">#Regularization on the dynamics matrix</span>
+
+<span class="n">q_elbos_ar</span><span class="p">,</span> <span class="n">q_ar</span> <span class="o">=</span> <span class="n">rslds</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ys</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;laplace_em&quot;</span><span class="p">,</span>
+                             <span class="n">variational_posterior</span><span class="o">=</span><span class="s2">&quot;structured_meanfield&quot;</span><span class="p">,</span>
+                             <span class="n">continuous_optimizer</span><span class="o">=</span><span class="s1">&#39;newton&#39;</span><span class="p">,</span>
+                             <span class="n">initialize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                             <span class="n">num_init_restarts</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                             <span class="n">num_iters</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+                             <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="c1"># + colab={} colab_type=&quot;code&quot; id=&quot;Oi8-3NcxRFRf&quot; outputId=&quot;98075512-a594-4bae-fcf3-550affe796a6&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q_elbos_ar</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Iteration&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;ELBO&quot;</span><span class="p">)</span>
+<span class="c1"># -</span>
+
+<span class="c1"># ## Align solution with simulation for plotting</span>
+
+<span class="c1">#The recovered discrete states can be permuted in any way.</span>
+<span class="c1">#Find permutation to match the discrete states in the model and the ground truth</span>
+<span class="n">z_inferred</span><span class="o">=</span><span class="n">rslds</span><span class="o">.</span><span class="n">most_likely_states</span><span class="p">(</span><span class="n">q_ar</span><span class="o">.</span><span class="n">mean_continuous_states</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">ys</span><span class="p">)</span>
+<span class="n">rslds</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="n">find_permutation</span><span class="p">(</span><span class="n">zs</span><span class="p">,</span> <span class="n">z_inferred</span><span class="p">))</span>
+<span class="n">z_inferred2</span><span class="o">=</span><span class="n">rslds</span><span class="o">.</span><span class="n">most_likely_states</span><span class="p">(</span><span class="n">q_ar</span><span class="o">.</span><span class="n">mean_continuous_states</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">ys</span><span class="p">)</span>
+
+<span class="c1"># +</span>
+<span class="c1">#Each population&#39;s latents can be multiplied by an arbitrary rotation matrix</span>
+<span class="c1">#Additionally, there may be a change in scaling between the simulation ground truth and recovered latents,</span>
+<span class="c1">#because the simulation didn&#39;t constrain the effective emissions (C) matrix to be orthonormal like in the model</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="n">R</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">D</span><span class="p">,</span><span class="n">D</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_gr</span><span class="p">):</span>
+    <span class="n">lr</span><span class="o">=</span><span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">q_ar</span><span class="o">.</span><span class="n">mean_continuous_states</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">]],</span><span class="n">xs</span><span class="p">[:,</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">R</span><span class="p">[</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span><span class="o">=</span><span class="n">lr</span><span class="o">.</span><span class="n">coef_</span>
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;0CjkFH63RFRh&quot;</span>
+<span class="c1"># ## Plot results</span>
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;HDlMQx4ZRFRh&quot;</span>
+<span class="c1"># ### Discrete states ($z$)</span>
+
+<span class="c1"># + colab={} colab_type=&quot;code&quot; id=&quot;TGk3zoBVRFRi&quot; outputId=&quot;d1cebd3c-17f7-4e48-a6d3-0b9f34fbd3af&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">zs</span><span class="p">[</span><span class="kc">None</span><span class="p">,:],</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t_end</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$z_{</span><span class="se">\\</span><span class="s2">mathrm</span><span class="si">{true}</span><span class="s2">}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">z_inferred2</span><span class="p">[</span><span class="kc">None</span><span class="p">,:],</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t_end</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$z_{</span><span class="se">\\</span><span class="s2">mathrm</span><span class="si">{inferred}</span><span class="s2">}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># + colab={} colab_type=&quot;code&quot; id=&quot;HRPr3DJlRFRj&quot; outputId=&quot;1d6b402b-fa6d-4040-f4bf-4e4c2188c8b8&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Discrete state accuracy: &#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">zs</span><span class="o">==</span><span class="n">z_inferred2</span><span class="p">))</span>
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;SX1go1AyRFRl&quot;</span>
+<span class="c1"># #### Shorter time window</span>
+
+<span class="c1"># + colab={} colab_type=&quot;code&quot; id=&quot;UhjVHiYzRFRm&quot; outputId=&quot;5d4cf636-9055-46fe-af2b-d51531c97317&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">zs</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span><span class="n">st_t</span><span class="p">:</span><span class="n">end_t</span><span class="p">],</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dur</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$z_{</span><span class="se">\\</span><span class="s2">mathrm</span><span class="si">{true}</span><span class="s2">}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">z_inferred2</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span><span class="n">st_t</span><span class="p">:</span><span class="n">end_t</span><span class="p">],</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dur</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$z_{</span><span class="se">\\</span><span class="s2">mathrm</span><span class="si">{inferred}</span><span class="s2">}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;e4Cz1o8GRFRo&quot;</span>
+<span class="c1"># ### Dynamics matrices ($A^z$)</span>
+<span class="c1"># -</span>
+
+<span class="c1"># We show the A matrix from when the continuous latents are aligned to ground truth, demonstrating the ability to recover the ground truth dynamics.</span>
+<span class="c1">#</span>
+<span class="c1"># We also show the original recovered A matrix, which demonstrates that we can learn about the block structure, regardless of scaling/rotations.</span>
+
+<span class="c1"># + colab={} colab_type=&quot;code&quot; id=&quot;0D2QHaLRRFRo&quot; outputId=&quot;891cf1a1-4aea-4c5f-f2d5-9895478b5361&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="n">q</span><span class="o">=</span><span class="mi">1</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">q</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">true_slds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">As</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">.5</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu&#39;</span><span class="p">)</span>
+    <span class="n">offset</span><span class="o">=-</span><span class="mf">.5</span>
+    <span class="k">for</span> <span class="n">nf</span> <span class="ow">in</span> <span class="n">D_vec</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">D</span><span class="o">-</span><span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="n">offset</span><span class="p">,</span> <span class="n">offset</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">offset</span><span class="p">,</span> <span class="n">offset</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">D</span><span class="o">-</span><span class="mf">0.5</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+        <span class="n">offset</span> <span class="o">+=</span> <span class="n">nf</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Actual State &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+
+    <span class="n">q</span><span class="o">=</span><span class="n">q</span><span class="o">+</span><span class="mi">1</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">q</span><span class="p">)</span>
+<span class="c1">#     plt.imshow(rslds.dynamics.As[k], aspect=&#39;auto&#39;, interpolation=&quot;none&quot;, vmin=-.5, vmax=.5, cmap=&#39;RdBu&#39;)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">R</span><span class="nd">@rslds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">As</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="nd">@np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">R</span><span class="p">),</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">.5</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu&#39;</span><span class="p">)</span>
+
+    <span class="n">offset</span><span class="o">=-</span><span class="mf">.5</span>
+    <span class="k">for</span> <span class="n">nf</span> <span class="ow">in</span> <span class="n">D_vec</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">D</span><span class="o">-</span><span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="n">offset</span><span class="p">,</span> <span class="n">offset</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">offset</span><span class="p">,</span> <span class="n">offset</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">D</span><span class="o">-</span><span class="mf">0.5</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+        <span class="n">offset</span> <span class="o">+=</span> <span class="n">nf</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Aligned Predicted State &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+<span class="c1">#     plt.savefig(folder+&#39;dyn_est&#39;+str(k)+&#39;.pdf&#39;)</span>
+
+    <span class="n">q</span><span class="o">=</span><span class="n">q</span><span class="o">+</span><span class="mi">1</span>
+
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">q</span><span class="p">)</span>
+<span class="c1">#     plt.imshow(rslds.dynamics.As[k], aspect=&#39;auto&#39;, interpolation=&quot;none&quot;, vmin=-.5, vmax=.5, cmap=&#39;RdBu&#39;)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rslds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">As</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">.5</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu&#39;</span><span class="p">)</span>
+
+    <span class="n">offset</span><span class="o">=-</span><span class="mf">.5</span>
+    <span class="k">for</span> <span class="n">nf</span> <span class="ow">in</span> <span class="n">D_vec</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">D</span><span class="o">-</span><span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="n">offset</span><span class="p">,</span> <span class="n">offset</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">offset</span><span class="p">,</span> <span class="n">offset</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">D</span><span class="o">-</span><span class="mf">0.5</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+        <span class="n">offset</span> <span class="o">+=</span> <span class="n">nf</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Raw Predicted State &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+<span class="c1">#     plt.savefig(folder+&#39;dyn_est&#39;+str(k)+&#39;.pdf&#39;)</span>
+
+    <span class="n">q</span><span class="o">=</span><span class="n">q</span><span class="o">+</span><span class="mi">1</span>
+
+
+
+
+
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;b14UYWuMRFRr&quot;</span>
+<span class="c1"># ### Transitions</span>
+<span class="c1"># The contribution of population $j$ to staying in a state is $S_j x^{j}$ and the contribution to switching to a state is $R_j x^{j}$</span>
+<span class="c1">#</span>
+
+<span class="c1"># + colab={} colab_type=&quot;code&quot; id=&quot;hja_9YLPRFRr&quot; outputId=&quot;6eb42921-5277-43ea-b14b-2366d2128509&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+
+<span class="c1">### Actual</span>
+
+<span class="n">j</span><span class="o">=</span><span class="mi">0</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">st_t</span><span class="p">:</span><span class="n">end_t</span><span class="p">,</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">]],</span><span class="n">true_slds</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">Rs</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dur</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Contribution towards </span><span class="se">\n</span><span class="s1"> switching to </span><span class="se">\n</span><span class="s1"> purple state&#39;</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+
+<span class="n">j</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">st_t</span><span class="p">:</span><span class="n">end_t</span><span class="p">,</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">]],</span><span class="n">true_slds</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">Ss</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dur</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Contribution towards </span><span class="se">\n</span><span class="s1"> staying in red state&#39;</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Pop 1&#39;</span><span class="p">,</span><span class="s1">&#39;Pop 2&#39;</span><span class="p">,</span><span class="s1">&#39;Pop 3&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+
+
+
+<span class="c1">### Predicted</span>
+
+<span class="n">j</span><span class="o">=</span><span class="mi">0</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_ar</span><span class="o">.</span><span class="n">mean_continuous_states</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">st_t</span><span class="p">:</span><span class="n">end_t</span><span class="p">,</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">]],</span><span class="n">rslds</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">Rs</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dur</span><span class="p">)</span>
+<span class="c1"># plt.ylabel(&#39;Contribution towards \n switching to \n purple state&#39;,rotation=60)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
+
+<span class="n">j</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_ar</span><span class="o">.</span><span class="n">mean_continuous_states</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">st_t</span><span class="p">:</span><span class="n">end_t</span><span class="p">,</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">]],</span><span class="n">rslds</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">Ss</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="p">]:</span><span class="n">D_vec_cumsum</span><span class="p">[</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dur</span><span class="p">)</span>
+<span class="c1"># plt.ylabel(&#39;Stay in Red&#39;)</span>
+<span class="c1"># plt.xticks([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+<span class="c1"># + [markdown] colab_type=&quot;text&quot; id=&quot;yz4GSxjrRFRt&quot;</span>
+<span class="c1"># ### Example fit of neural activity ($y$)</span>
+
+<span class="c1"># + colab={} colab_type=&quot;code&quot; id=&quot;cgEffzVKRFRt&quot; outputId=&quot;10d64661-8fbd-4259-96fc-134c35980b88&quot;</span>
+<span class="n">preds</span><span class="o">=</span><span class="n">rslds</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">q_ar</span><span class="o">.</span><span class="n">mean_continuous_states</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">ys</span><span class="p">)</span> <span class="c1">#get predictions</span>
+
+<span class="n">nrn</span><span class="o">=</span><span class="mi">0</span> <span class="c1">#Example neuron</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ys</span><span class="p">[</span><span class="n">st_t</span><span class="p">:</span><span class="n">end_t</span><span class="p">,</span><span class="n">nrn</span><span class="p">],</span><span class="n">alpha</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span> <span class="c1">#true spiking activity</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lams</span><span class="p">[</span><span class="n">st_t</span><span class="p">:</span><span class="n">end_t</span><span class="p">,</span><span class="n">nrn</span><span class="p">])</span> <span class="c1">#true firing rate</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="n">st_t</span><span class="p">:</span><span class="n">end_t</span><span class="p">,</span><span class="n">nrn</span><span class="p">])</span> <span class="c1">#predicted firing</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;True Spikes&#39;</span><span class="p">,</span><span class="s1">&#39;True FR&#39;</span><span class="p">,</span><span class="s1">&#39;Predicted FR&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 4 minutes  14.270 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-multi-population-rslds-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/1fdf0d98866f4c743ae2a67bdfb73e8f/Multi-Population-rSLDS.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">Multi-Population-rSLDS.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/918bca1dc0b566ce224b6e6026861118/Multi-Population-rSLDS.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">Multi-Population-rSLDS.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="HMM-State-Clustering.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">HMM State Clustering</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Scott Linderman<br/>
+  
+      &copy; Copyright 2022, Scott Linderman.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,711 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Input Driven HMM &#8212; ssm  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Input Driven Observations (GLM-HMM)" href="2b-Input-Driven-Observations-%28GLM-HMM%29.html" />
+    <link rel="prev" title="Simple Linear Dynamical System Demo" href="1b-Simple-Linear-Dynamical-System.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">ssm  documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="1-Simple-HMM-Demo.html">
+   Simple HMM Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="1b-Simple-Linear-Dynamical-System.html">
+   Simple Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Input Driven HMM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2b-Input-Driven-Observations-%28GLM-HMM%29.html">
+   Input Driven Observations (GLM-HMM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="3-Switching-Linear-Dynamical-System.html">
+   Switching Linear Dynamical System
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="4-Recurrent-SLDS.html">
+   Recurrent SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="5-Poisson-SLDS.html">
+   Poisson SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="6-Poisson-fLDS.html">
+   Poisson fLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="7-Variatonal-Laplace-EM-for-SLDS-Tutorial.html">
+   Variational Laplace EM for SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="HMM-State-Clustering.html">
+   HMM State Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Multi-Population-rSLDS.html">
+   Multi-Population rSLDS
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/auto_examples/2-Input-Driven-HMM.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Input Driven HMM</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-2-input-driven-hmm-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="input-driven-hmm">
+<span id="sphx-glr-auto-examples-2-input-driven-hmm-py"></span><h1>Input Driven HMM<a class="headerlink" href="#input-driven-hmm" title="Permalink to this headline">#</a></h1>
+<ul class="sphx-glr-horizontal">
+<li><img src="../_images/sphx_glr_2-Input-Driven-HMM_001.png" srcset="../_images/sphx_glr_2-Input-Driven-HMM_001.png" alt="2 Input Driven HMM" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_2-Input-Driven-HMM_002.png" srcset="../_images/sphx_glr_2-Input-Driven-HMM_002.png" alt="2 Input Driven HMM" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_2-Input-Driven-HMM_003.png" srcset="../_images/sphx_glr_2-Input-Driven-HMM_003.png" alt="True Baseline Weights, True Input Weights, Inferred Baseline Weights, Inferred Input Weights" class = "sphx-glr-multi-img"/></li>
+</ul>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/Users/emdupre/Desktop/ssm/notebooks/2-Input-Driven-HMM.py:132: MatplotlibDeprecationWarning: The &#39;b&#39; parameter of grid() has been renamed &#39;visible&#39; since Matplotlib 3.5; support for the old name will be dropped two minor releases later.
+  plt.grid(b=None)
+
+  0%|          | 0/100 [00:00&lt;?, ?it/s]
+LP: -1028.4:   0%|          | 0/100 [00:00&lt;?, ?it/s]
+LP: -1028.4:   0%|          | 0/100 [00:00&lt;?, ?it/s]
+LP: -1028.1:   0%|          | 0/100 [00:00&lt;?, ?it/s]
+LP: -1027.6:   0%|          | 0/100 [00:00&lt;?, ?it/s]
+LP: -1026.2:   0%|          | 0/100 [00:00&lt;?, ?it/s]
+LP: -1021.0:   0%|          | 0/100 [00:00&lt;?, ?it/s]
+LP: -1004.7:   0%|          | 0/100 [00:00&lt;?, ?it/s]
+LP: -984.2:   0%|          | 0/100 [00:00&lt;?, ?it/s]
+LP: -972.3:   0%|          | 0/100 [00:00&lt;?, ?it/s]
+LP: -964.0:   0%|          | 0/100 [00:00&lt;?, ?it/s]
+LP: -958.1:   0%|          | 0/100 [00:00&lt;?, ?it/s]
+LP: -954.8:   0%|          | 0/100 [00:00&lt;?, ?it/s]
+LP: -954.8:  11%|#1        | 11/100 [00:00&lt;00:00, 108.24it/s]
+LP: -953.0:  11%|#1        | 11/100 [00:00&lt;00:00, 108.24it/s]
+LP: -952.2:  11%|#1        | 11/100 [00:00&lt;00:00, 108.24it/s]
+LP: -951.6:  11%|#1        | 11/100 [00:00&lt;00:00, 108.24it/s]
+LP: -951.2:  11%|#1        | 11/100 [00:00&lt;00:00, 108.24it/s]
+LP: -950.8:  11%|#1        | 11/100 [00:00&lt;00:00, 108.24it/s]
+LP: -950.4:  11%|#1        | 11/100 [00:00&lt;00:00, 108.24it/s]
+LP: -950.1:  11%|#1        | 11/100 [00:00&lt;00:00, 108.24it/s]
+LP: -949.9:  11%|#1        | 11/100 [00:00&lt;00:00, 108.24it/s]
+LP: -949.6:  11%|#1        | 11/100 [00:00&lt;00:00, 108.24it/s]
+LP: -949.5:  11%|#1        | 11/100 [00:00&lt;00:00, 108.24it/s]
+LP: -949.3:  11%|#1        | 11/100 [00:00&lt;00:00, 108.24it/s]
+LP: -949.2:  11%|#1        | 11/100 [00:00&lt;00:00, 108.24it/s]
+LP: -949.2:  23%|##3       | 23/100 [00:00&lt;00:00, 111.21it/s]
+LP: -949.1:  23%|##3       | 23/100 [00:00&lt;00:00, 111.21it/s]
+LP: -949.1:  23%|##3       | 23/100 [00:00&lt;00:00, 111.21it/s]
+LP: -949.0:  23%|##3       | 23/100 [00:00&lt;00:00, 111.21it/s]
+LP: -949.0:  23%|##3       | 23/100 [00:00&lt;00:00, 111.21it/s]
+LP: -948.9:  23%|##3       | 23/100 [00:00&lt;00:00, 111.21it/s]
+LP: -948.9:  23%|##3       | 23/100 [00:00&lt;00:00, 111.21it/s]
+LP: -948.9:  23%|##3       | 23/100 [00:00&lt;00:00, 111.21it/s]
+LP: -948.8:  23%|##3       | 23/100 [00:00&lt;00:00, 111.21it/s]
+LP: -948.8:  23%|##3       | 23/100 [00:00&lt;00:00, 111.21it/s]
+LP: -948.8:  23%|##3       | 23/100 [00:00&lt;00:00, 111.21it/s]
+LP: -948.8:  23%|##3       | 23/100 [00:00&lt;00:00, 111.21it/s]
+LP: -948.8:  23%|##3       | 23/100 [00:00&lt;00:00, 111.21it/s]
+LP: -948.8:  23%|##3       | 23/100 [00:00&lt;00:00, 111.21it/s]
+LP: -948.7:  23%|##3       | 23/100 [00:00&lt;00:00, 111.21it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  37%|###7      | 37/100 [00:00&lt;00:00, 122.19it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  66%|######6   | 66/100 [00:00&lt;00:00, 184.85it/s]
+LP: -948.7:  96%|#########6| 96/100 [00:00&lt;00:00, 224.66it/s]
+LP: -948.7:  96%|#########6| 96/100 [00:00&lt;00:00, 224.66it/s]
+LP: -948.7:  96%|#########6| 96/100 [00:00&lt;00:00, 224.66it/s]
+LP: -948.7:  96%|#########6| 96/100 [00:00&lt;00:00, 224.66it/s]
+LP: -948.7:  96%|#########6| 96/100 [00:00&lt;00:00, 224.66it/s]
+LP: -948.7: 100%|##########| 100/100 [00:00&lt;00:00, 189.31it/s]
+/Users/emdupre/Desktop/ssm/notebooks/2-Input-Driven-HMM.py:229: MatplotlibDeprecationWarning: The &#39;b&#39; parameter of grid() has been renamed &#39;visible&#39; since Matplotlib 3.5; support for the old name will be dropped two minor releases later.
+  plt.grid(b=None)
+/Users/emdupre/Desktop/ssm/notebooks/2-Input-Driven-HMM.py:237: MatplotlibDeprecationWarning: The &#39;b&#39; parameter of grid() has been renamed &#39;visible&#39; since Matplotlib 3.5; support for the old name will be dropped two minor releases later.
+  plt.grid(b=None)
+/Users/emdupre/Desktop/ssm/notebooks/2-Input-Driven-HMM.py:245: MatplotlibDeprecationWarning: The &#39;b&#39; parameter of grid() has been renamed &#39;visible&#39; since Matplotlib 3.5; support for the old name will be dropped two minor releases later.
+  plt.grid(b=None)
+/Users/emdupre/Desktop/ssm/notebooks/2-Input-Driven-HMM.py:253: MatplotlibDeprecationWarning: The &#39;b&#39; parameter of grid() has been renamed &#39;visible&#39; since Matplotlib 3.5; support for the old name will be dropped two minor releases later.
+  plt.grid(b=None)
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Input Driven HMM</span>
+<span class="c1">#</span>
+<span class="c1"># This notebook is a simple example of an HMM with exogenous inputs.  The inputs modulate the probability of discrete state transitions via a multiclass logistic regression. Let $z_t \in \{1, \ldots, K\}$ denote the discrete latent state at time $t$ and $u_t \in \mathbb{R}^U$ be the exogenous input at time~$t$.  The transition probability is given by,</span>
+<span class="c1">#</span>
+<span class="c1"># $$</span>
+<span class="c1"># \begin{align}</span>
+<span class="c1"># \Pr(z_t = k \mid z_{t-1} = j, u_t) =</span>
+<span class="c1"># \frac{\exp\{\log P_{j,k} + w_k^\mathsf{T} u_t\}}</span>
+<span class="c1"># {\sum_{k&#39;=1}^K \exp\{\log P_{j,k&#39;} + w_{k&#39;}^\mathsf{T} u_t\}}.</span>
+<span class="c1"># \end{align}</span>
+<span class="c1"># $$</span>
+<span class="c1">#</span>
+<span class="c1"># The parameters of the transition model are $P \in \mathbb{R}_+^{K \times K}$, a baseline set of (unnormalized) transition weights, and $W \in \mathbb{R}^{K \times U}$, a set of input weights.</span>
+
+<span class="c1"># ## 1. Setup</span>
+<span class="c1"># The line `import ssm` imports the package for use. Here, we have also imported a few other packages for plotting.</span>
+
+<span class="c1"># +</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">ssm</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">ssm.util</span> <span class="kn">import</span> <span class="n">one_hot</span><span class="p">,</span> <span class="n">find_permutation</span>
+
+<span class="c1"># %matplotlib inline</span>
+
+<span class="n">npr</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="s2">&quot;colorblind&quot;</span><span class="p">)</span>
+<span class="c1"># -</span>
+
+<span class="c1"># ## 2. Create an Input Driven HMM</span>
+<span class="c1"># SSM is designed to be modular, so that the user can easily mix and match different types of transitions and observations.</span>
+<span class="c1"># We create an input-driven HMM with the following line:</span>
+<span class="c1"># ```python</span>
+<span class="c1"># true_hmm = ssm.HMM(num_states, obs_dim, input_dim,</span>
+<span class="c1">#                observations=&quot;categorical&quot;, observation_kwargs=dict(C=num_categories),</span>
+<span class="c1">#                transitions=&quot;inputdriven&quot;)</span>
+<span class="c1"># ```</span>
+<span class="c1">#</span>
+<span class="c1"># Let&#39;s look at what each of the arguments do. The first three arguments specify the number of states, and the dimensionality of the observations and inputs.</span>
+<span class="c1">#</span>
+<span class="c1"># **Setting the observation model**</span>
+<span class="c1"># For this example, we have set `observations=&quot;categorical&quot;`, which means each observation will take on one of a discrete set of values, i.e $y_t \in \{1, \ldots, C \}$.</span>
+<span class="c1"># For categorical observations, the observations are drawn from a multinomial distribution, with parameters depending on the current state. Assuming $z_t = k$,the observations are a vector $y \in \mathbb{R}^D$, where $y_i \sim \text{mult} (\lambda_{k,i})$, where $\lambda_{k,i}$ is the multinomal parameter associated with coordinate $i$ of the observations in state $k$. Note that each observation variable is independent from the others.</span>
+<span class="c1">#</span>
+<span class="c1"># For categorical observations, we also specify the number of discrete observations possible (in this case 3). We do this by creating a dictionary where the keys are the keyword arguments which we want to pass to the observation model. For categorical observations, there is just one keyword argument, `C`, which specifies the number of categories. This is set using `observation_kwargs=dict(C=num_categories)`.</span>
+<span class="c1">#</span>
+<span class="c1"># The observations keyword argument should be one of : `&quot;gaussian&quot;, &quot;poisson&quot; &quot;studentst&quot;, &quot;exponential&quot;, &quot;bernoulli&quot;, &quot;autoregressive&quot;, &quot;robust_autoregressive&quot;`.</span>
+<span class="c1"># **NOTE:**</span>
+<span class="c1"># Setting the observations as &quot;autoregressive&quot; means that each observation will be dependent on the prior observation, as well as on the input (if the input is nonzero). By constrast, the standard &quot;inputdriven&quot; transitions are not affected by previous observations or directly by the inputs.</span>
+<span class="c1">#</span>
+<span class="c1"># **Setting the transition model**</span>
+<span class="c1"># In order to create an HMM with exogenous inputs, we set ```transitions=&quot;inputdriven&quot;```. This means that the baseline transition matrix $P$ is modified according to a Generalized Linear Model, as described at the top of the page.</span>
+<span class="c1">#</span>
+<span class="c1"># SSM support many transition models, set by keyword argument to the constructor of the class. The keyword argument should be one of: `&quot;standard&quot;, &quot;sticky&quot;, &quot;inputdriven&quot;, &quot;recurrent&quot;, &quot;recurrent_only&quot;, &quot;rbf_recurrent&quot;, &quot;nn_recurrent&quot;.` We&#39;re working on creating standalone documentation to describe these in more detail. For most users, the stationary and input driven transition classes should suffice.</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># **Creating inputs and sampling**</span>
+<span class="c1"># After creating our HMM object, we create an input array called `inpt` which is simply a jittered sine wave. We also increase the transition weights so that it will be clear (for demonstration purposes) that the input is changing the transition probabilities. In this case, we will actually increase the weights such that the transitions appear almost deterministic.</span>
+
+<span class="c1"># +</span>
+<span class="c1"># Set the parameters of the HMM</span>
+<span class="n">time_bins</span> <span class="o">=</span> <span class="mi">1000</span> <span class="c1"># number of time bins</span>
+<span class="n">num_states</span> <span class="o">=</span> <span class="mi">2</span>    <span class="c1"># number of discrete states</span>
+<span class="n">obs_dim</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c1"># data dimension</span>
+<span class="n">input_dim</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c1"># input dimension</span>
+<span class="n">num_categories</span> <span class="o">=</span> <span class="mi">3</span>    <span class="c1"># number of output types/categories</span>
+
+<span class="c1"># Make an HMM</span>
+<span class="n">true_hmm</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">HMM</span><span class="p">(</span><span class="n">num_states</span><span class="p">,</span> <span class="n">obs_dim</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">,</span>
+               <span class="n">observations</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">,</span> <span class="n">observation_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">num_categories</span><span class="p">),</span>
+               <span class="n">transitions</span><span class="o">=</span><span class="s2">&quot;inputdriven&quot;</span><span class="p">)</span>
+
+<span class="c1"># Optionally, turn up the input weights to exaggerate the effect</span>
+<span class="n">true_hmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">Ws</span> <span class="o">*=</span> <span class="mi">3</span>
+
+<span class="c1"># Create an exogenous input</span>
+<span class="n">inpt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">time_bins</span><span class="p">)</span> <span class="o">/</span> <span class="mi">50</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1e-1</span> <span class="o">*</span> <span class="n">npr</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">time_bins</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">)</span>
+
+<span class="c1"># Sample some data from the HMM</span>
+<span class="n">true_states</span><span class="p">,</span> <span class="n">obs</span> <span class="o">=</span> <span class="n">true_hmm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">time_bins</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="n">inpt</span><span class="p">)</span>
+
+<span class="c1"># Compute the true log probability of the data, summing out the discrete states</span>
+<span class="n">true_lp</span> <span class="o">=</span> <span class="n">true_hmm</span><span class="o">.</span><span class="n">log_probability</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inpt</span><span class="p">)</span>
+
+<span class="c1"># By default, SSM returns categorical observations as a list of lists.</span>
+<span class="c1"># We convert to a 1D array for plotting.</span>
+<span class="n">obs_flat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">obs</span><span class="p">])</span>
+
+<span class="c1"># +</span>
+<span class="c1"># Plot the data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">311</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inpt</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">312</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">true_states</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:],</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;discrete</span><span class="se">\n</span><span class="s2">state&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+<span class="c1"># Create Cmap for visualizing categorical observations</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">313</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">obs_flat</span><span class="p">[</span><span class="kc">None</span><span class="p">,:],</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;observation&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># -</span>
+
+<span class="c1"># ### 2.1 Exercise: EM for the input-driven HMM</span>
+<span class="c1"># There are a few good references that derive the EM algorithm for the case of a vanilla HMM (e.g Machine Learning and Pattern Recognition, by Chris Bishop, and [this tutorial](https://www.ece.ucsb.edu/Faculty/Rabiner/ece259/Reprints/tutorial%20on%20hmm%20and%20applications.pdf) by Lawrence Rabiner. How should the EM updates change for the case of input-driven HMMs?</span>
+
+<span class="c1"># ## 3. Fit an input-driven HMM to data</span>
+<span class="c1"># Below, we&#39;ll show to fit an input-driven HMM from data. We&#39;ll treat the samples generated above as a dataset, and try to learn the appropriate HMM parameters from this dataset.</span>
+<span class="c1">#</span>
+<span class="c1"># We create a new HMM object here, with the same parameters as the HMM in Section 1:</span>
+<span class="c1"># ```python</span>
+<span class="c1"># hmm = ssm.HMM(num_states, obs_dim, input_dim,</span>
+<span class="c1">#           observations=&quot;categorical&quot;, observation_kwargs=dict(C=num_categories),</span>
+<span class="c1">#           transitions=&quot;inputdriven&quot;)</span>
+<span class="c1"># ```</span>
+<span class="c1">#</span>
+<span class="c1"># We fit the dataset simply by calling the `fit` method:</span>
+<span class="c1"># ```python</span>
+<span class="c1"># hmm_lps = hmm.fit(obs, inputs=inpt, method=&quot;em&quot;, num_em_iters=N_iters)</span>
+<span class="c1"># ```</span>
+<span class="c1"># Here, the variable `hmm_lps` will be set to a list of log-probabilities at each step of the EM-algorithm, which we&#39;ll use to check convergence.</span>
+
+<span class="c1"># +</span>
+<span class="c1"># Now create a new HMM and fit it to the data with EM</span>
+<span class="n">N_iters</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">hmm</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">HMM</span><span class="p">(</span><span class="n">num_states</span><span class="p">,</span> <span class="n">obs_dim</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">,</span>
+          <span class="n">observations</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">,</span> <span class="n">observation_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">num_categories</span><span class="p">),</span>
+          <span class="n">transitions</span><span class="o">=</span><span class="s2">&quot;inputdriven&quot;</span><span class="p">)</span>
+
+<span class="c1"># Fit</span>
+<span class="n">hmm_lps</span> <span class="o">=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inpt</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;em&quot;</span><span class="p">,</span> <span class="n">num_iters</span><span class="o">=</span><span class="n">N_iters</span><span class="p">)</span>
+<span class="c1"># -</span>
+
+<span class="c1"># ### 3.1 Permute the latent states, check convergence</span>
+<span class="c1"># As in the vanilla-HMM notebook, we need to find a permutation of the latent states from our new hmm such that they match the states from the true HMM above. SSM accomplishes this with two function calls: first, we call `find_permutation(true_states, inferred_states)` which returns a list of indexes into states.</span>
+<span class="c1">#</span>
+<span class="c1"># Then, we call `hmm.permute(permuation)` with the results of our first function call. Finally, we set `inferred_states` to be the underlying states we predict given the data.</span>
+<span class="c1">#</span>
+<span class="c1"># Below, we plot the results of the `fit` function in order to check convergence of the EM algorithm. We see that the log-probability from the EM algorithm approaches the true log-probability of the data (which we have stored as `lp_true`).</span>
+
+<span class="c1"># Find a permutation of the states that best matches the true and inferred states</span>
+<span class="n">hmm</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="n">find_permutation</span><span class="p">(</span><span class="n">true_states</span><span class="p">,</span> <span class="n">hmm</span><span class="o">.</span><span class="n">most_likely_states</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="n">inpt</span><span class="p">)))</span>
+<span class="n">inferred_states</span> <span class="o">=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">most_likely_states</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="n">inpt</span><span class="p">)</span>
+
+<span class="c1"># Plot the log probabilities of the true and fit models</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hmm_lps</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;EM&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">N_iters</span><span class="p">],</span> <span class="n">true_lp</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;:k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;EM Iteration&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N_iters</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Log Probability&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># ### 3.3 Exercise: Change the Fitting Method</span>
+<span class="c1"># As an experiment, try fitting the same dataset using another fitting method. The two other fitting methods supported for HMMs are &quot;sgd&quot; and &quot;adam&quot;, which you can set by passing `method=&quot;sgd&quot;` and `method=&quot;adam&quot;` respectively. For these methods, you&#39;ll probably need to increase the number of iteratations to around 1000 or so.</span>
+<span class="c1">#</span>
+<span class="c1"># After fitting with a different method, re-run the two cells above to generate a plot. How does the convergence of these other methods converge to EM?</span>
+
+<span class="c1"># +</span>
+<span class="c1"># Plot the true and inferred states</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">true_states</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:],</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;true</span><span class="se">\n</span><span class="s2">state&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">inferred_states</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:],</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;inferred</span><span class="se">\n</span><span class="s2">state&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># -</span>
+
+<span class="c1"># ## 4. Visualize the Learned Parameters</span>
+<span class="c1"># After calling `fit`, our new HMM object will have parameters updated according to the dataset. We can get a sense of whether we successfully learned these parameters by comparing them to the _true_ parameters which generated the data.</span>
+<span class="c1">#</span>
+<span class="c1"># Below, we plot the baseline log transition probabilities (the log of the state-transition matrix) as well as the input weights $w$.</span>
+
+<span class="c1"># +</span>
+<span class="c1"># Plot the true and inferred input effects</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">vlim</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">true_hmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">log_Ps</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+           <span class="nb">abs</span><span class="p">(</span><span class="n">true_hmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">Ws</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+           <span class="nb">abs</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">log_Ps</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+           <span class="nb">abs</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">Ws</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">141</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">true_hmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">log_Ps</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vlim</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vlim</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu&quot;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_states</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_states</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;True</span><span class="se">\n</span><span class="s2">Baseline Weights&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">142</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">true_hmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">Ws</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vlim</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vlim</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu&quot;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="n">num_states</span><span class="o">/</span><span class="n">input_dim</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">input_dim</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_states</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;True</span><span class="se">\n</span><span class="s2">Input Weights&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">143</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">log_Ps</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vlim</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vlim</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu&quot;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_states</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_states</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Inferred</span><span class="se">\n</span><span class="s2">Baseline Weights&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">Ws</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vlim</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vlim</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu&quot;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="n">num_states</span><span class="o">/</span><span class="n">input_dim</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">input_dim</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_states</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Inferred</span><span class="se">\n</span><span class="s2">Input Weights&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.774 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-2-input-driven-hmm-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/634d1fd725e5fe7ce4ef61280333a87c/2-Input-Driven-HMM.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">2-Input-Driven-HMM.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/689ba14136413b75a4501e3a35a7777d/2-Input-Driven-HMM.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">2-Input-Driven-HMM.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="1b-Simple-Linear-Dynamical-System.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Simple Linear Dynamical System Demo</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="2b-Input-Driven-Observations-%28GLM-HMM%29.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Input Driven Observations (GLM-HMM)</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Scott Linderman<br/>
+  
+      &copy; Copyright 2022, Scott Linderman.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

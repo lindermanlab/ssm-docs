@@ -1,0 +1,852 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Simple Linear Dynamical System Demo &#8212; ssm  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Input Driven HMM" href="2-Input-Driven-HMM.html" />
+    <link rel="prev" title="Simple HMM Demo" href="1-Simple-HMM-Demo.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">ssm  documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="1-Simple-HMM-Demo.html">
+   Simple HMM Demo
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Simple Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2-Input-Driven-HMM.html">
+   Input Driven HMM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2b-Input-Driven-Observations-%28GLM-HMM%29.html">
+   Input Driven Observations (GLM-HMM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="3-Switching-Linear-Dynamical-System.html">
+   Switching Linear Dynamical System
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="4-Recurrent-SLDS.html">
+   Recurrent SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="5-Poisson-SLDS.html">
+   Poisson SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="6-Poisson-fLDS.html">
+   Poisson fLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="7-Variatonal-Laplace-EM-for-SLDS-Tutorial.html">
+   Variational Laplace EM for SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="HMM-State-Clustering.html">
+   HMM State Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Multi-Population-rSLDS.html">
+   Multi-Population rSLDS
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/auto_examples/1b-Simple-Linear-Dynamical-System.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Simple Linear Dynamical System Demo</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-1b-simple-linear-dynamical-system-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="simple-linear-dynamical-system-demo">
+<span id="sphx-glr-auto-examples-1b-simple-linear-dynamical-system-py"></span><h1>Simple Linear Dynamical System Demo<a class="headerlink" href="#simple-linear-dynamical-system-demo" title="Permalink to this headline">#</a></h1>
+<ul class="sphx-glr-horizontal">
+<li><img src="../_images/sphx_glr_1b-Simple-Linear-Dynamical-System_001.png" srcset="../_images/sphx_glr_1b-Simple-Linear-Dynamical-System_001.png" alt="Simulated Latent States" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_1b-Simple-Linear-Dynamical-System_002.png" srcset="../_images/sphx_glr_1b-Simple-Linear-Dynamical-System_002.png" alt="Simulated Latent States, Simulated emissions" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_1b-Simple-Linear-Dynamical-System_003.png" srcset="../_images/sphx_glr_1b-Simple-Linear-Dynamical-System_003.png" alt="True and Estimated States" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_1b-Simple-Linear-Dynamical-System_004.png" srcset="../_images/sphx_glr_1b-Simple-Linear-Dynamical-System_004.png" alt="Original and Smoothed Observations" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_1b-Simple-Linear-Dynamical-System_005.png" srcset="../_images/sphx_glr_1b-Simple-Linear-Dynamical-System_005.png" alt="True Dynamics, Simulated Latent States" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_1b-Simple-Linear-Dynamical-System_006.png" srcset="../_images/sphx_glr_1b-Simple-Linear-Dynamical-System_006.png" alt="Simulated Latent States, Simulated Poisson Observations" class = "sphx-glr-multi-img"/></li>
+</ul>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Fitting LDS with Laplace-EM using structured variational posterior
+
+  0%|          | 0/1 [00:00&lt;?, ?it/s]
+ARHMM Initialization restarts:   0%|          | 0/1 [00:00&lt;?, ?it/s]Initializing with an ARHMM using 25 steps of EM.
+
+
+  0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+
+LP: -1048.2:   0%|          | 0/25 [00:00&lt;?, ?it/s]
+LP: -1048.2: 100%|##########| 25/25 [00:00&lt;00:00, 364.68it/s]
+
+ARHMM Initialization restarts: 100%|##########| 1/1 [00:00&lt;00:00, 11.52it/s]
+
+  0%|          | 0/10 [00:00&lt;?, ?it/s]
+ELBO: -3706.0:   0%|          | 0/10 [00:00&lt;?, ?it/s]
+ELBO: -2934.2:   0%|          | 0/10 [00:00&lt;?, ?it/s]
+ELBO: -2912.7:   0%|          | 0/10 [00:00&lt;?, ?it/s]
+ELBO: -2906.5:   0%|          | 0/10 [00:00&lt;?, ?it/s]
+ELBO: -2895.2:   0%|          | 0/10 [00:00&lt;?, ?it/s]
+ELBO: -2895.2:  40%|####      | 4/10 [00:00&lt;00:00, 12.07it/s]
+ELBO: -2888.6:  40%|####      | 4/10 [00:00&lt;00:00, 12.07it/s]
+ELBO: -2893.7:  40%|####      | 4/10 [00:00&lt;00:00, 12.07it/s]
+ELBO: -2879.2:  40%|####      | 4/10 [00:00&lt;00:00, 12.07it/s]
+ELBO: -2882.1:  40%|####      | 4/10 [00:00&lt;00:00, 12.07it/s]
+ELBO: -2882.1:  80%|########  | 8/10 [00:00&lt;00:00, 20.16it/s]
+ELBO: -2901.0:  80%|########  | 8/10 [00:00&lt;00:00, 20.16it/s]
+ELBO: -2883.9:  80%|########  | 8/10 [00:00&lt;00:00, 20.16it/s]
+ELBO: -2883.9: 100%|##########| 10/10 [00:00&lt;00:00, 16.45it/s]
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Simple Linear Dynamical System Demo</span>
+
+<span class="c1"># Linear Dynamical Systems (LDS) are used to model data that evolve in principled ways. They are widely used in control systems, signal processing, neuroscience, and other fields. Our focus in on learning and inference for LDS, and a good reference for this is Chapter 13.3 of [Pattern Recognition and Machine Learning](http://users.isr.ist.utl.pt/~wurmd/Livros/school/Bishop%20-%20Pattern%20Recognition%20And%20Machine%20Learning%20-%20Springer%20%202006.pdf) by Christopher Bishop.</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># For LDS with Poisson observations, especially as they are used in neuroscience, [Estimating State and parameters in state space models of spike trains](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/FAB8634C2790F3461E3E86BB632EAE6F/9781139941433c6_p137-159_CBO.pdf/estimating_state_and_parameters_in_state_space_models_of_spike_trains.pdf), by J.H Macke _et al_ is a good reference.</span>
+
+<span class="c1"># ## 1. Setup</span>
+<span class="c1"># The line `import ssm` imports the package for use. Here, we have also imported a few other packages for plotting.</span>
+<span class="c1">#</span>
+<span class="c1"># **Note**: We recently added Seaborn to the list of dependencies. If you have an older installation of SSM, you may need to manually install Seaborn using `pip install seaborn` or `conda install seaborn`.</span>
+<span class="c1">#</span>
+
+<span class="c1"># +</span>
+<span class="kn">import</span> <span class="nn">autograd.numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">autograd.numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+<span class="n">npr</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># %matplotlib inline</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib.gridspec</span> <span class="kn">import</span> <span class="n">GridSpec</span>
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;talk&quot;</span><span class="p">)</span>
+
+<span class="n">color_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;windows blue&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;red&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;amber&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;faded green&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;dusty purple&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;orange&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;clay&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;pink&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;greyish&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;mint&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;light cyan&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;steel blue&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;forest green&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;pastel purple&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;salmon&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;dark brown&quot;</span><span class="p">]</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">xkcd_palette</span><span class="p">(</span><span class="n">color_names</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">ssm</span>
+<span class="kn">from</span> <span class="nn">ssm.util</span> <span class="kn">import</span> <span class="n">random_rotation</span>
+<span class="kn">from</span> <span class="nn">ssm.plots</span> <span class="kn">import</span> <span class="n">plot_dynamics_2d</span>
+
+<span class="c1"># Specify whether or not to save figures</span>
+<span class="n">save_figures</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="c1"># -</span>
+
+<span class="c1"># ## 2. Create an LDS Object</span>
+<span class="c1">#</span>
+<span class="c1"># A Linear Dynamical System consists of a continuous state variable, $x \in \mathbb{R}^D$, which evolves according to linear dynamics.</span>
+<span class="c1"># At time-step $t$, we observe an emission (sometimes called an observation) $y_t \in \mathbb{R}^N$. Similarly, we use $x_t$ to denote the state at time $t$.</span>
+<span class="c1">#</span>
+<span class="c1"># The state dynamics obey the following relation (Bishop 2006):</span>
+<span class="c1">#</span>
+<span class="c1"># $$</span>
+<span class="c1"># \begin{align}</span>
+<span class="c1"># x_t &amp;= A x_{t-1} + V u_{t} + b + w_t \\</span>
+<span class="c1"># \end{align}</span>
+<span class="c1"># $$</span>
+<span class="c1">#</span>
+<span class="c1"># The vector $b$ is an offset vector, which can drive the dynamics in a particular direction.</span>
+<span class="c1"># The terms $w$ and $v$ are noise terms, which perturb the states and observations.</span>
+<span class="c1"># Most commonly these are modeled as zero-mean multivariate Gaussians,</span>
+<span class="c1"># but one nice feature of SSM is that it supports many distributions for these noise terms.</span>
+<span class="c1">#</span>
+<span class="c1"># We support the following dynamics models, which can be specified by passing an argument to the constructor the LDS class, e.g `dynamics=&quot;gaussian&quot;`:</span>
+<span class="c1">#</span>
+<span class="c1"># 1. **`none`**: Model has no dynamics. At each time-step, the state is drawn independently from a Gaussian. This is the equivalent of filling the dynamics matrix $A$ with zeros.</span>
+<span class="c1"># 1. **`gaussian`**: Model has linear-gaussian dynamics. $w \sim \mathcal{N}(0, \Sigma_w )$.</span>
+<span class="c1"># 1. **`diagonal_gaussian`**: This is a special case of the Gaussian dynamics model where the noise term has diagonal covariance.</span>
+<span class="c1"># 1. **`studentst`**: $w \sim t(0, \Sigma_w, \nu_w)$.</span>
+<span class="c1"># 1. **`diagonal_studentst`**: Constrains covariance matrix to be diagonal.</span>
+<span class="c1">#</span>
+<span class="c1"># To specify an LDS, we also need to specify how the emissions $y_t$ are generated (the emissions are what we observe).</span>
+<span class="c1"># The most common emission model is the simple linear-Gaussian emission model:</span>
+<span class="c1"># $$</span>
+<span class="c1"># y_t = Cx_t + d + F u_t + v_t</span>
+<span class="c1"># $$</span>
+<span class="c1"># In this case, $C$ is called the measurement matrix, $d$ is an offset or bias term, and $F$ is called the feedthrough matrix or passthrough matrix (it passes the input directly to the emission).</span>
+<span class="c1"># $v_t \sim \mathcal{N}(0, \Sigma_v)$ is a noise term, which in the simplest case is Gaussian, but can also be modeled to come from other distributions.</span>
+<span class="c1"># We support the following emission models.</span>
+<span class="c1">#</span>
+<span class="c1"># 1. **`gaussian`**: The most common emission model. $y_t \sim \mathcal{N}(C x_t + d + F u_t, \Sigma_v)$</span>
+<span class="c1"># 1. **`studentst`**: Same as above, but uses the Students-T distribution instead of the normal distribution.</span>
+<span class="c1"># 1. **`poisson`**: Useful for modeling count or event data. Under this model, the observations are nonnegative integers drawn from a poisson distribution (Macke 2011).</span>
+<span class="c1"># The latent state controls the rate parameter, in a non-linear fashion as follows. Let $y_{i,t}$ be the $i$-th dimension of our observation at time $t$.</span>
+<span class="c1"># We&#39;ll also make use of an excitation vector $g_t = C x_t + d + F u_t$, and additionally a mean function $\eta(\bullet)$.</span>
+<span class="c1"># The observations are drawn from a poisson distribution at rates specified by the excitation vector:</span>
+<span class="c1"># $$P( y_{i,t} \mid g_{i,t}) = \frac{1}{y_{i,t}!} \eta(g_{i,t})^{y_{i,t}}\exp{(-\eta(g_{i,t}))}.$$ By default, the mean function is set to $\exp(\bullet)$.</span>
+<span class="c1">#</span>
+<span class="c1"># 1. **`bernoulli`**:</span>
+<span class="c1"># As in the Poisson case, we have an excitation vector $g_t = C x_t + d + F u_t$, and a mean function $\eta(\bullet)$. In this case, though, the mean function is always the logistic function, becuase its outputs need to be between zero and one. The observations are drawn from a bernoulli distribution where $y_{i,t}$ is 1 with probability $\eta(g_{i,t})$.</span>
+<span class="c1">#</span>
+<span class="c1"># For all of the above we support orthogonal variants, in which the measurement matrix $C$ is constrained to be orthogonal.</span>
+<span class="c1">#</span>
+<span class="c1"># _Note: SSM supports many other emission models. We are in the process of creating full-standalone documentation to describe them. For now, the best way to learn about SSM&#39;s other functionality is look at the source code. The emission models are described in emissions.py._</span>
+<span class="c1">#</span>
+<span class="c1"># The below line creates an instance of the SSM&#39;s `LDS` class:</span>
+<span class="c1"># `true_lds = ssm.LDS(obs_dim, state_dim, dynamics=&quot;gaussian&quot;, emissions=&quot;gaussian&quot;)`</span>
+<span class="c1">#</span>
+<span class="c1"># Following that, we modify the dynamics matrix (the matrix $A$ in the above equations) so that our system will have some interesting behavior.</span>
+<span class="c1">#</span>
+<span class="c1"># The lines most relevant for a user of SSM are these:</span>
+<span class="c1"># `true_lds.dynamics.A = A</span>
+<span class="c1"># true_lds.dynamics.b = b`</span>
+<span class="c1">#</span>
+<span class="c1"># The first line sets the dynamics matrix $A$ to be the one which we create. The second line sets the offset vector $b$.</span>
+
+<span class="c1"># Set the parameters of the LDS</span>
+<span class="n">time_bins</span> <span class="o">=</span> <span class="mi">200</span>   <span class="c1"># number of time bins</span>
+<span class="n">state_dim</span> <span class="o">=</span> <span class="mi">2</span>     <span class="c1"># number of latent dimensions</span>
+<span class="n">obs_dim</span> <span class="o">=</span> <span class="mi">10</span>      <span class="c1"># number of observed dimensions</span>
+
+<span class="c1"># +</span>
+<span class="c1"># Make an LDS with somewhat interesting dynamics parameters</span>
+<span class="n">true_lds</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">LDS</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">,</span> <span class="n">state_dim</span><span class="p">,</span> <span class="n">emissions</span><span class="o">=</span><span class="s2">&quot;gaussian_orthog&quot;</span><span class="p">)</span>
+
+<span class="n">A0</span> <span class="o">=</span> <span class="mf">.99</span> <span class="o">*</span> <span class="n">random_rotation</span><span class="p">(</span><span class="n">state_dim</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">state_dim</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">npr</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">state_dim</span><span class="p">,</span> <span class="n">state_dim</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">S</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A0</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">R</span><span class="p">))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">state_dim</span><span class="p">)</span>
+
+<span class="c1"># Set the dynamics matrix (A) and the</span>
+<span class="n">true_lds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span>
+<span class="n">true_lds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span>
+<span class="c1"># -</span>
+
+<span class="c1"># ## 3. Sample from the LDS and plot</span>
+<span class="c1"># Since our state variable $x$ is two-dimensional, we can plot its path over time in the 2D plane. Below, we plot the trajectory of the state, along with a vector field showing the dynamics of the system. The small blue arrows show the direction that the dynamics of the system will &quot;push&quot; the state at each point.</span>
+<span class="c1">#</span>
+<span class="c1"># Though it&#39;s a bit beyond the scope of this notebook, a lot can be said about how the matrix $A$ determins the dynamics of the system. For example, if the spectral radius of $A$ is larger than 1, the system will be unstable, and the state will blow up as time goes to infinity (the spectral radius is the largest singular value).</span>
+<span class="c1"># We&#39;ve been hand-wavy in defining stability and instability.</span>
+<span class="c1"># In our case, we have explicitly constructed a stable system, and so we see that the dynamics tend towards a fixed point.</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># We see that the trajectory (shown in black) follows the blue arrows quite closely, spiraling towards the center. Why doesn&#39;t the trajectory follow the arrows exactly? This is because we have noise on the dynamics equation (the $w_t$s in the equations above).</span>
+
+<span class="c1"># +</span>
+<span class="c1"># Sample from the LDS object.</span>
+<span class="n">states</span><span class="p">,</span> <span class="n">emissions</span> <span class="o">=</span> <span class="n">true_lds</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">time_bins</span><span class="p">)</span>
+
+<span class="c1"># Plot the dynamics vector field</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">plot_dynamics_2d</span><span class="p">(</span><span class="n">A</span><span class="p">,</span>
+                     <span class="n">bias_vector</span><span class="o">=</span><span class="n">b</span><span class="p">,</span>
+                     <span class="n">mins</span><span class="o">=</span><span class="n">states</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                     <span class="n">maxs</span><span class="o">=</span><span class="n">states</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                     <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">states</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">states</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x_1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$x_2$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simulated Latent States&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">save_figures</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;lds_1.pdf&quot;</span><span class="p">)</span>
+<span class="c1"># -</span>
+
+<span class="c1"># ### Exercise 3.1: Modify trajectory</span>
+<span class="c1"># See if you can modify the LDS object created in Section 2 so that the system will be unstable. In other words, you want to set the matrix $A$ so that the largest singular value is greater than 1.</span>
+<span class="c1">#</span>
+<span class="c1"># One way of doing this is by starting with the matrix $A$ we used previously, and taking the SVD of that matrix. After taking the SVD, you can modify the largest singular value, and then re-form the dynamics matrix.</span>
+<span class="c1"># After sampling from the system and plotting, do you notice anythign different?</span>
+
+<span class="c1"># ### Exercise 3.2: Advancing $t$ timesteps.</span>
+<span class="c1"># Say the LDS starts at state $x_0$ at time zero. Can you derive an expression for the mode of $p(x_t \mid x_0)$, where $t$ is some number of timesteps in the future?</span>
+<span class="c1"># In other words, what is $ \mathbb{E} \left[x_t \mid x_0 \right]$ ?</span>
+
+<span class="c1"># ## 4. Visualize States and Observations</span>
+<span class="c1"># In the above section, we were able to plot a trajectory for the latent state over time. Since our emissions are 10-dimensional, we can&#39;t show a trajectory for them in a 10-d plane (matplotlib doesn&#39;t support that yet). Instead, we&#39;ll plot each emission coordinate $y_i$ as a function over time. We do the same for the simulated latent states.</span>
+
+<span class="c1"># +</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">height_ratios</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">obs_dim</span><span class="o">/</span><span class="n">state_dim</span><span class="p">))</span>
+
+<span class="c1"># Plot the continuous latent states</span>
+<span class="n">lim</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">states</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">state_dim</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">states</span><span class="p">[:,</span> <span class="n">d</span><span class="p">]</span> <span class="o">+</span> <span class="n">lim</span> <span class="o">*</span> <span class="n">d</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">state_dim</span><span class="p">)</span> <span class="o">*</span> <span class="n">lim</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;$x_</span><span class="si">{}</span><span class="s2">$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">state_dim</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simulated Latent States&quot;</span><span class="p">)</span>
+
+<span class="n">lim</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">emissions</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">emissions</span><span class="p">[:,</span> <span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">lim</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">)</span> <span class="o">*</span> <span class="n">lim</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;$y_{{ </span><span class="si">{}</span><span class="s2"> }}$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_bins</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simulated emissions&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">save_figures</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;lds_2.pdf&quot;</span><span class="p">)</span>
+<span class="c1"># -</span>
+
+<span class="c1"># ## 5. Fit an LDS to Data</span>
+<span class="c1"># Simulating a Linear-Gaussian LDS is all fine, but you&#39;re probably interested in fitting an LDS to your own datasets. This is useful, for instance, if you believe that your data are well described by linear dynamical system, and you&#39;re interested in examining the dynamics of that system.</span>
+<span class="c1">#</span>
+<span class="c1"># In the below cells, we&#39;ll treat the variable `emissions` which we generated above as data which comes from an unknown LDS.</span>
+<span class="c1"># The line `data = emissions` is just to emphasize that our new LDS will be fit from data.</span>
+<span class="c1">#</span>
+<span class="c1"># 1. First, we make a new LDS object:</span>
+<span class="c1"># `lds = ssm.LDS(obs_dim, state_dim, emissions=&quot;gaussian&quot;)`</span>
+<span class="c1">#</span>
+<span class="c1"># 2. Then we fit the LDS:</span>
+<span class="c1"># `</span>
+<span class="c1"># elbos, q = lds.fit(data, method=&quot;laplace_em&quot;, num_iters=10)</span>
+<span class="c1"># `</span>
+<span class="c1">#</span>
+<span class="c1"># 3. Next, we get the posterior of the latent states with:</span>
+<span class="c1"># `state_means = q.mean_continuous_states[0]</span>
+<span class="c1"># `</span>
+<span class="c1">#</span>
+<span class="c1"># 4. Finally smooth the observations using our dynamics model:</span>
+<span class="c1"># `smoothed_obs = lds.smooth(state_means, data)`</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># **`LDS.fit`** returns a tuple of `posterior, elbos`. `posterior` is an object representing the posterior of the data given the observations, $p(x \mid y)$.</span>
+<span class="c1"># By default, SSM parameterizes the posterior as a Gaussian with a block-tridiagional precision matrix.</span>
+<span class="c1"># Of most use will probably be `posterior.mean_continuous_states[0]` which returns $\mathbb{E}q(x \mid y)$.</span>
+<span class="c1"># This is our best estimate of the state trajectory given our observations.</span>
+<span class="c1"># By default, calling `LDS.fit` will use the Laplace-EM algorithm, which is a variational inference method. In the case of Gaussian dynamics and Gaussian dynamics, Laplace-EM reduces to the normal EM update rules.</span>
+<span class="c1"># Other fitting methods, like `&quot;svi&quot;` (stochastic variational inference) are also supported, but don&#39;t tend to work as well in practice.</span>
+<span class="c1"># We&#39;d recommend sticking to the default fitting methods, at least for now.</span>
+<span class="c1">#</span>
+<span class="c1"># **`elbos`** stands for &quot;evidence lower bound&quot; and it is a lower bound on the log-likelihood of the data. It is used to monitor convergence of the EM algorithm</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># **Note 1**: You&#39;ll notice when you call `fit` that you actually see two progress bars, one labeled &quot;LP&quot; and one labeled &quot;ELBO&quot;. This is because internally, the fitting is done in two steps. In order to get a good initialization of the paramters, we first initialize using an autoregressive HMM.</span>
+<span class="c1"># Then, we obtain the final parameters using the Laplace-EM algorithm. The first progress bar is showing progress for the initialization (fitting an ar-HMM).</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># **Note 2**: We realize some of the APIs are quite weird. For example, `mean_continuous_states[0]` is a bit strange. This is because the APIs are currently shared between vanilla LDS and switching LDS. We plan on fixing this soon, and will update the notebook.</span>
+
+<span class="c1"># +</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">emissions</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitting LDS with Laplace-EM using structured variational posterior&quot;</span><span class="p">)</span>
+<span class="n">lds</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">LDS</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">,</span> <span class="n">state_dim</span><span class="p">,</span> <span class="n">emissions</span><span class="o">=</span><span class="s2">&quot;gaussian&quot;</span><span class="p">)</span>
+<span class="n">elbos</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">lds</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;laplace_em&quot;</span><span class="p">,</span> <span class="n">num_iters</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Get the posterior mean of the continuous states</span>
+<span class="n">state_means</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">mean_continuous_states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Smooth the data under the variational posterior</span>
+<span class="n">smoothed_obs</span> <span class="o">=</span> <span class="n">lds</span><span class="o">.</span><span class="n">smooth</span><span class="p">(</span><span class="n">state_means</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="c1"># -</span>
+
+<span class="c1"># Below, we plot the ELBOs which we got from the `fit` function to check that our fitting procedure converged.</span>
+
+<span class="c1"># Plot the ELBOs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">elbos</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Laplace-EM&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Iteration&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;ELBO&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># ## 6. Visualize Model Fit</span>
+<span class="c1"># Below, we show the true and estimated states over time. Although there is an offset between the true state and our estimate, we see that the dynamics of the system seem to match pretty well: our estimate follows a similar trajectory as the true state.</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># We also use our model to &quot;smooth&quot; the emissions by removing noise. Once we have learned the dynamics of the system, we see that we can remove some of the jitter from the emissions.</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">state_dim</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">states</span><span class="p">[:,</span><span class="n">d</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">d</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True States&quot;</span> <span class="k">if</span> <span class="n">d</span><span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">state_means</span><span class="p">[:,</span><span class="n">d</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">d</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Estimated States&quot;</span> <span class="k">if</span> <span class="n">d</span><span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;True and Estimated States&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Plot the smoothed emissions</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">emissions</span><span class="p">[:,</span> <span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Original&quot;</span> <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">smoothed_obs</span><span class="p">[:,</span> <span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Smoothed&quot;</span> <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Original and Smoothed Observations&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Below, we visualize the true dynamics, as well as the dynamics of the system we learned. We would hope that the overall features would be the same, though the overall dynamics might be rotated.</span>
+
+<span class="c1"># +</span>
+<span class="c1"># Extract dynamics matrix from the true model</span>
+<span class="n">A_true</span> <span class="o">=</span> <span class="n">true_lds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">A</span>
+<span class="n">b_true</span> <span class="o">=</span> <span class="n">true_lds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">b</span>
+
+<span class="n">A_est</span> <span class="o">=</span> <span class="n">lds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">A</span>
+<span class="n">b_est</span> <span class="o">=</span> <span class="n">lds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">b</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plot_dynamics_2d</span><span class="p">(</span><span class="n">A_true</span><span class="p">,</span> <span class="n">b_true</span><span class="p">,</span> <span class="n">npts</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$x_1$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$x_2$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;True Dynamics&quot;</span><span class="p">)</span>
+
+<span class="n">plot_dynamics_2d</span><span class="p">(</span><span class="n">A_est</span><span class="p">,</span> <span class="n">b_est</span><span class="p">,</span> <span class="n">npts</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$x_1$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$x_2$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Inferred Dynamics&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="c1"># -</span>
+
+<span class="c1"># ### Exercise 6.1: Mis-specified Dynamics Model</span>
+<span class="c1"># What you expect to happen if you fit an HMM to your data when the true dataset was generated by an LDS? Assume that in both cases, the observation model is Gaussian, so that only the dynamics model is misspecified.</span>
+<span class="c1">#</span>
+<span class="c1"># How would the performance of your model change as you increase the number of discrete states in the HMM?</span>
+
+<span class="c1"># ## 7. Simulate Poisson data from a Poisson LDS with the same dynamics</span>
+
+<span class="c1"># In the below cells, we create an LDS with poisson observations that shares the dynamics of the LDS above.</span>
+<span class="c1"># The line:</span>
+<span class="c1">#</span>
+<span class="c1"># `plds = ssm.LDS(obs_dim, state_dim, emissions=&quot;poisson_orthog&quot;, emission_kwargs=dict(link=&quot;softplus&quot;))</span>
+<span class="c1"># `</span>
+<span class="c1">#</span>
+<span class="c1"># creates an LDS object with Poisson observations.</span>
+<span class="c1"># Specifying `link=&quot;softplus&quot;` specifes that the link function will be the softplus function.</span>
+<span class="c1"># The term `link` refers to the link a generalized linear model, which controls how the linear latent variable, in this case the state $x_t$ controls the emission distribution.</span>
+<span class="c1"># When creating a Poisson or Bernoulli LDS, the user specifies the link function, which allows in-turn sets the mean function of the emissions.</span>
+<span class="c1">#</span>
+<span class="c1"># For Poisson LDS, SSM supports two link functions:</span>
+<span class="c1"># 1. `link=&quot;softplus&quot;`: The mean function $\eta(x)$ is set to the inverse softplus function.</span>
+<span class="c1"># 2. `link=&quot;log&quot;`: The mean function  $\eta(x)$ is set to the exponential function.</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># Below, we copy the parameters from our prior LDS to the new object:</span>
+<span class="c1"># `plds.dynamics.params = copy.deepcopy(true_lds.dynamics.params)</span>
+<span class="c1"># `</span>
+<span class="c1">#</span>
+<span class="c1"># We use `copy.deepcopy` to make sure we don&#39;t accidentally change the parameters in the other LDS object.</span>
+<span class="c1"># The Poisson emissions are composed of a linear mapping from the continuous states:</span>
+<span class="c1"># $$z_t = C x_t + d + F u$$</span>
+<span class="c1"># In the below line, we set the bias vector $d$ in the above equation to zeros:</span>
+<span class="c1"># `</span>
+<span class="c1"># plds.emissions.ds = 0 * np.ones(obs_dim)</span>
+<span class="c1"># `</span>
+<span class="c1">#</span>
+<span class="c1"># After sampling from our Poisson LDS, we sample and show the trajectory, as before. We then also visualize our Poisson observations. Since Poisson observations are nonnegative integers, we plot them as a color density.</span>
+
+<span class="c1"># +</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+
+<span class="n">plds</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">LDS</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">,</span> <span class="n">state_dim</span><span class="p">,</span> <span class="n">emissions</span><span class="o">=</span><span class="s2">&quot;poisson_orthog&quot;</span><span class="p">,</span> <span class="n">emission_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">link</span><span class="o">=</span><span class="s2">&quot;softplus&quot;</span><span class="p">))</span>
+<span class="n">plds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">true_lds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+<span class="n">plds</span><span class="o">.</span><span class="n">emissions</span><span class="o">.</span><span class="n">ds</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">)</span>
+<span class="n">states_plds</span><span class="p">,</span> <span class="n">obs_plds</span> <span class="o">=</span> <span class="n">plds</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">time_bins</span><span class="p">)</span>
+
+<span class="c1"># +</span>
+<span class="c1"># Plot the dynamics vector field</span>
+<span class="n">plot_dynamics_2d</span><span class="p">(</span><span class="n">plds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">A</span><span class="p">,</span>
+                 <span class="n">plds</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">b</span><span class="p">,</span>
+                 <span class="n">mins</span><span class="o">=</span><span class="n">states_plds</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                 <span class="n">maxs</span><span class="o">=</span><span class="n">states_plds</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                 <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">states_plds</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">states_plds</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x_1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$x_2$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simulated Latent States&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">save_figures</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;lds_6.pdf&quot;</span><span class="p">)</span>
+
+<span class="c1"># +</span>
+<span class="c1"># Plot the dynamics vector field</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">height_ratios</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">obs_dim</span><span class="o">/</span><span class="n">state_dim</span><span class="p">))</span>
+
+<span class="c1"># Plot the continuous latent states</span>
+<span class="n">lim</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">states_plds</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">state_dim</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">states_plds</span><span class="p">[:,</span> <span class="n">d</span><span class="p">]</span> <span class="o">+</span> <span class="n">lim</span> <span class="o">*</span> <span class="n">d</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">state_dim</span><span class="p">)</span> <span class="o">*</span> <span class="n">lim</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;$x_</span><span class="si">{}</span><span class="s2">$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">state_dim</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simulated Latent States&quot;</span><span class="p">)</span>
+
+<span class="n">lim</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">obs_plds</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">obs_plds</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Greys&quot;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">),</span> <span class="p">[</span><span class="s2">&quot;$y_{{ </span><span class="si">{}</span><span class="s2"> }}$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">obs_dim</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simulated Poisson Observations&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">save_figures</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;lds_7.pdf&quot;</span><span class="p">)</span>
+<span class="c1"># -</span>
+
+<span class="c1"># ### Exercise 7.1: Mis-specified Observation Model</span>
+<span class="c1"># What you expect to happen if you fit an LDS with Gaussian observations to a system where the true observation model is Poisson?</span>
+<span class="c1">#</span>
+<span class="c1"># You can try this by following the steps in Section 5 using the data we generated in Section 7.</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.458 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-1b-simple-linear-dynamical-system-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/b772f15cd44d6798a6f875f07a2b0231/1b-Simple-Linear-Dynamical-System.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">1b-Simple-Linear-Dynamical-System.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/8a4d81caccdd6bbaed242bc1810d14b9/1b-Simple-Linear-Dynamical-System.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">1b-Simple-Linear-Dynamical-System.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="1-Simple-HMM-Demo.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Simple HMM Demo</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="2-Input-Driven-HMM.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Input Driven HMM</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Scott Linderman<br/>
+  
+      &copy; Copyright 2022, Scott Linderman.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

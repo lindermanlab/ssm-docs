@@ -1,0 +1,239 @@
+:orphan:
+
+SSM Notebooks
+=============
+
+Notebooks to accompany the State Space Models (SSM) library.
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Simple HMM Demo">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_1-Simple-HMM-Demo_thumb.png
+    :alt: Simple HMM Demo
+
+  :ref:`sphx_glr_auto_examples_1-Simple-HMM-Demo.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Simple HMM Demo</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Simple Linear Dynamical System Demo">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_1b-Simple-Linear-Dynamical-System_thumb.png
+    :alt: Simple Linear Dynamical System Demo
+
+  :ref:`sphx_glr_auto_examples_1b-Simple-Linear-Dynamical-System.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Simple Linear Dynamical System Demo</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Input Driven HMM">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_2-Input-Driven-HMM_thumb.png
+    :alt: Input Driven HMM
+
+  :ref:`sphx_glr_auto_examples_2-Input-Driven-HMM.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Input Driven HMM</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Input Driven Observations (GLM-HMM)">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_thumb.png
+    :alt: Input Driven Observations (GLM-HMM)
+
+  :ref:`sphx_glr_auto_examples_2b-Input-Driven-Observations-(GLM-HMM).py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Input Driven Observations (GLM-HMM)</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Switching Linear Dynamical System">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_3-Switching-Linear-Dynamical-System_thumb.png
+    :alt: Switching Linear Dynamical System
+
+  :ref:`sphx_glr_auto_examples_3-Switching-Linear-Dynamical-System.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Switching Linear Dynamical System</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Recurrent SLDS">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_4-Recurrent-SLDS_thumb.png
+    :alt: Recurrent SLDS
+
+  :ref:`sphx_glr_auto_examples_4-Recurrent-SLDS.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Recurrent SLDS</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Poisson SLDS">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_5-Poisson-SLDS_thumb.png
+    :alt: Poisson SLDS
+
+  :ref:`sphx_glr_auto_examples_5-Poisson-SLDS.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Poisson SLDS</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Poisson fLDS">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_6-Poisson-fLDS_thumb.png
+    :alt: Poisson fLDS
+
+  :ref:`sphx_glr_auto_examples_6-Poisson-fLDS.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Poisson fLDS</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Variational Laplace EM for SLDS">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_7-Variatonal-Laplace-EM-for-SLDS-Tutorial_thumb.png
+    :alt: Variational Laplace EM for SLDS
+
+  :ref:`sphx_glr_auto_examples_7-Variatonal-Laplace-EM-for-SLDS-Tutorial.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Variational Laplace EM for SLDS</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="HMM State Clustering">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_HMM-State-Clustering_thumb.png
+    :alt: HMM State Clustering
+
+  :ref:`sphx_glr_auto_examples_HMM-State-Clustering.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">HMM State Clustering</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Multi-Population rSLDS">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_Multi-Population-rSLDS_thumb.png
+    :alt: Multi-Population rSLDS
+
+  :ref:`sphx_glr_auto_examples_Multi-Population-rSLDS.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Multi-Population rSLDS</div>
+    </div>
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/1-Simple-HMM-Demo
+   /auto_examples/1b-Simple-Linear-Dynamical-System
+   /auto_examples/2-Input-Driven-HMM
+   /auto_examples/2b-Input-Driven-Observations-(GLM-HMM)
+   /auto_examples/3-Switching-Linear-Dynamical-System
+   /auto_examples/4-Recurrent-SLDS
+   /auto_examples/5-Poisson-SLDS
+   /auto_examples/6-Poisson-fLDS
+   /auto_examples/7-Variatonal-Laplace-EM-for-SLDS-Tutorial
+   /auto_examples/HMM-State-Clustering
+   /auto_examples/Multi-Population-rSLDS
+
+
+.. only:: html
+
+  .. container:: sphx-glr-footer sphx-glr-footer-gallery
+
+    .. container:: sphx-glr-download sphx-glr-download-python
+
+      :download:`Download all examples in Python source code: auto_examples_python.zip </auto_examples/auto_examples_python.zip>`
+
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+      :download:`Download all examples in Jupyter notebooks: auto_examples_jupyter.zip </auto_examples/auto_examples_jupyter.zip>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.github.io>`_

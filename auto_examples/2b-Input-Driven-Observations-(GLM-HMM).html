@@ -1,0 +1,1370 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Input Driven Observations (GLM-HMM) &#8212; ssm  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Switching Linear Dynamical System" href="3-Switching-Linear-Dynamical-System.html" />
+    <link rel="prev" title="Input Driven HMM" href="2-Input-Driven-HMM.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">ssm  documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="1-Simple-HMM-Demo.html">
+   Simple HMM Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="1b-Simple-Linear-Dynamical-System.html">
+   Simple Linear Dynamical System Demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2-Input-Driven-HMM.html">
+   Input Driven HMM
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Input Driven Observations (GLM-HMM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="3-Switching-Linear-Dynamical-System.html">
+   Switching Linear Dynamical System
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="4-Recurrent-SLDS.html">
+   Recurrent SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="5-Poisson-SLDS.html">
+   Poisson SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="6-Poisson-fLDS.html">
+   Poisson fLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="7-Variatonal-Laplace-EM-for-SLDS-Tutorial.html">
+   Variational Laplace EM for SLDS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="HMM-State-Clustering.html">
+   HMM State Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Multi-Population-rSLDS.html">
+   Multi-Population rSLDS
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/auto_examples/2b-Input-Driven-Observations-(GLM-HMM).rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Input Driven Observations (GLM-HMM)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-2b-input-driven-observations-glm-hmm-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="input-driven-observations-glm-hmm">
+<span id="sphx-glr-auto-examples-2b-input-driven-observations-glm-hmm-py"></span><h1>Input Driven Observations (GLM-HMM)<a class="headerlink" href="#input-driven-observations-glm-hmm" title="Permalink to this headline">#</a></h1>
+<ul class="sphx-glr-horizontal">
+<li><img src="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_001.png" srcset="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_001.png" alt="Generative weights, Generative transition matrix" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_002.png" srcset="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_002.png" alt="2b Input Driven Observations (GLM HMM)" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_003.png" srcset="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_003.png" alt="Weight recovery" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_004.png" srcset="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_004.png" alt="generative, recovered" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_005.png" srcset="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_005.png" alt="2b Input Driven Observations (GLM HMM)" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_006.png" srcset="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_006.png" alt="2b Input Driven Observations (GLM HMM)" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_007.png" srcset="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_007.png" alt="2b Input Driven Observations (GLM HMM)" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_008.png" srcset="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_008.png" alt="2b Input Driven Observations (GLM HMM)" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_009.png" srcset="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_009.png" alt="MLE, MAP" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_010.png" srcset="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_010.png" alt="generative, recovered - MLE, recovered - MAP" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_011.png" srcset="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_011.png" alt="example data (multinomial GLM-HMM)" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_012.png" srcset="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_012.png" alt="2b Input Driven Observations (GLM HMM)" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_013.png" srcset="../_images/sphx_glr_2b-Input-Driven-Observations-(GLM-HMM)_013.png" alt="Generative weights; class 1, Generative weights; class 2, Generative weights; class 3, Generative transition matrix, Recovered weights; class 1, Recovered weights; class 2, Recovered weights; class 3, Recovered transition matrix" class = "sphx-glr-multi-img"/></li>
+</ul>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>true ll = -900.7834782398646
+
+  0%|          | 0/200 [00:00&lt;?, ?it/s]
+LP: -1169.6:   0%|          | 0/200 [00:00&lt;?, ?it/s]
+LP: -1169.6:   0%|          | 0/200 [00:00&lt;?, ?it/s]
+LP: -1132.6:   0%|          | 0/200 [00:00&lt;?, ?it/s]
+LP: -1029.1:   0%|          | 0/200 [00:00&lt;?, ?it/s]
+LP: -979.9:   0%|          | 0/200 [00:00&lt;?, ?it/s]
+LP: -979.9:   2%|2         | 4/200 [00:00&lt;00:06, 31.42it/s]
+LP: -964.4:   2%|2         | 4/200 [00:00&lt;00:06, 31.42it/s]
+LP: -954.5:   2%|2         | 4/200 [00:00&lt;00:06, 31.42it/s]
+LP: -945.2:   2%|2         | 4/200 [00:00&lt;00:06, 31.42it/s]
+LP: -937.1:   2%|2         | 4/200 [00:00&lt;00:06, 31.42it/s]
+LP: -929.4:   2%|2         | 4/200 [00:00&lt;00:06, 31.42it/s]
+LP: -929.4:   4%|4         | 9/200 [00:00&lt;00:05, 37.72it/s]
+LP: -921.0:   4%|4         | 9/200 [00:00&lt;00:05, 37.72it/s]
+LP: -911.7:   4%|4         | 9/200 [00:00&lt;00:05, 37.72it/s]
+LP: -902.9:   4%|4         | 9/200 [00:00&lt;00:05, 37.72it/s]
+LP: -898.1:   4%|4         | 9/200 [00:00&lt;00:05, 37.72it/s]
+LP: -896.3:   4%|4         | 9/200 [00:00&lt;00:05, 37.72it/s]
+LP: -896.3:   7%|7         | 14/200 [00:00&lt;00:04, 41.16it/s]
+LP: -895.7:   7%|7         | 14/200 [00:00&lt;00:04, 41.16it/s]
+LP: -895.5:   7%|7         | 14/200 [00:00&lt;00:04, 41.16it/s]
+LP: -895.4:   7%|7         | 14/200 [00:00&lt;00:04, 41.16it/s]
+LP: -895.3:   7%|7         | 14/200 [00:00&lt;00:04, 41.16it/s]
+LP: -895.3:   7%|7         | 14/200 [00:00&lt;00:04, 41.16it/s]
+LP: -895.3:   7%|7         | 14/200 [00:00&lt;00:04, 41.16it/s]
+LP: -895.3:  10%|#         | 20/200 [00:00&lt;00:03, 47.21it/s]
+LP: -895.3:  10%|#         | 20/200 [00:00&lt;00:03, 47.21it/s]
+LP: -895.3:  10%|#         | 20/200 [00:00&lt;00:03, 47.21it/s]
+LP: -895.3:  10%|#         | 20/200 [00:00&lt;00:03, 47.21it/s]
+LP: -895.3:  10%|#         | 20/200 [00:00&lt;00:03, 47.21it/s]
+LP: -895.3:  10%|#         | 20/200 [00:00&lt;00:03, 47.21it/s]
+LP: -895.3:  10%|#         | 20/200 [00:00&lt;00:03, 47.21it/s]
+LP: -895.3:  10%|#         | 20/200 [00:00&lt;00:03, 47.21it/s]
+Converged to LP: -895.3:  10%|#         | 20/200 [00:00&lt;00:03, 47.21it/s]
+Converged to LP: -895.3:  13%|#3        | 26/200 [00:00&lt;00:03, 47.48it/s]
+
+  0%|          | 0/200 [00:00&lt;?, ?it/s]
+LP: -1147.8:   0%|          | 0/200 [00:00&lt;?, ?it/s]
+LP: -1148.5:   0%|          | 0/200 [00:00&lt;?, ?it/s]
+LP: -1084.4:   0%|          | 0/200 [00:00&lt;?, ?it/s]
+LP: -1002.1:   0%|          | 0/200 [00:00&lt;?, ?it/s]
+LP: -947.0:   0%|          | 0/200 [00:00&lt;?, ?it/s]
+LP: -947.0:   2%|2         | 4/200 [00:00&lt;00:06, 32.50it/s]
+LP: -921.2:   2%|2         | 4/200 [00:00&lt;00:06, 32.50it/s]
+LP: -908.7:   2%|2         | 4/200 [00:00&lt;00:06, 32.50it/s]
+LP: -900.2:   2%|2         | 4/200 [00:00&lt;00:06, 32.50it/s]
+LP: -894.5:   2%|2         | 4/200 [00:00&lt;00:06, 32.50it/s]
+LP: -891.6:   2%|2         | 4/200 [00:00&lt;00:06, 32.50it/s]
+LP: -891.6:   4%|4         | 9/200 [00:00&lt;00:04, 38.91it/s]
+LP: -890.4:   4%|4         | 9/200 [00:00&lt;00:04, 38.91it/s]
+LP: -889.9:   4%|4         | 9/200 [00:00&lt;00:04, 38.91it/s]
+LP: -889.7:   4%|4         | 9/200 [00:00&lt;00:04, 38.91it/s]
+LP: -889.6:   4%|4         | 9/200 [00:00&lt;00:04, 38.91it/s]
+LP: -889.6:   4%|4         | 9/200 [00:00&lt;00:04, 38.91it/s]
+LP: -889.6:   4%|4         | 9/200 [00:00&lt;00:04, 38.91it/s]
+LP: -889.6:   8%|7         | 15/200 [00:00&lt;00:03, 46.53it/s]
+LP: -889.6:   8%|7         | 15/200 [00:00&lt;00:03, 46.53it/s]
+LP: -889.6:   8%|7         | 15/200 [00:00&lt;00:03, 46.53it/s]
+LP: -889.6:   8%|7         | 15/200 [00:00&lt;00:03, 46.53it/s]
+LP: -889.6:   8%|7         | 15/200 [00:00&lt;00:03, 46.53it/s]
+LP: -889.6:   8%|7         | 15/200 [00:00&lt;00:03, 46.53it/s]
+LP: -889.6:   8%|7         | 15/200 [00:00&lt;00:03, 46.53it/s]
+LP: -889.6:   8%|7         | 15/200 [00:00&lt;00:03, 46.53it/s]
+Converged to LP: -889.6:   8%|7         | 15/200 [00:00&lt;00:03, 46.53it/s]
+Converged to LP: -889.6:  10%|#         | 21/200 [00:00&lt;00:03, 48.65it/s]
+(4, 2, 2)
+true ll = -16835.397370367293
+
+  0%|          | 0/500 [00:00&lt;?, ?it/s]
+LP: -19291.6:   0%|          | 0/500 [00:00&lt;?, ?it/s]
+LP: -19291.6:   0%|          | 0/500 [00:00&lt;?, ?it/s]
+LP: -19250.8:   0%|          | 0/500 [00:00&lt;?, ?it/s]
+LP: -19250.8:   0%|          | 2/500 [00:00&lt;00:52,  9.40it/s]
+LP: -18879.3:   0%|          | 2/500 [00:00&lt;00:52,  9.40it/s]
+LP: -18879.3:   1%|          | 3/500 [00:00&lt;00:57,  8.62it/s]
+LP: -18052.3:   1%|          | 3/500 [00:00&lt;00:57,  8.62it/s]
+LP: -18052.3:   1%|          | 4/500 [00:00&lt;00:59,  8.27it/s]
+LP: -17552.4:   1%|          | 4/500 [00:00&lt;00:59,  8.27it/s]
+LP: -17552.4:   1%|1         | 5/500 [00:00&lt;01:01,  8.05it/s]
+LP: -17278.2:   1%|1         | 5/500 [00:00&lt;01:01,  8.05it/s]
+LP: -17278.2:   1%|1         | 6/500 [00:00&lt;01:01,  8.09it/s]
+LP: -17141.8:   1%|1         | 6/500 [00:00&lt;01:01,  8.09it/s]
+LP: -17141.8:   1%|1         | 7/500 [00:00&lt;00:59,  8.30it/s]
+LP: -17077.7:   1%|1         | 7/500 [00:00&lt;00:59,  8.30it/s]
+LP: -17077.7:   2%|1         | 8/500 [00:00&lt;00:58,  8.45it/s]
+LP: -17037.6:   2%|1         | 8/500 [00:01&lt;00:58,  8.45it/s]
+LP: -17037.6:   2%|1         | 9/500 [00:01&lt;00:57,  8.55it/s]
+LP: -17004.9:   2%|1         | 9/500 [00:01&lt;00:57,  8.55it/s]
+LP: -17004.9:   2%|2         | 10/500 [00:01&lt;00:55,  8.81it/s]
+LP: -16975.2:   2%|2         | 10/500 [00:01&lt;00:55,  8.81it/s]
+LP: -16948.2:   2%|2         | 10/500 [00:01&lt;00:55,  8.81it/s]
+LP: -16948.2:   2%|2         | 12/500 [00:01&lt;00:51,  9.45it/s]
+LP: -16924.5:   2%|2         | 12/500 [00:01&lt;00:51,  9.45it/s]
+LP: -16904.3:   2%|2         | 12/500 [00:01&lt;00:51,  9.45it/s]
+LP: -16904.3:   3%|2         | 14/500 [00:01&lt;00:48,  9.93it/s]
+LP: -16887.7:   3%|2         | 14/500 [00:01&lt;00:48,  9.93it/s]
+LP: -16874.2:   3%|2         | 14/500 [00:01&lt;00:48,  9.93it/s]
+LP: -16874.2:   3%|3         | 16/500 [00:01&lt;00:47, 10.28it/s]
+LP: -16863.3:   3%|3         | 16/500 [00:01&lt;00:47, 10.28it/s]
+LP: -16854.6:   3%|3         | 16/500 [00:01&lt;00:47, 10.28it/s]
+LP: -16854.6:   4%|3         | 18/500 [00:01&lt;00:46, 10.44it/s]
+LP: -16847.9:   4%|3         | 18/500 [00:02&lt;00:46, 10.44it/s]
+LP: -16842.7:   4%|3         | 18/500 [00:02&lt;00:46, 10.44it/s]
+LP: -16842.7:   4%|4         | 20/500 [00:02&lt;00:44, 10.69it/s]
+LP: -16838.6:   4%|4         | 20/500 [00:02&lt;00:44, 10.69it/s]
+LP: -16835.5:   4%|4         | 20/500 [00:02&lt;00:44, 10.69it/s]
+LP: -16835.5:   4%|4         | 22/500 [00:02&lt;00:42, 11.19it/s]
+LP: -16833.1:   4%|4         | 22/500 [00:02&lt;00:42, 11.19it/s]
+LP: -16831.2:   4%|4         | 22/500 [00:02&lt;00:42, 11.19it/s]
+LP: -16831.2:   5%|4         | 24/500 [00:02&lt;00:41, 11.56it/s]
+LP: -16829.8:   5%|4         | 24/500 [00:02&lt;00:41, 11.56it/s]
+LP: -16828.6:   5%|4         | 24/500 [00:02&lt;00:41, 11.56it/s]
+LP: -16828.6:   5%|5         | 26/500 [00:02&lt;00:39, 12.00it/s]
+LP: -16827.7:   5%|5         | 26/500 [00:02&lt;00:39, 12.00it/s]
+LP: -16826.9:   5%|5         | 26/500 [00:02&lt;00:39, 12.00it/s]
+LP: -16826.9:   6%|5         | 28/500 [00:02&lt;00:39, 12.06it/s]
+LP: -16826.3:   6%|5         | 28/500 [00:02&lt;00:39, 12.06it/s]
+LP: -16825.8:   6%|5         | 28/500 [00:02&lt;00:39, 12.06it/s]
+LP: -16825.8:   6%|6         | 30/500 [00:02&lt;00:36, 12.82it/s]
+LP: -16825.5:   6%|6         | 30/500 [00:02&lt;00:36, 12.82it/s]
+LP: -16825.1:   6%|6         | 30/500 [00:03&lt;00:36, 12.82it/s]
+LP: -16825.1:   6%|6         | 32/500 [00:03&lt;00:34, 13.40it/s]
+LP: -16824.8:   6%|6         | 32/500 [00:03&lt;00:34, 13.40it/s]
+LP: -16824.6:   6%|6         | 32/500 [00:03&lt;00:34, 13.40it/s]
+LP: -16824.6:   7%|6         | 34/500 [00:03&lt;00:34, 13.61it/s]
+LP: -16824.3:   7%|6         | 34/500 [00:03&lt;00:34, 13.61it/s]
+LP: -16824.2:   7%|6         | 34/500 [00:03&lt;00:34, 13.61it/s]
+LP: -16824.2:   7%|7         | 36/500 [00:03&lt;00:32, 14.24it/s]
+LP: -16824.0:   7%|7         | 36/500 [00:03&lt;00:32, 14.24it/s]
+LP: -16823.9:   7%|7         | 36/500 [00:03&lt;00:32, 14.24it/s]
+LP: -16823.9:   8%|7         | 38/500 [00:03&lt;00:30, 15.28it/s]
+LP: -16823.8:   8%|7         | 38/500 [00:03&lt;00:30, 15.28it/s]
+LP: -16823.7:   8%|7         | 38/500 [00:03&lt;00:30, 15.28it/s]
+LP: -16823.7:   8%|8         | 40/500 [00:03&lt;00:29, 15.48it/s]
+LP: -16823.6:   8%|8         | 40/500 [00:03&lt;00:29, 15.48it/s]
+LP: -16823.5:   8%|8         | 40/500 [00:03&lt;00:29, 15.48it/s]
+LP: -16823.5:   8%|8         | 42/500 [00:03&lt;00:28, 15.93it/s]
+LP: -16823.4:   8%|8         | 42/500 [00:03&lt;00:28, 15.93it/s]
+LP: -16823.4:   8%|8         | 42/500 [00:03&lt;00:28, 15.93it/s]
+LP: -16823.4:   9%|8         | 44/500 [00:03&lt;00:27, 16.61it/s]
+LP: -16823.3:   9%|8         | 44/500 [00:03&lt;00:27, 16.61it/s]
+LP: -16823.3:   9%|8         | 44/500 [00:03&lt;00:27, 16.61it/s]
+LP: -16823.3:   9%|9         | 46/500 [00:03&lt;00:27, 16.77it/s]
+LP: -16823.2:   9%|9         | 46/500 [00:03&lt;00:27, 16.77it/s]
+LP: -16823.2:   9%|9         | 46/500 [00:03&lt;00:27, 16.77it/s]
+LP: -16823.2:  10%|9         | 48/500 [00:03&lt;00:26, 16.87it/s]
+LP: -16823.2:  10%|9         | 48/500 [00:04&lt;00:26, 16.87it/s]
+LP: -16823.1:  10%|9         | 48/500 [00:04&lt;00:26, 16.87it/s]
+LP: -16823.1:  10%|#         | 50/500 [00:04&lt;00:25, 17.32it/s]
+LP: -16823.1:  10%|#         | 50/500 [00:04&lt;00:25, 17.32it/s]
+LP: -16823.1:  10%|#         | 50/500 [00:04&lt;00:25, 17.32it/s]
+LP: -16823.1:  10%|#         | 52/500 [00:04&lt;00:25, 17.27it/s]
+LP: -16823.0:  10%|#         | 52/500 [00:04&lt;00:25, 17.27it/s]
+LP: -16823.0:  10%|#         | 52/500 [00:04&lt;00:25, 17.27it/s]
+LP: -16823.0:  11%|#         | 54/500 [00:04&lt;00:25, 17.61it/s]
+LP: -16823.0:  11%|#         | 54/500 [00:04&lt;00:25, 17.61it/s]
+LP: -16823.0:  11%|#         | 54/500 [00:04&lt;00:25, 17.61it/s]
+LP: -16823.0:  11%|#1        | 56/500 [00:04&lt;00:25, 17.46it/s]
+LP: -16823.0:  11%|#1        | 56/500 [00:04&lt;00:25, 17.46it/s]
+LP: -16822.9:  11%|#1        | 56/500 [00:04&lt;00:25, 17.46it/s]
+LP: -16822.9:  12%|#1        | 58/500 [00:04&lt;00:25, 17.36it/s]
+LP: -16822.9:  12%|#1        | 58/500 [00:04&lt;00:25, 17.36it/s]
+LP: -16822.9:  12%|#1        | 58/500 [00:04&lt;00:25, 17.36it/s]
+LP: -16822.9:  12%|#2        | 60/500 [00:04&lt;00:24, 17.69it/s]
+LP: -16822.9:  12%|#2        | 60/500 [00:04&lt;00:24, 17.69it/s]
+LP: -16822.9:  12%|#2        | 60/500 [00:04&lt;00:24, 17.69it/s]
+LP: -16822.9:  12%|#2        | 62/500 [00:04&lt;00:24, 17.90it/s]
+LP: -16822.9:  12%|#2        | 62/500 [00:04&lt;00:24, 17.90it/s]
+LP: -16822.8:  12%|#2        | 62/500 [00:04&lt;00:24, 17.90it/s]
+LP: -16822.8:  13%|#2        | 64/500 [00:04&lt;00:24, 17.66it/s]
+LP: -16822.8:  13%|#2        | 64/500 [00:04&lt;00:24, 17.66it/s]
+LP: -16822.8:  13%|#2        | 64/500 [00:04&lt;00:24, 17.66it/s]
+LP: -16822.8:  13%|#3        | 66/500 [00:04&lt;00:24, 17.90it/s]
+LP: -16822.8:  13%|#3        | 66/500 [00:05&lt;00:24, 17.90it/s]
+LP: -16822.8:  13%|#3        | 66/500 [00:05&lt;00:24, 17.90it/s]
+LP: -16822.8:  14%|#3        | 68/500 [00:05&lt;00:23, 18.06it/s]
+LP: -16822.8:  14%|#3        | 68/500 [00:05&lt;00:23, 18.06it/s]
+LP: -16822.8:  14%|#3        | 68/500 [00:05&lt;00:23, 18.06it/s]
+LP: -16822.8:  14%|#4        | 70/500 [00:05&lt;00:24, 17.76it/s]
+LP: -16822.8:  14%|#4        | 70/500 [00:05&lt;00:24, 17.76it/s]
+LP: -16822.8:  14%|#4        | 70/500 [00:05&lt;00:24, 17.76it/s]
+LP: -16822.8:  14%|#4        | 72/500 [00:05&lt;00:23, 17.96it/s]
+LP: -16822.8:  14%|#4        | 72/500 [00:05&lt;00:23, 17.96it/s]
+LP: -16822.7:  14%|#4        | 72/500 [00:05&lt;00:23, 17.96it/s]
+LP: -16822.7:  15%|#4        | 74/500 [00:05&lt;00:23, 18.11it/s]
+LP: -16822.7:  15%|#4        | 74/500 [00:05&lt;00:23, 18.11it/s]
+LP: -16822.7:  15%|#4        | 74/500 [00:05&lt;00:23, 18.11it/s]
+LP: -16822.7:  15%|#5        | 76/500 [00:05&lt;00:23, 18.22it/s]
+LP: -16822.7:  15%|#5        | 76/500 [00:05&lt;00:23, 18.22it/s]
+LP: -16822.7:  15%|#5        | 76/500 [00:05&lt;00:23, 18.22it/s]
+LP: -16822.7:  16%|#5        | 78/500 [00:05&lt;00:23, 18.29it/s]
+LP: -16822.7:  16%|#5        | 78/500 [00:05&lt;00:23, 18.29it/s]
+LP: -16822.7:  16%|#5        | 78/500 [00:05&lt;00:23, 18.29it/s]
+LP: -16822.7:  16%|#6        | 80/500 [00:05&lt;00:23, 17.93it/s]
+LP: -16822.7:  16%|#6        | 80/500 [00:05&lt;00:23, 17.93it/s]
+LP: -16822.7:  16%|#6        | 80/500 [00:05&lt;00:23, 17.93it/s]
+LP: -16822.7:  16%|#6        | 82/500 [00:05&lt;00:23, 17.69it/s]
+LP: -16822.7:  16%|#6        | 82/500 [00:05&lt;00:23, 17.69it/s]
+LP: -16822.7:  16%|#6        | 82/500 [00:05&lt;00:23, 17.69it/s]
+LP: -16822.7:  17%|#6        | 84/500 [00:05&lt;00:23, 17.93it/s]
+LP: -16822.7:  17%|#6        | 84/500 [00:06&lt;00:23, 17.93it/s]
+LP: -16822.7:  17%|#6        | 84/500 [00:06&lt;00:23, 17.93it/s]
+LP: -16822.7:  17%|#7        | 86/500 [00:06&lt;00:22, 18.09it/s]
+LP: -16822.7:  17%|#7        | 86/500 [00:06&lt;00:22, 18.09it/s]
+LP: -16822.7:  17%|#7        | 86/500 [00:06&lt;00:22, 18.09it/s]
+LP: -16822.7:  18%|#7        | 88/500 [00:06&lt;00:22, 18.20it/s]
+LP: -16822.7:  18%|#7        | 88/500 [00:06&lt;00:22, 18.20it/s]
+LP: -16822.7:  18%|#7        | 88/500 [00:06&lt;00:22, 18.20it/s]
+LP: -16822.7:  18%|#8        | 90/500 [00:06&lt;00:22, 18.28it/s]
+LP: -16822.7:  18%|#8        | 90/500 [00:06&lt;00:22, 18.28it/s]
+LP: -16822.7:  18%|#8        | 90/500 [00:06&lt;00:22, 18.28it/s]
+LP: -16822.7:  18%|#8        | 92/500 [00:06&lt;00:22, 18.34it/s]
+LP: -16822.7:  18%|#8        | 92/500 [00:06&lt;00:22, 18.34it/s]
+LP: -16822.7:  18%|#8        | 92/500 [00:06&lt;00:22, 18.34it/s]
+LP: -16822.7:  19%|#8        | 94/500 [00:06&lt;00:22, 18.39it/s]
+LP: -16822.7:  19%|#8        | 94/500 [00:06&lt;00:22, 18.39it/s]
+LP: -16822.7:  19%|#8        | 94/500 [00:06&lt;00:22, 18.39it/s]
+LP: -16822.7:  19%|#9        | 96/500 [00:06&lt;00:21, 18.40it/s]
+LP: -16822.7:  19%|#9        | 96/500 [00:06&lt;00:21, 18.40it/s]
+LP: -16822.6:  19%|#9        | 96/500 [00:06&lt;00:21, 18.40it/s]
+LP: -16822.6:  20%|#9        | 98/500 [00:06&lt;00:22, 18.01it/s]
+LP: -16822.6:  20%|#9        | 98/500 [00:06&lt;00:22, 18.01it/s]
+LP: -16822.6:  20%|#9        | 98/500 [00:06&lt;00:22, 18.01it/s]
+LP: -16822.6:  20%|##        | 100/500 [00:06&lt;00:22, 18.15it/s]
+LP: -16822.6:  20%|##        | 100/500 [00:06&lt;00:22, 18.15it/s]
+LP: -16822.6:  20%|##        | 100/500 [00:06&lt;00:22, 18.15it/s]
+LP: -16822.6:  20%|##        | 102/500 [00:06&lt;00:21, 18.25it/s]
+LP: -16822.6:  20%|##        | 102/500 [00:07&lt;00:21, 18.25it/s]
+LP: -16822.6:  20%|##        | 102/500 [00:07&lt;00:21, 18.25it/s]
+LP: -16822.6:  21%|##        | 104/500 [00:07&lt;00:21, 18.30it/s]
+LP: -16822.6:  21%|##        | 104/500 [00:07&lt;00:21, 18.30it/s]
+LP: -16822.6:  21%|##        | 104/500 [00:07&lt;00:21, 18.30it/s]
+LP: -16822.6:  21%|##1       | 106/500 [00:07&lt;00:21, 18.34it/s]
+LP: -16822.6:  21%|##1       | 106/500 [00:07&lt;00:21, 18.34it/s]
+LP: -16822.6:  21%|##1       | 106/500 [00:07&lt;00:21, 18.34it/s]
+LP: -16822.6:  22%|##1       | 108/500 [00:07&lt;00:21, 18.39it/s]
+LP: -16822.6:  22%|##1       | 108/500 [00:07&lt;00:21, 18.39it/s]
+LP: -16822.6:  22%|##1       | 108/500 [00:07&lt;00:21, 18.39it/s]
+LP: -16822.6:  22%|##2       | 110/500 [00:07&lt;00:21, 18.41it/s]
+LP: -16822.6:  22%|##2       | 110/500 [00:07&lt;00:21, 18.41it/s]
+LP: -16822.6:  22%|##2       | 110/500 [00:07&lt;00:21, 18.41it/s]
+LP: -16822.6:  22%|##2       | 112/500 [00:07&lt;00:21, 18.43it/s]
+LP: -16822.6:  22%|##2       | 112/500 [00:07&lt;00:21, 18.43it/s]
+LP: -16822.6:  22%|##2       | 112/500 [00:07&lt;00:21, 18.43it/s]
+LP: -16822.6:  23%|##2       | 114/500 [00:07&lt;00:20, 18.43it/s]
+LP: -16822.6:  23%|##2       | 114/500 [00:07&lt;00:20, 18.43it/s]
+LP: -16822.6:  23%|##2       | 114/500 [00:07&lt;00:20, 18.43it/s]
+LP: -16822.6:  23%|##3       | 116/500 [00:07&lt;00:20, 18.38it/s]
+LP: -16822.6:  23%|##3       | 116/500 [00:07&lt;00:20, 18.38it/s]
+LP: -16822.6:  23%|##3       | 116/500 [00:07&lt;00:20, 18.38it/s]
+LP: -16822.6:  24%|##3       | 118/500 [00:07&lt;00:20, 18.27it/s]
+LP: -16822.6:  24%|##3       | 118/500 [00:07&lt;00:20, 18.27it/s]
+LP: -16822.6:  24%|##3       | 118/500 [00:07&lt;00:20, 18.27it/s]
+LP: -16822.6:  24%|##4       | 120/500 [00:07&lt;00:20, 18.31it/s]
+LP: -16822.6:  24%|##4       | 120/500 [00:07&lt;00:20, 18.31it/s]
+LP: -16822.6:  24%|##4       | 120/500 [00:08&lt;00:20, 18.31it/s]
+LP: -16822.6:  24%|##4       | 122/500 [00:08&lt;00:20, 18.34it/s]
+LP: -16822.6:  24%|##4       | 122/500 [00:08&lt;00:20, 18.34it/s]
+LP: -16822.6:  24%|##4       | 122/500 [00:08&lt;00:20, 18.34it/s]
+LP: -16822.6:  25%|##4       | 124/500 [00:08&lt;00:20, 18.36it/s]
+LP: -16822.6:  25%|##4       | 124/500 [00:08&lt;00:20, 18.36it/s]
+LP: -16822.6:  25%|##4       | 124/500 [00:08&lt;00:20, 18.36it/s]
+LP: -16822.6:  25%|##5       | 126/500 [00:08&lt;00:20, 18.39it/s]
+LP: -16822.6:  25%|##5       | 126/500 [00:08&lt;00:20, 18.39it/s]
+LP: -16822.6:  25%|##5       | 126/500 [00:08&lt;00:20, 18.39it/s]
+LP: -16822.6:  26%|##5       | 128/500 [00:08&lt;00:20, 18.41it/s]
+LP: -16822.6:  26%|##5       | 128/500 [00:08&lt;00:20, 18.41it/s]
+LP: -16822.6:  26%|##5       | 128/500 [00:08&lt;00:20, 18.41it/s]
+LP: -16822.6:  26%|##6       | 130/500 [00:08&lt;00:20, 18.06it/s]
+LP: -16822.6:  26%|##6       | 130/500 [00:08&lt;00:20, 18.06it/s]
+LP: -16822.6:  26%|##6       | 130/500 [00:08&lt;00:20, 18.06it/s]
+LP: -16822.6:  26%|##6       | 132/500 [00:08&lt;00:21, 17.31it/s]
+LP: -16822.6:  26%|##6       | 132/500 [00:08&lt;00:21, 17.31it/s]
+LP: -16822.6:  26%|##6       | 132/500 [00:08&lt;00:21, 17.31it/s]
+LP: -16822.6:  27%|##6       | 134/500 [00:08&lt;00:21, 17.07it/s]
+LP: -16822.6:  27%|##6       | 134/500 [00:08&lt;00:21, 17.07it/s]
+LP: -16822.6:  27%|##6       | 134/500 [00:08&lt;00:21, 17.07it/s]
+LP: -16822.6:  27%|##7       | 136/500 [00:08&lt;00:21, 16.94it/s]
+LP: -16822.6:  27%|##7       | 136/500 [00:08&lt;00:21, 16.94it/s]
+LP: -16822.6:  27%|##7       | 136/500 [00:08&lt;00:21, 16.94it/s]
+LP: -16822.6:  28%|##7       | 138/500 [00:08&lt;00:21, 16.83it/s]
+LP: -16822.6:  28%|##7       | 138/500 [00:09&lt;00:21, 16.83it/s]
+LP: -16822.6:  28%|##7       | 138/500 [00:09&lt;00:21, 16.83it/s]
+LP: -16822.6:  28%|##8       | 140/500 [00:09&lt;00:21, 16.77it/s]
+LP: -16822.6:  28%|##8       | 140/500 [00:09&lt;00:21, 16.77it/s]
+LP: -16822.6:  28%|##8       | 140/500 [00:09&lt;00:21, 16.77it/s]
+LP: -16822.6:  28%|##8       | 142/500 [00:09&lt;00:21, 16.72it/s]
+LP: -16822.6:  28%|##8       | 142/500 [00:09&lt;00:21, 16.72it/s]
+LP: -16822.6:  28%|##8       | 142/500 [00:09&lt;00:21, 16.72it/s]
+LP: -16822.6:  29%|##8       | 144/500 [00:09&lt;00:20, 17.16it/s]
+LP: -16822.6:  29%|##8       | 144/500 [00:09&lt;00:20, 17.16it/s]
+LP: -16822.6:  29%|##8       | 144/500 [00:09&lt;00:20, 17.16it/s]
+LP: -16822.6:  29%|##9       | 146/500 [00:09&lt;00:20, 17.52it/s]
+LP: -16822.6:  29%|##9       | 146/500 [00:09&lt;00:20, 17.52it/s]
+LP: -16822.6:  29%|##9       | 146/500 [00:09&lt;00:20, 17.52it/s]
+LP: -16822.6:  30%|##9       | 148/500 [00:09&lt;00:19, 17.79it/s]
+LP: -16822.6:  30%|##9       | 148/500 [00:09&lt;00:19, 17.79it/s]
+LP: -16822.6:  30%|##9       | 148/500 [00:09&lt;00:19, 17.79it/s]
+LP: -16822.6:  30%|###       | 150/500 [00:09&lt;00:19, 17.98it/s]
+LP: -16822.6:  30%|###       | 150/500 [00:09&lt;00:19, 17.98it/s]
+LP: -16822.6:  30%|###       | 150/500 [00:09&lt;00:19, 17.98it/s]
+LP: -16822.6:  30%|###       | 152/500 [00:09&lt;00:19, 18.11it/s]
+LP: -16822.6:  30%|###       | 152/500 [00:09&lt;00:19, 18.11it/s]
+LP: -16822.6:  30%|###       | 152/500 [00:09&lt;00:19, 18.11it/s]
+LP: -16822.6:  31%|###       | 154/500 [00:09&lt;00:18, 18.23it/s]
+LP: -16822.6:  31%|###       | 154/500 [00:09&lt;00:18, 18.23it/s]
+LP: -16822.6:  31%|###       | 154/500 [00:09&lt;00:18, 18.23it/s]
+LP: -16822.6:  31%|###1      | 156/500 [00:09&lt;00:18, 18.30it/s]
+LP: -16822.6:  31%|###1      | 156/500 [00:10&lt;00:18, 18.30it/s]
+LP: -16822.6:  31%|###1      | 156/500 [00:10&lt;00:18, 18.30it/s]
+LP: -16822.6:  32%|###1      | 158/500 [00:10&lt;00:18, 18.35it/s]
+LP: -16822.6:  32%|###1      | 158/500 [00:10&lt;00:18, 18.35it/s]
+LP: -16822.6:  32%|###1      | 158/500 [00:10&lt;00:18, 18.35it/s]
+LP: -16822.6:  32%|###2      | 160/500 [00:10&lt;00:18, 18.38it/s]
+LP: -16822.6:  32%|###2      | 160/500 [00:10&lt;00:18, 18.38it/s]
+LP: -16822.6:  32%|###2      | 160/500 [00:10&lt;00:18, 18.38it/s]
+LP: -16822.6:  32%|###2      | 162/500 [00:10&lt;00:18, 18.41it/s]
+LP: -16822.6:  32%|###2      | 162/500 [00:10&lt;00:18, 18.41it/s]
+LP: -16822.6:  32%|###2      | 162/500 [00:10&lt;00:18, 18.41it/s]
+LP: -16822.6:  33%|###2      | 164/500 [00:10&lt;00:18, 18.43it/s]
+LP: -16822.6:  33%|###2      | 164/500 [00:10&lt;00:18, 18.43it/s]
+LP: -16822.6:  33%|###2      | 164/500 [00:10&lt;00:18, 18.43it/s]
+LP: -16822.6:  33%|###3      | 166/500 [00:10&lt;00:18, 18.43it/s]
+LP: -16822.6:  33%|###3      | 166/500 [00:10&lt;00:18, 18.43it/s]
+LP: -16822.6:  33%|###3      | 166/500 [00:10&lt;00:18, 18.43it/s]
+LP: -16822.6:  34%|###3      | 168/500 [00:10&lt;00:18, 18.42it/s]
+LP: -16822.6:  34%|###3      | 168/500 [00:10&lt;00:18, 18.42it/s]
+LP: -16822.6:  34%|###3      | 168/500 [00:10&lt;00:18, 18.42it/s]
+LP: -16822.6:  34%|###4      | 170/500 [00:10&lt;00:18, 18.10it/s]
+LP: -16822.6:  34%|###4      | 170/500 [00:10&lt;00:18, 18.10it/s]
+LP: -16822.6:  34%|###4      | 170/500 [00:10&lt;00:18, 18.10it/s]
+LP: -16822.6:  34%|###4      | 172/500 [00:10&lt;00:18, 17.94it/s]
+LP: -16822.6:  34%|###4      | 172/500 [00:10&lt;00:18, 17.94it/s]
+LP: -16822.6:  34%|###4      | 172/500 [00:10&lt;00:18, 17.94it/s]
+LP: -16822.6:  35%|###4      | 174/500 [00:10&lt;00:18, 17.82it/s]
+LP: -16822.6:  35%|###4      | 174/500 [00:11&lt;00:18, 17.82it/s]
+LP: -16822.6:  35%|###4      | 174/500 [00:11&lt;00:18, 17.82it/s]
+LP: -16822.6:  35%|###5      | 176/500 [00:11&lt;00:18, 17.75it/s]
+LP: -16822.6:  35%|###5      | 176/500 [00:11&lt;00:18, 17.75it/s]
+LP: -16822.6:  35%|###5      | 176/500 [00:11&lt;00:18, 17.75it/s]
+LP: -16822.6:  36%|###5      | 178/500 [00:11&lt;00:18, 17.69it/s]
+LP: -16822.6:  36%|###5      | 178/500 [00:11&lt;00:18, 17.69it/s]
+LP: -16822.6:  36%|###5      | 178/500 [00:11&lt;00:18, 17.69it/s]
+LP: -16822.6:  36%|###6      | 180/500 [00:11&lt;00:18, 17.66it/s]
+LP: -16822.6:  36%|###6      | 180/500 [00:11&lt;00:18, 17.66it/s]
+LP: -16822.6:  36%|###6      | 180/500 [00:11&lt;00:18, 17.66it/s]
+LP: -16822.6:  36%|###6      | 182/500 [00:11&lt;00:18, 17.63it/s]
+LP: -16822.6:  36%|###6      | 182/500 [00:11&lt;00:18, 17.63it/s]
+LP: -16822.6:  36%|###6      | 182/500 [00:11&lt;00:18, 17.63it/s]
+LP: -16822.6:  37%|###6      | 184/500 [00:11&lt;00:17, 17.62it/s]
+LP: -16822.6:  37%|###6      | 184/500 [00:11&lt;00:17, 17.62it/s]
+LP: -16822.6:  37%|###6      | 184/500 [00:11&lt;00:17, 17.62it/s]
+LP: -16822.6:  37%|###7      | 186/500 [00:11&lt;00:17, 17.60it/s]
+LP: -16822.6:  37%|###7      | 186/500 [00:11&lt;00:17, 17.60it/s]
+LP: -16822.6:  37%|###7      | 186/500 [00:11&lt;00:17, 17.60it/s]
+LP: -16822.6:  38%|###7      | 188/500 [00:11&lt;00:17, 17.57it/s]
+LP: -16822.6:  38%|###7      | 188/500 [00:11&lt;00:17, 17.57it/s]
+LP: -16822.6:  38%|###7      | 188/500 [00:11&lt;00:17, 17.57it/s]
+LP: -16822.6:  38%|###8      | 190/500 [00:11&lt;00:17, 17.58it/s]
+LP: -16822.6:  38%|###8      | 190/500 [00:11&lt;00:17, 17.58it/s]
+LP: -16822.6:  38%|###8      | 190/500 [00:11&lt;00:17, 17.58it/s]
+LP: -16822.6:  38%|###8      | 192/500 [00:11&lt;00:17, 17.58it/s]
+LP: -16822.6:  38%|###8      | 192/500 [00:12&lt;00:17, 17.58it/s]
+Converged to LP: -16822.6:  38%|###8      | 192/500 [00:12&lt;00:17, 17.58it/s]
+Converged to LP: -16822.6:  38%|###8      | 192/500 [00:12&lt;00:19, 15.94it/s]
+/Users/emdupre/Desktop/ssm/notebooks/2b-Input-Driven-Observations-(GLM-HMM).py:581: MatplotlibDeprecationWarning: Auto-removal of overlapping axes is deprecated since 3.6 and will be removed two minor releases later; explicitly call ax.remove() as needed.
+  plt.subplot(2, num_categories+1, c+1)
+
+Text(0.5, 1.0, &#39;Recovered transition matrix&#39;)
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Input Driven Observations (&quot;GLM-HMM&quot;)</span>
+<span class="c1">#</span>
+<span class="c1"># Notebook prepared by Zoe Ashwood: feel free to email me with feedback or questions (zashwood at cs dot princeton dot edu).</span>
+<span class="c1">#</span>
+<span class="c1"># This notebook demonstrates the &quot;InputDrivenObservations&quot; class, and illustrates its use in the context of modeling decision-making data as in Ashwood et al. (2020) ([Mice alternate between discrete strategies during perceptual</span>
+<span class="c1"># decision-making](https://www.biorxiv.org/content/10.1101/2020.10.19.346353v1.full.pdf)).</span>
+<span class="c1">#</span>
+<span class="c1"># Compared to the model considered in the notebook [&quot;2 Input Driven HMM&quot;](https://github.com/lindermanlab/ssm/blob/master/notebooks/2%20Input%20Driven%20HMM.ipynb), Ashwood et al. (2020) assumes a stationary transition matrix where transition probabilities *do not* depend on external inputs. However, observation probabilities now *do* depend on external covariates according to:</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># for $c \neq C$:</span>
+<span class="c1"># $$</span>
+<span class="c1"># \begin{align}</span>
+<span class="c1"># \Pr(y_t = c \mid z_{t} = k, u_t, w_{kc}) =</span>
+<span class="c1"># \frac{\exp\{w_{kc}^\mathsf{T} u_t\}}</span>
+<span class="c1"># {1+\sum_{c&#39;=1}^{C-1} \exp\{w_{kc&#39;}^\mathsf{T} u_t\}}</span>
+<span class="c1"># \end{align}</span>
+<span class="c1"># $$</span>
+<span class="c1">#</span>
+<span class="c1"># and for $c = C$:</span>
+<span class="c1"># $$</span>
+<span class="c1"># \begin{align}</span>
+<span class="c1"># \Pr(y_t = c \mid z_{t} = k, u_t, w_{kc}) =</span>
+<span class="c1"># \frac{1}</span>
+<span class="c1"># {1+\sum_{c&#39;=1}^{C-1} \exp\{w_{kc&#39;}^\mathsf{T} u_t\}}</span>
+<span class="c1"># \end{align}</span>
+<span class="c1"># $$</span>
+<span class="c1">#</span>
+<span class="c1"># where $c \in \{1, ..., C\}$ indicates the categorical class for the observation, $u_{t} \in \mathbb{R}^{M}$ is the set of input covariates, and $w_{kc} \in \mathbb{R}^{M}$ is the set of input weights associated with state $k$ and class $c$. These weights, along with the transition matrix and initial state probabilities, will be learned.</span>
+<span class="c1">#</span>
+<span class="c1"># In Ashwood et al. (2020), $C = 2$ as $y_{t}$ represents the binary choice made by an animal during a 2AFC (2-Alternative Forced Choice) task. The above equations then reduce to:</span>
+<span class="c1">#</span>
+<span class="c1"># $$</span>
+<span class="c1"># \begin{align}</span>
+<span class="c1"># \Pr(y_t = 0 \mid z_{t} = k, u_t, w_{k}) =</span>
+<span class="c1"># \frac{\exp\{w_{k}^\mathsf{T} u_t\}}</span>
+<span class="c1"># {1 + \exp\{w_{k}^\mathsf{T} u_t\}} = \frac{1}</span>
+<span class="c1"># {1 + \exp\{-w_{k}^\mathsf{T} u_t\}}.</span>
+<span class="c1"># \end{align}</span>
+<span class="c1"># $$</span>
+<span class="c1">#</span>
+<span class="c1"># $$</span>
+<span class="c1"># \begin{align}</span>
+<span class="c1"># \Pr(y_t = 1 \mid z_{t} = k, u_t, w_{k}) =</span>
+<span class="c1"># \frac{1}</span>
+<span class="c1"># {1 + \exp\{w_{k}^\mathsf{T} u_t\}}.</span>
+<span class="c1"># \end{align}</span>
+<span class="c1"># $$</span>
+<span class="c1">#</span>
+<span class="c1"># and only a single weight vector, $w_{k}$, is associated with each state.</span>
+
+<span class="c1"># ## 1. Setup</span>
+<span class="c1"># The line `import ssm` imports the package for use. Here, we have also imported a few other packages for plotting.</span>
+
+<span class="c1"># +</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">ssm</span>
+<span class="kn">from</span> <span class="nn">ssm.util</span> <span class="kn">import</span> <span class="n">find_permutation</span>
+
+<span class="n">npr</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># -</span>
+
+<span class="c1"># ## 2. Input Driven Observations</span>
+<span class="c1"># We create a HMM with input-driven observations and &#39;standard&#39; (stationary) transitions with the following line:</span>
+<span class="c1"># ```python</span>
+<span class="c1">#         ssm.HMM(num_states, obs_dim, input_dim, observations=&quot;input_driven_obs&quot;, observation_kwargs=dict(C=num_categories), transitions=&quot;standard&quot;)</span>
+<span class="c1"># ```</span>
+<span class="c1">#</span>
+<span class="c1"># As in Ashwood et al. (2020), we are going to model an animal&#39;s binary choice data during a decision-making task, so we will set `num_categories=2` because the animal only has two options available to it. We will also set `obs_dim = 1` because the dimensionality of the observation data is 1 (if we were also modeling, for example, the binned reaction time of the animal, we could set `obs_dim = 2`).  For the sake of simplicity, we will assume that an animal&#39;s choice in a particular state is only affected by the external stimulus associated with that particular trial, and its innate choice bias. Thus, we will set `input_dim = 2` and we will simulate input data that resembles sequences of stimuli in what follows.  In Ashwood et al. (2020), they found that many mice used 3 decision-making states when performing 2AFC tasks. We will, thus, set `num_states = 3`.</span>
+
+<span class="c1"># ### 2a. Initialize GLM-HMM</span>
+
+<span class="c1"># +</span>
+<span class="c1"># Set the parameters of the GLM-HMM</span>
+<span class="n">num_states</span> <span class="o">=</span> <span class="mi">3</span>        <span class="c1"># number of discrete states</span>
+<span class="n">obs_dim</span> <span class="o">=</span> <span class="mi">1</span>           <span class="c1"># number of observed dimensions</span>
+<span class="n">num_categories</span> <span class="o">=</span> <span class="mi">2</span>    <span class="c1"># number of categories for output</span>
+<span class="n">input_dim</span> <span class="o">=</span> <span class="mi">2</span>         <span class="c1"># input dimensions</span>
+
+<span class="c1"># Make a GLM-HMM</span>
+<span class="n">true_glmhmm</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">HMM</span><span class="p">(</span><span class="n">num_states</span><span class="p">,</span> <span class="n">obs_dim</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">,</span> <span class="n">observations</span><span class="o">=</span><span class="s2">&quot;input_driven_obs&quot;</span><span class="p">,</span>
+                   <span class="n">observation_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">num_categories</span><span class="p">),</span> <span class="n">transitions</span><span class="o">=</span><span class="s2">&quot;standard&quot;</span><span class="p">)</span>
+<span class="c1"># -</span>
+
+<span class="c1"># ### 2b. Specify parameters of generative GLM-HMM</span>
+
+<span class="c1"># Let&#39;s update the weights and transition matrix for the true GLM-HMM so as to bring the GLM-HMM to the parameter regime that real animals use (according to Ashwood et al. (2020)):</span>
+
+<span class="n">gen_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]])</span>
+<span class="n">gen_log_trans_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.92</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.94</span><span class="p">]]]))</span>
+<span class="n">true_glmhmm</span><span class="o">.</span><span class="n">observations</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">gen_weights</span>
+<span class="n">true_glmhmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">gen_log_trans_mat</span>
+
+<span class="c1"># +</span>
+<span class="c1"># Plot generative parameters:</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#ff7f00&#39;</span><span class="p">,</span> <span class="s1">&#39;#4daf4a&#39;</span><span class="p">,</span> <span class="s1">&#39;#377eb8&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_states</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">input_dim</span><span class="p">),</span> <span class="n">gen_weights</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+             <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
+             <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;state &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;GLM weight&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;covariate&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;stimulus&#39;</span><span class="p">,</span> <span class="s1">&#39;bias&#39;</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Generative weights&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">gen_trans_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">gen_log_trans_mat</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gen_trans_mat</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bone&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">gen_trans_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">gen_trans_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">gen_trans_mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">num_states</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_states</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_states</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">num_states</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;state t&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;state t+1&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Generative transition matrix&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="c1"># -</span>
+
+<span class="c1"># ### 2c. Create external input sequences</span>
+
+<span class="c1"># Simulate an example set of external inputs for each trial in a session. We will create an array of size `(num_sess x num_trials_per_sess x num_covariates)`. As in Ashwood et al. (2020), for each trial in a session we will include the stimulus presented to the animal at that trial, as well as a &#39;1&#39; as the second covariate (so as to capture the animal&#39;s innate bias for one of the two options available to it). We will simulate stimuli sequences so as to resemble the sequences of stimuli in the International Brain Laboratory et al. (2020) task.</span>
+
+<span class="n">num_sess</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1"># number of example sessions</span>
+<span class="n">num_trials_per_sess</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># number of trials in a session</span>
+<span class="n">inpts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">num_sess</span><span class="p">,</span> <span class="n">num_trials_per_sess</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">))</span> <span class="c1"># initialize inpts array</span>
+<span class="n">stim_vals</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.25</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.125</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0625</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0625</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">inpts</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">stim_vals</span><span class="p">,</span> <span class="p">(</span><span class="n">num_sess</span><span class="p">,</span> <span class="n">num_trials_per_sess</span><span class="p">))</span> <span class="c1"># generate random sequence of stimuli</span>
+<span class="n">inpts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">inpts</span><span class="p">)</span> <span class="c1">#convert inpts to correct format</span>
+
+<span class="c1"># ### 2d. Simulate states and observations with generative model</span>
+
+<span class="c1"># Generate a sequence of latents and choices for each session</span>
+<span class="n">true_latents</span><span class="p">,</span> <span class="n">true_choices</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">sess</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sess</span><span class="p">):</span>
+    <span class="n">true_z</span><span class="p">,</span> <span class="n">true_y</span> <span class="o">=</span> <span class="n">true_glmhmm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">num_trials_per_sess</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="n">inpts</span><span class="p">[</span><span class="n">sess</span><span class="p">])</span>
+    <span class="n">true_latents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">true_z</span><span class="p">)</span>
+    <span class="n">true_choices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">true_y</span><span class="p">)</span>
+
+<span class="c1"># Calculate true loglikelihood</span>
+<span class="n">true_ll</span> <span class="o">=</span> <span class="n">true_glmhmm</span><span class="o">.</span><span class="n">log_probability</span><span class="p">(</span><span class="n">true_choices</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inpts</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;true ll = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">true_ll</span><span class="p">))</span>
+
+<span class="c1"># ## 3. Fit GLM-HMM and perform recovery analysis</span>
+
+<span class="c1"># ### 3a. Maximum Likelihood Estimation</span>
+
+<span class="c1"># Now we instantiate a new GLM-HMM and check that we can recover the generative parameters in simulated data:</span>
+
+<span class="c1"># +</span>
+<span class="n">new_glmhmm</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">HMM</span><span class="p">(</span><span class="n">num_states</span><span class="p">,</span> <span class="n">obs_dim</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">,</span> <span class="n">observations</span><span class="o">=</span><span class="s2">&quot;input_driven_obs&quot;</span><span class="p">,</span>
+                   <span class="n">observation_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">num_categories</span><span class="p">),</span> <span class="n">transitions</span><span class="o">=</span><span class="s2">&quot;standard&quot;</span><span class="p">)</span>
+
+<span class="n">N_iters</span> <span class="o">=</span> <span class="mi">200</span> <span class="c1"># maximum number of EM iterations. Fitting with stop earlier if increase in LL is below tolerance specified by tolerance parameter</span>
+<span class="n">fit_ll</span> <span class="o">=</span> <span class="n">new_glmhmm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">true_choices</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inpts</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;em&quot;</span><span class="p">,</span> <span class="n">num_iters</span><span class="o">=</span><span class="n">N_iters</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mi">10</span><span class="o">**-</span><span class="mi">4</span><span class="p">)</span>
+<span class="c1"># -</span>
+
+<span class="c1"># Plot the log probabilities of the true and fit models. Fit model final LL should be greater</span>
+<span class="c1"># than or equal to true LL.</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fit_ll</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;EM&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fit_ll</span><span class="p">)],</span> <span class="n">true_ll</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;:k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;EM Iteration&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fit_ll</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Log Probability&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># ### 3b. Retrieved parameters</span>
+
+<span class="c1"># Compare retrieved weights and transition matrices to generative parameters. To do this, we may first need to permute the states of the fit GLM-HMM relative to the</span>
+<span class="c1"># generative model.  One way to do this uses the `find_permutation` function from `ssm`:</span>
+
+<span class="n">new_glmhmm</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="n">find_permutation</span><span class="p">(</span><span class="n">true_latents</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">new_glmhmm</span><span class="o">.</span><span class="n">most_likely_states</span><span class="p">(</span><span class="n">true_choices</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">input</span><span class="o">=</span><span class="n">inpts</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+
+<span class="c1"># Now plot generative and retrieved weights for GLMs (analogous plot to Figure S1c in</span>
+<span class="c1"># Ashwood et al. (2020)):</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#ff7f00&#39;</span><span class="p">,</span> <span class="s1">&#39;#4daf4a&#39;</span><span class="p">,</span> <span class="s1">&#39;#377eb8&#39;</span><span class="p">]</span>
+<span class="n">recovered_weights</span> <span class="o">=</span> <span class="n">new_glmhmm</span><span class="o">.</span><span class="n">observations</span><span class="o">.</span><span class="n">params</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_states</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">input_dim</span><span class="p">),</span> <span class="n">gen_weights</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
+                 <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;generative&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">input_dim</span><span class="p">),</span> <span class="n">recovered_weights</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+                     <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>  <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;recovered&quot;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">input_dim</span><span class="p">),</span> <span class="n">gen_weights</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
+                 <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">input_dim</span><span class="p">),</span> <span class="n">recovered_weights</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+                     <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;GLM weight&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;covariate&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;stimulus&#39;</span><span class="p">,</span> <span class="s1">&#39;bias&#39;</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Weight recovery&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="c1"># Now plot generative and retrieved transition matrices (analogous plot to Figure S1c in</span>
+<span class="c1"># Ashwood et al. (2020)):</span>
+
+<span class="c1"># +</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">gen_trans_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">gen_log_trans_mat</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gen_trans_mat</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bone&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">gen_trans_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">gen_trans_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">gen_trans_mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">num_states</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_states</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_states</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">num_states</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;state t&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;state t+1&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;generative&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">recovered_trans_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">new_glmhmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">log_Ps</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">recovered_trans_mat</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bone&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">recovered_trans_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">recovered_trans_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">recovered_trans_mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">num_states</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_states</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_states</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">num_states</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;recovered&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># -</span>
+
+<span class="c1"># ### 3c. Posterior State Probabilities</span>
+
+<span class="c1"># Let&#39;s now plot $p(z_{t} = k|\mathbf{y}, \{u_{t}\}_{t=1}^{T})$, the posterior state probabilities, which give the probability of the animal being in state k at trial t.</span>
+
+<span class="c1"># Get expected states:</span>
+<span class="n">posterior_probs</span> <span class="o">=</span> <span class="p">[</span><span class="n">new_glmhmm</span><span class="o">.</span><span class="n">expected_states</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="n">inpt</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">data</span><span class="p">,</span> <span class="n">inpt</span>
+                <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">true_choices</span><span class="p">,</span> <span class="n">inpts</span><span class="p">)]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">sess_id</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#session id; can choose any index between 0 and num_sess-1</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_states</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">posterior_probs</span><span class="p">[</span><span class="n">sess_id</span><span class="p">][:,</span> <span class="n">k</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;State &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+             <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;trial #&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;p(state)&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+
+<span class="c1"># With these posterior state probabilities, we can assign trials to states and then plot the fractional occupancy of each state:</span>
+
+<span class="c1"># concatenate posterior probabilities across sessions</span>
+<span class="n">posterior_probs_concat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">posterior_probs</span><span class="p">)</span>
+<span class="c1"># get state with maximum posterior probability at particular trial:</span>
+<span class="n">state_max_posterior</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">posterior_probs_concat</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># now obtain state fractional occupancies:</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">state_occupancies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">state_max_posterior</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">state_occupancies</span> <span class="o">=</span> <span class="n">state_occupancies</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">state_occupancies</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">z</span><span class="p">,</span> <span class="n">occ</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">state_occupancies</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">occ</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">cols</span><span class="p">[</span><span class="n">z</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">],</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0.5&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;frac. occupancy&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="c1"># ## 4. Fit GLM-HMM and perform recovery analysis: Maximum A Priori Estimation</span>
+
+<span class="c1"># Above, we performed Maximum Likelihood Estimation to retrieve the generative parameters of the GLM-HMM in simulated data. In the small data regime, where we do not have many trials available to us, we may instead want to perform Maximum A Priori (MAP) Estimation in order to incorporate a prior term and restrict the range for the best fitting parameters. Unfortunately, what is meant by &#39;small data regime&#39; is problem dependent and will be affected by the number of states in the generative GLM-HMM, and the specific parameters of the generative model, amongst other things. In practice, we may perform both Maximum Likelihood Estimation and MAP estimation and compare the ability of the fit models to make predictions on held-out data (see Section 5 on Cross-Validation below).</span>
+<span class="c1">#</span>
+<span class="c1"># The prior we consider for the GLM-HMM is the product of a Gaussian prior on the GLM weights, $W$, and a Dirichlet prior on the transition matrix, $A$:</span>
+<span class="c1">#</span>
+<span class="c1"># $$</span>
+<span class="c1"># \begin{align}</span>
+<span class="c1"># \Pr(W, A) &amp;= \mathcal{N}(W|0, \Sigma) \Pr(A|\alpha) \\&amp;= \mathcal{N}(W|0, diag(\sigma^{2}, \cdots, \sigma^{2})) \prod_{j=1}^{K} \dfrac{1}{B(\alpha)} \prod_{k=1}^{K} A_{jk}^{\alpha -1}</span>
+<span class="c1"># \end{align}</span>
+<span class="c1"># $$</span>
+<span class="c1">#</span>
+<span class="c1"># There are two hyperparameters controlling the strength of the prior: $\sigma$ and $\alpha$.  The larger the value of $\sigma$ and if $\alpha = 1$, the more similar MAP estimation will become to Maximum Likelihood Estimation, and the prior term will become an additive offset to the objective function of the GLM-HMM that is independent of the values of $W$ and $A$.  In comparison, setting $\sigma = 2$ and $\alpha = 2$ will result in the prior no longer being independent of $W$ and $\alpha$.</span>
+<span class="c1">#</span>
+<span class="c1"># In order to perform MAP estimation for the GLM-HMM with `ssm`, the new syntax is:</span>
+<span class="c1">#</span>
+<span class="c1"># ```python</span>
+<span class="c1"># ssm.HMM(num_states, obs_dim, input_dim, observations=&quot;input_driven_obs&quot;,</span>
+<span class="c1">#              observation_kwargs=dict(C=num_categories,prior_sigma=prior_sigma),</span>
+<span class="c1">#              transitions=&quot;sticky&quot;, transition_kwargs=dict(alpha=prior_alpha,kappa=0))</span>
+<span class="c1"># ```</span>
+<span class="c1">#</span>
+<span class="c1"># where `prior_sigma` is the $\sigma$ parameter from above, and `prior_alpha` is the $\alpha$ parameter.</span>
+
+<span class="c1"># Instantiate GLM-HMM and set prior hyperparameters</span>
+<span class="n">prior_sigma</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">prior_alpha</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">map_glmhmm</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">HMM</span><span class="p">(</span><span class="n">num_states</span><span class="p">,</span> <span class="n">obs_dim</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">,</span> <span class="n">observations</span><span class="o">=</span><span class="s2">&quot;input_driven_obs&quot;</span><span class="p">,</span>
+             <span class="n">observation_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">num_categories</span><span class="p">,</span><span class="n">prior_sigma</span><span class="o">=</span><span class="n">prior_sigma</span><span class="p">),</span>
+             <span class="n">transitions</span><span class="o">=</span><span class="s2">&quot;sticky&quot;</span><span class="p">,</span> <span class="n">transition_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">prior_alpha</span><span class="p">,</span><span class="n">kappa</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="c1"># Fit GLM-HMM with MAP estimation:</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">map_glmhmm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">true_choices</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inpts</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;em&quot;</span><span class="p">,</span> <span class="n">num_iters</span><span class="o">=</span><span class="n">N_iters</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mi">10</span><span class="o">**-</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># Compare final likelihood of data with MAP estimation and MLE to likelihood under generative model (note: we cannot use log_probability that is output of `fit` function as this incorporates prior term, which is not comparable between generative and MAP models). We want to check that MAP and MLE likelihood values are higher than true likelihood; if they are not, this may indicate a poor initialization and that we should refit these models.</span>
+
+<span class="n">true_likelihood</span> <span class="o">=</span> <span class="n">true_glmhmm</span><span class="o">.</span><span class="n">log_likelihood</span><span class="p">(</span><span class="n">true_choices</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inpts</span><span class="p">)</span>
+<span class="n">mle_final_ll</span> <span class="o">=</span> <span class="n">new_glmhmm</span><span class="o">.</span><span class="n">log_likelihood</span><span class="p">(</span><span class="n">true_choices</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inpts</span><span class="p">)</span>
+<span class="n">map_final_ll</span> <span class="o">=</span> <span class="n">map_glmhmm</span><span class="o">.</span><span class="n">log_likelihood</span><span class="p">(</span><span class="n">true_choices</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inpts</span><span class="p">)</span>
+
+<span class="c1"># Plot these values</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">loglikelihood_vals</span> <span class="o">=</span> <span class="p">[</span><span class="n">true_likelihood</span><span class="p">,</span> <span class="n">mle_final_ll</span><span class="p">,</span> <span class="n">map_final_ll</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Red&#39;</span><span class="p">,</span> <span class="s1">&#39;Navy&#39;</span><span class="p">,</span> <span class="s1">&#39;Purple&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">z</span><span class="p">,</span> <span class="n">occ</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">loglikelihood_vals</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">occ</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">z</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="n">true_likelihood</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="n">true_likelihood</span><span class="o">+</span><span class="mi">15</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;true&#39;</span><span class="p">,</span> <span class="s1">&#39;mle&#39;</span><span class="p">,</span> <span class="s1">&#39;map&#39;</span><span class="p">],</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;loglikelihood&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="c1"># ## 5. Cross Validation</span>
+
+<span class="c1"># To assess which model is better - the model fit via Maximum Likelihood Estimation, or the model fit via MAP estimation - we can investigate the predictive power of these fit models on held-out test data sets.</span>
+
+<span class="c1"># Create additional input sequences to be used as held-out test data</span>
+<span class="n">num_test_sess</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">test_inpts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">num_test_sess</span><span class="p">,</span> <span class="n">num_trials_per_sess</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">))</span>
+<span class="n">test_inpts</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">stim_vals</span><span class="p">,</span> <span class="p">(</span><span class="n">num_test_sess</span><span class="p">,</span> <span class="n">num_trials_per_sess</span><span class="p">))</span>
+<span class="n">test_inpts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">test_inpts</span><span class="p">)</span>
+
+<span class="c1"># Create set of test latents and choices to accompany input sequences:</span>
+<span class="n">test_latents</span><span class="p">,</span> <span class="n">test_choices</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">sess</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_test_sess</span><span class="p">):</span>
+    <span class="n">test_z</span><span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">true_glmhmm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">num_trials_per_sess</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="n">test_inpts</span><span class="p">[</span><span class="n">sess</span><span class="p">])</span>
+    <span class="n">test_latents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_z</span><span class="p">)</span>
+    <span class="n">test_choices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_y</span><span class="p">)</span>
+
+<span class="c1"># Compare likelihood of test_choices for model fit with MLE and MAP:</span>
+<span class="n">mle_test_ll</span> <span class="o">=</span> <span class="n">new_glmhmm</span><span class="o">.</span><span class="n">log_likelihood</span><span class="p">(</span><span class="n">test_choices</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">test_inpts</span><span class="p">)</span>
+<span class="n">map_test_ll</span> <span class="o">=</span> <span class="n">map_glmhmm</span><span class="o">.</span><span class="n">log_likelihood</span><span class="p">(</span><span class="n">test_choices</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">test_inpts</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">loglikelihood_vals</span> <span class="o">=</span> <span class="p">[</span><span class="n">mle_test_ll</span><span class="p">,</span> <span class="n">map_test_ll</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Navy&#39;</span><span class="p">,</span> <span class="s1">&#39;Purple&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">z</span><span class="p">,</span> <span class="n">occ</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">loglikelihood_vals</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">occ</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">z</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="n">mle_test_ll</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">mle_test_ll</span><span class="o">+</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;mle&#39;</span><span class="p">,</span> <span class="s1">&#39;map&#39;</span><span class="p">],</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;loglikelihood&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="c1"># Here we see that the model fit with MAP estimation achieves higher likelihood on the held-out dataset than the model fit with MLE, so we would choose this model as the best model of animal decision-making behavior (although we&#39;d probably want to perform multiple fold cross-validation to be sure that this is the case in all instantiations of test data).</span>
+<span class="c1">#</span>
+<span class="c1"># Let&#39;s finish by comparing the retrieved weights and transition matrices from MAP estimation to the generative parameters.</span>
+
+<span class="n">map_glmhmm</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="n">find_permutation</span><span class="p">(</span><span class="n">true_latents</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">map_glmhmm</span><span class="o">.</span><span class="n">most_likely_states</span><span class="p">(</span><span class="n">true_choices</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">input</span><span class="o">=</span><span class="n">inpts</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+
+<span class="c1"># +</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#ff7f00&#39;</span><span class="p">,</span> <span class="s1">&#39;#4daf4a&#39;</span><span class="p">,</span> <span class="s1">&#39;#377eb8&#39;</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">recovered_weights</span> <span class="o">=</span> <span class="n">new_glmhmm</span><span class="o">.</span><span class="n">observations</span><span class="o">.</span><span class="n">params</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_states</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span> <span class="c1"># show labels only for first state</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">input_dim</span><span class="p">),</span> <span class="n">gen_weights</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+                 <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;generative&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">input_dim</span><span class="p">),</span> <span class="n">recovered_weights</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+                     <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;recovered&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">input_dim</span><span class="p">),</span> <span class="n">gen_weights</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+                 <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">input_dim</span><span class="p">),</span> <span class="n">recovered_weights</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+                     <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;GLM weight&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;covariate&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;stimulus&#39;</span><span class="p">,</span> <span class="s1">&#39;bias&#39;</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;MLE&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">recovered_weights</span> <span class="o">=</span> <span class="n">map_glmhmm</span><span class="o">.</span><span class="n">observations</span><span class="o">.</span><span class="n">params</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_states</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">input_dim</span><span class="p">),</span> <span class="n">gen_weights</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+             <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+             <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">input_dim</span><span class="p">),</span> <span class="n">recovered_weights</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+                 <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;MAP&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+
+<span class="c1"># +</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">gen_trans_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">gen_log_trans_mat</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gen_trans_mat</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bone&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">gen_trans_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">gen_trans_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">gen_trans_mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">num_states</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_states</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_states</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">num_states</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;state t&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;state t+1&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;generative&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">recovered_trans_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">new_glmhmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">log_Ps</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">recovered_trans_mat</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bone&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">recovered_trans_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">recovered_trans_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">recovered_trans_mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">num_states</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_states</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_states</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">num_states</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;recovered - MLE&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">recovered_trans_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">map_glmhmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">log_Ps</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">recovered_trans_mat</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bone&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">recovered_trans_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">recovered_trans_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">recovered_trans_mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">num_states</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_states</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_states</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">num_states</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;recovered - MAP&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># -</span>
+
+<span class="c1"># ## 6. Multinomial GLM-HMM</span>
+
+<span class="c1"># Until now, we have only considered the case where there are 2 output classes (the Bernoulli GLM-HMM corresponding to `C=num_categories=2`), yet the `ssm` framework is sufficiently general to allow us to fit the multinomial GLM-HMM described in Equations 1 and 2. Here we demonstrate a recovery analysis for the multinomial GLM-HMM.</span>
+
+<span class="c1"># +</span>
+<span class="c1"># Set the parameters of the GLM-HMM</span>
+<span class="n">num_states</span> <span class="o">=</span> <span class="mi">4</span>        <span class="c1"># number of discrete states</span>
+<span class="n">obs_dim</span> <span class="o">=</span> <span class="mi">1</span>           <span class="c1"># number of observed dimensions</span>
+<span class="n">num_categories</span> <span class="o">=</span> <span class="mi">3</span>    <span class="c1"># number of categories for output</span>
+<span class="n">input_dim</span> <span class="o">=</span> <span class="mi">2</span>         <span class="c1"># input dimensions</span>
+
+<span class="c1"># Make a GLM-HMM</span>
+<span class="n">true_glmhmm</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">HMM</span><span class="p">(</span><span class="n">num_states</span><span class="p">,</span> <span class="n">obs_dim</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">,</span> <span class="n">observations</span><span class="o">=</span><span class="s2">&quot;input_driven_obs&quot;</span><span class="p">,</span>
+                   <span class="n">observation_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">num_categories</span><span class="p">),</span> <span class="n">transitions</span><span class="o">=</span><span class="s2">&quot;standard&quot;</span><span class="p">)</span>
+<span class="c1"># -</span>
+
+<span class="c1"># Set weights of multinomial GLM-HMM</span>
+<span class="n">gen_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mf">0.6</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">]]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gen_weights</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">true_glmhmm</span><span class="o">.</span><span class="n">observations</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">gen_weights</span>
+
+<span class="c1"># In the above, notice that the shape of the weights for the multinomial GLM-HMM is `(num_states, num_categories-1, input_dim)`.  Specifically, we only learn `num_categories-1` weight vectors (of size `input_dim`) for a given state, and we set the weights for the other observation class to zero. Constraining the weight vectors for one class is important if that we want to be able to identify generative weights in simulated data. If we didn&#39;t do this, it is easy to see that one could generate the same observation probabilities with a set of weight vectors that are offset by a constant vector $w_{k}$ (the index k indicates that a different offset vector could exist per state):</span>
+<span class="c1"># $$</span>
+<span class="c1"># \begin{align}</span>
+<span class="c1"># \Pr(y_t = c \mid z_{t} = k, u_t, w_{kc}) =</span>
+<span class="c1"># \frac{\exp\{w_{kc}^\mathsf{T} u_t\}}</span>
+<span class="c1"># {\sum_{c&#39;=1}^C \exp\{w_{kc&#39;}^\mathsf{T} u_t\}} = \frac{\exp\{(w_{kc}-w_{k})^\mathsf{T} u_t\}}</span>
+<span class="c1"># {\sum_{c&#39;=1}^C \exp\{(w_{kc&#39;}-w_{k})^\mathsf{T} u_t\}}</span>
+<span class="c1"># \end{align}</span>
+<span class="c1"># $$</span>
+<span class="c1">#</span>
+<span class="c1"># Equations 1 and 2 at the top of this notebook already take into account the fact that the weights for a particular class for a given state are fixed to zero (this is why $c = C$ is handled differently).</span>
+
+<span class="c1"># Set transition matrix of multinomial GLM-HMM</span>
+<span class="n">gen_log_trans_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mf">0.90</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.92</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.94</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.89</span><span class="p">]]]))</span>
+<span class="n">true_glmhmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">gen_log_trans_mat</span>
+
+<span class="c1"># Create external inputs sequence; compared to the example above, we will increase the number of examples</span>
+<span class="c1"># (through the &quot;num_trials_per_session&quot; paramater) since the number of parameters has increased</span>
+<span class="n">num_sess</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1"># number of example sessions</span>
+<span class="n">num_trials_per_sess</span> <span class="o">=</span> <span class="mi">1000</span> <span class="c1"># number of trials in a session</span>
+<span class="n">inpts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">num_sess</span><span class="p">,</span> <span class="n">num_trials_per_sess</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">))</span> <span class="c1"># initialize inpts array</span>
+<span class="n">stim_vals</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.25</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.125</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0625</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0625</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">inpts</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">stim_vals</span><span class="p">,</span> <span class="p">(</span><span class="n">num_sess</span><span class="p">,</span> <span class="n">num_trials_per_sess</span><span class="p">))</span> <span class="c1"># generate random sequence of stimuli</span>
+<span class="n">inpts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">inpts</span><span class="p">)</span>
+
+<span class="c1"># Generate a sequence of latents and choices for each session</span>
+<span class="n">true_latents</span><span class="p">,</span> <span class="n">true_choices</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">sess</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sess</span><span class="p">):</span>
+    <span class="n">true_z</span><span class="p">,</span> <span class="n">true_y</span> <span class="o">=</span> <span class="n">true_glmhmm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">num_trials_per_sess</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="n">inpts</span><span class="p">[</span><span class="n">sess</span><span class="p">])</span>
+    <span class="n">true_latents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">true_z</span><span class="p">)</span>
+    <span class="n">true_choices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">true_y</span><span class="p">)</span>
+
+<span class="c1"># plot example data:</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="n">true_choices</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)],</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;example data (multinomial GLM-HMM)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;trial #&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;observation class&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+
+<span class="c1"># Calculate true loglikelihood</span>
+<span class="n">true_ll</span> <span class="o">=</span> <span class="n">true_glmhmm</span><span class="o">.</span><span class="n">log_probability</span><span class="p">(</span><span class="n">true_choices</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inpts</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;true ll = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">true_ll</span><span class="p">))</span>
+
+<span class="c1"># +</span>
+<span class="c1"># fit GLM-HMM</span>
+<span class="n">new_glmhmm</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">HMM</span><span class="p">(</span><span class="n">num_states</span><span class="p">,</span> <span class="n">obs_dim</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">,</span> <span class="n">observations</span><span class="o">=</span><span class="s2">&quot;input_driven_obs&quot;</span><span class="p">,</span>
+                   <span class="n">observation_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">num_categories</span><span class="p">),</span> <span class="n">transitions</span><span class="o">=</span><span class="s2">&quot;standard&quot;</span><span class="p">)</span>
+
+<span class="n">N_iters</span> <span class="o">=</span> <span class="mi">500</span> <span class="c1"># maximum number of EM iterations. Fitting with stop earlier if increase in LL is below tolerance specified by tolerance parameter</span>
+<span class="n">fit_ll</span> <span class="o">=</span> <span class="n">new_glmhmm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">true_choices</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inpts</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;em&quot;</span><span class="p">,</span> <span class="n">num_iters</span><span class="o">=</span><span class="n">N_iters</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mi">10</span><span class="o">**-</span><span class="mi">4</span><span class="p">)</span>
+<span class="c1"># -</span>
+
+<span class="c1"># Plot the log probabilities of the true and fit models. Fit model final LL should be greater</span>
+<span class="c1"># than or equal to true LL.</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fit_ll</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;EM&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fit_ll</span><span class="p">)],</span> <span class="n">true_ll</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;:k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;EM Iteration&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fit_ll</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Log Probability&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># permute recovered state identities to match state identities of generative model</span>
+<span class="n">new_glmhmm</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="n">find_permutation</span><span class="p">(</span><span class="n">true_latents</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">new_glmhmm</span><span class="o">.</span><span class="n">most_likely_states</span><span class="p">(</span><span class="n">true_choices</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">input</span><span class="o">=</span><span class="n">inpts</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+
+<span class="c1"># +</span>
+<span class="c1"># Plot recovered parameters:</span>
+<span class="n">recovered_weights</span> <span class="o">=</span> <span class="n">new_glmhmm</span><span class="o">.</span><span class="n">observations</span><span class="o">.</span><span class="n">params</span>
+<span class="n">recovered_transitions</span> <span class="o">=</span> <span class="n">new_glmhmm</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">params</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#ff7f00&#39;</span><span class="p">,</span> <span class="s1">&#39;#4daf4a&#39;</span><span class="p">,</span> <span class="s1">&#39;#377eb8&#39;</span><span class="p">,</span> <span class="s1">&#39;#f781bf&#39;</span><span class="p">,</span> <span class="s1">&#39;#a65628&#39;</span><span class="p">,</span> <span class="s1">&#39;#984ea3&#39;</span><span class="p">,</span> <span class="s1">&#39;#999999&#39;</span><span class="p">,</span> <span class="s1">&#39;#e41a1c&#39;</span><span class="p">,</span> <span class="s1">&#39;#dede00&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_categories</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_categories</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">num_categories</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_states</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">input_dim</span><span class="p">),</span> <span class="n">gen_weights</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">c</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;state &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;; class &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_states</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">input_dim</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">input_dim</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+                     <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;state &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;; class &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;GLM weight&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Generative weights; class &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_categories</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_categories</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">gen_trans_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">gen_log_trans_mat</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gen_trans_mat</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bone&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">gen_trans_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">gen_trans_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">gen_trans_mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">num_states</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_states</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_states</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">num_states</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;state t&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;state t+1&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Generative transition matrix&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+
+
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#ff7f00&#39;</span><span class="p">,</span> <span class="s1">&#39;#4daf4a&#39;</span><span class="p">,</span> <span class="s1">&#39;#377eb8&#39;</span><span class="p">,</span> <span class="s1">&#39;#f781bf&#39;</span><span class="p">,</span> <span class="s1">&#39;#a65628&#39;</span><span class="p">,</span> <span class="s1">&#39;#984ea3&#39;</span><span class="p">,</span> <span class="s1">&#39;#999999&#39;</span><span class="p">,</span> <span class="s1">&#39;#e41a1c&#39;</span><span class="p">,</span> <span class="s1">&#39;#dede00&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_categories</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_categories</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_categories</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">num_categories</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_states</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">input_dim</span><span class="p">),</span> <span class="n">recovered_weights</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">c</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;state &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;; class &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_states</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">input_dim</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">input_dim</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span>
+                     <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;state &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;; class &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;covariate&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;GLM weight&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;stimulus&#39;</span><span class="p">,</span> <span class="s1">&#39;bias&#39;</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Recovered weights; class &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_categories</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">num_categories</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">recovered_trans_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">recovered_transitions</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">recovered_trans_mat</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bone&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">recovered_trans_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">recovered_trans_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">recovered_trans_mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+                        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">num_states</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_states</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_states</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">num_states</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;state t&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;state t+1&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Recovered transition matrix&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  15.323 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-2b-input-driven-observations-glm-hmm-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/45f465ddc871482c2244c92fe2d86612/2b-Input-Driven-Observations-%28GLM-HMM%29.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">2b-Input-Driven-Observations-(GLM-HMM).py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/50a3dd6d7fff3851bcce0232b300126f/2b-Input-Driven-Observations-%28GLM-HMM%29.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">2b-Input-Driven-Observations-(GLM-HMM).ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="2-Input-Driven-HMM.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Input Driven HMM</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="3-Switching-Linear-Dynamical-System.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Switching Linear Dynamical System</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Scott Linderman<br/>
+  
+      &copy; Copyright 2022, Scott Linderman.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
